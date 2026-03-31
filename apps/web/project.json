@@ -1,0 +1,205 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "web",
+  "sourceRoot": "apps/web/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/web/browser",
+        "index": "apps/web/src/index.html",
+        "main": "apps/web/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/web/tsconfig.app.json",
+        "assets": [
+          "apps/web/src/favicon.ico",
+          "apps/web/src/assets",
+          {
+            "input": "./libs/core/src/assets",
+            "glob": "**/*",
+            "output": "assets/shared"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+            "output": "/assets/"
+          }
+        ],
+        "styles": [
+          "./node_modules/ngx-spinner/animations/ball-grid-beat.css",
+          "apps/web/src/styles.scss"
+        ],
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "enum-values",
+          "linqts",
+          "lottie-web",
+          "leaflet",
+          "form-data"
+        ]
+      },
+      "configurations": {
+        "staging": {
+          "budgets": [],
+          "fileReplacements": [
+            {
+              "replace": "apps/web/src/environments/environment.ts",
+              "with": "apps/web/src/environments/environment.staging.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "10mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/web/src/environments/environment.ts",
+              "with": "apps/web/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "staging": {
+          "browserTarget": "web:build:staging"
+        },
+        "production": {
+          "browserTarget": "web:build:production"
+        },
+        "development": {
+          "browserTarget": "web:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "web:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web/**/*.ts", "apps/web/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/web/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "web:build"
+      }
+    },
+    "server": {
+      "dependsOn": ["build"],
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/web/server",
+        "main": "apps/web/server.ts",
+        "tsConfig": "apps/web/tsconfig.server.json"
+      },
+      "configurations": {
+        "staging": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/web/src/environments/environment.ts",
+              "with": "apps/web/src/environments/environment.staging.ts"
+            }
+          ]
+        },
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/web/src/environments/environment.ts",
+              "with": "apps/web/src/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "executor": "@nguniversal/builders:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "web:build:development",
+          "serverTarget": "web:server:development"
+        },
+        "production": {
+          "browserTarget": "web:build:production",
+          "serverTarget": "web:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "executor": "@nguniversal/builders:prerender",
+      "options": {
+        "routes": ["/"]
+      },
+      "configurations": {
+        "development": {
+          "browserTarget": "web:build:development",
+          "serverTarget": "web:server:development"
+        },
+        "production": {
+          "browserTarget": "web:build:production",
+          "serverTarget": "web:server:production"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
+}

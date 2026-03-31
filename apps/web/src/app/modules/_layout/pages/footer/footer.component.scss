@@ -1,0 +1,19 @@
+footer {
+    @apply text-white relative p-6 flex flex-col flex-wrap lg:flex-row;
+    background-color: var(--md-sys-color-on-sky-fixed-variant);
+
+    p,
+    li {
+        @apply text-white font-light;
+    }
+}
+
+.logo-col {
+    @apply max-w-fit p-5 flex flex-col;
+    background-color: var(--md-sys-color-surface-dim);
+}
+
+.copy-right {
+    @apply w-full flex flex-col lg:flex-row lg:justify-between pt-6 border-t border-white opacity-40;
+}
+

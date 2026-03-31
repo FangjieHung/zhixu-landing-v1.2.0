@@ -1,0 +1,61 @@
+<footer>
+    <img src="assets/shared/img/logo/mark-white.png" alt="logo" class="w-36 h-36 object-contain mr-10 mb-4">
+    <section class="web-map">
+        <div class="flex flex-wrap">
+            <ul>
+                <li *ngIf="('PHONE' | aryFindValue: (response?.contactDetails || []): 'name': 'value') as phone">
+                    <span class="label">phone</span>
+                    <p>{{ phone }}</p>
+                </li>
+                <li *ngIf="('FAX' | aryFindValue: (response?.contactDetails || []): 'name': 'value') as fax">
+                    <span class="label">fax</span>
+                    <p>{{ fax }}</p>
+                </li>
+                <li *ngIf="('OPENING HOURS' | aryFindValue: (response?.contactDetails || []): 'name': 'value') as opening">
+                    <span class="label">opening hours</span>
+                    <p>{{ opening }}</p>
+                </li>
+            </ul>
+            <ul>
+                <li *ngIf="('MAIL' | aryFindValue: (response?.contactDetails || []): 'name': 'value') as mail">
+                    <span class="label">mail</span>
+                    <p>{{ mail }}</p>
+                </li>
+                <li *ngIf="('LOCATION(中文地址)' | aryFindValue: (response?.contactDetails || []): 'name': 'value') as chtAddr">
+                    <span class="label">location</span>
+                    <p>
+                        <span class="inline-block">{{ chtAddr }}</span>
+                        <span class="inline-block text-sm"
+                          *ngIf="('LOCATION(英文地址)' | aryFindValue: (response?.contactDetails || []): 'name': 'value') as enAddr">
+                          {{ enAddr }}
+                        </span>
+                    </p>
+                </li>
+            </ul>
+            <div class="social-links">
+                <a target="_blank" [attr.href]="fbUrl" rel="noopener noreferrer"
+                  *ngIf="('Facebook' | aryFindValue: (response?.socialMedia || []): 'name': 'url') as fbUrl">
+                  <img src="assets/image/icon/fb.webp" alt="facebook">
+                </a>
+                <a target="_blank" [attr.href]="igUrl"
+                  *ngIf="('Instagram' | aryFindValue: (response?.socialMedia || []): 'name': 'url') as igUrl">
+                   <img src="assets/image/icon/ig.webp" alt="instagram">
+                </a>
+                <a target="_blank" [attr.href]="ytUrl"
+                  *ngIf="('Youtube' | aryFindValue: (response?.socialMedia || []): 'name': 'url') as ytUrl">
+                  <img src="assets/image/icon/yt.webp" alt="youtube">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="copy-right">
+        <p class="pr-1">蘊和堂 <span>&copy; {{ currYear }} All rights reserved.</span></p>
+        <p class="flex"><a routerLink="/about/terms">服務條款</a>．<a routerLink="/about/privacy">隱私權</a></p>
+    </section>
+
+    <div *ngIf="false">
+        <img src="assets/image/logo/newebpay.png" alt="logo" class="w-60 h-auto mb-2">
+        <p class="opacity-60 tracking-wider -ml-1">本網站採用藍新金流，提供您安全、便利的交易環境。</p>
+    </div>
+</footer>
