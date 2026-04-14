@@ -11,7 +11,6 @@ import { SwiperModule } from 'swiper/angular';
 // Custom packages
 import { SharedModule as CoreSharedModule } from '@core/shared';
 import {
-  GlassBgComponent,
   PaginatorComponent,
   ResultEmptyComponent,
   CompleteComponent,
@@ -29,7 +28,6 @@ import { PartnerLogosComponent } from './components/partner-logos/partner-logos.
 
 const CUST_MODULES = [CoreSharedModule];
 const CUST_COMPONENTS = [
-  GlassBgComponent,
   PaginatorComponent,
   ResultEmptyComponent,
   CompleteComponent,

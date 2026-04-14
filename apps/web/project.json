@@ -39,7 +39,9 @@
           "linqts",
           "lottie-web",
           "leaflet",
-          "form-data"
+          "form-data",
+          "aos",
+          "quill"
         ]
       },
       "configurations": {
