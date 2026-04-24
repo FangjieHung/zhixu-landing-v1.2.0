@@ -22,11 +22,11 @@
       <div class="hero-inner-border"></div>
 
       <div class="relative z-10">
-        <span class="hero-eyebrow ">
-          The Wisdom of Patience
+        <span class="hero-eyebrow label-large">
+          台味輕養生 &#183; 低卡無腥味
         </span>
 
-        <h1 class="hero-heading font-headline">
+        <h1 class="hero-heading">
           三十年的等待，<br />只為這一口清潤
         </h1>
 
@@ -81,7 +81,7 @@
 
         <div class="brand-body">
           <p>
-            被譽為「台灣黑松露」的老菜脯，是經過時光、食鹽與微生物長時間共同交織出的生命結晶。在蘊和堂，我們堅持選用無毒契作白蘿蔔，封存在陶甕中，埋入地底深處。
+            被譽為「窮人的人蔘」的老菜脯，是經過時光、食鹽與微生物長時間共同交織出的生命結晶。在蘊和堂，我們堅持選用無毒契作白蘿蔔，封存在陶甕中，埋入地底深處。
           </p>
           <p>
             經過光陰轉化，蘿蔔由白轉褐，終至透黑發亮。這不只是發酵，更是大自然賦予的溫潤補給，含有豐富多酚、礦物質與天然酵素，是照護全家人呼吸道與元氣的首選。
@@ -138,11 +138,11 @@
     </div>
 
     <!-- 右：職人圖 -->
-    <img src="assets/image/photo/pharmacist.jpg" alt="蘊和堂職人細心調製草本配方" loading="lazy" class="mission-img" />
+    <img src="assets/image/photo/hero-handtohand.png" alt="蘊和堂職人細心調製草本配方" loading="lazy" class="mission-img" />
 
   </section>
 
-  <!-- ④  適用族群 ── 喝一包，身體知道 ───────────────────────────────────── -->
+  <!-- ④  適用族群 ───────────────────────────────────── -->
   <section id="persona-section" class="persona-section">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
 
@@ -150,7 +150,7 @@
       <div class="persona-section-header">
         <span class="persona-eyebrow">不是噱頭，是真的相信食物有它的道理</span>
         <h2 class="persona-heading font-headline">
-          喝一包，身體知道
+          喝一包，養護身體
         </h2>
       </div>
 
@@ -240,13 +240,13 @@
         <li class="bento-review-cell">
           <div>
             <span class="bento-nutrients-eyebrow">Expert Review</span>
-            <h3 class="font-headline text-xl font-bold mb-4">試喝專家心得</h3>
+            <h3 class="font-headline text-xl font-bold mb-4">食品技師心得</h3>
             <div class="bento-cell-divider"></div>
           </div>
           <blockquote class="mt-4 space-y-3">
             <p>「整體來說非常好喝，沒有腥味，走的是<strong>清香養生</strong>的風格。無腥味且沒有多餘油脂，但口感依舊<strong>飽滿有厚度</strong>（濃縮程度應該很高），鮮味也很適中，非常耐喝。
             </p>
-            <p>老菜脯的風味表現較為內斂，如果沒有事先預告，菜脯的風味較難被察覺。整體而言是<strong>非常成熟的產品</strong>。」</p>
+            <p>整體而言是<strong>非常成熟的產品</strong>。」</p>
           </blockquote>
         </li>
         <li class="bento-low-cal-cell">
@@ -280,6 +280,7 @@
           </div>
           <img src="assets/image/radish-chart/abts.jpg" alt="ABTS 抗氧化能力圖表" loading="lazy"
             class="bento-nutrients-wide-img" />
+          <p class="source">資料來源：嘉義大學</p>
         </li>
         <li class="bento-nutrients-wide-cell">
           <div class="bento-nutrients-wide-text">
@@ -293,6 +294,7 @@
           </div>
           <img src="assets/image/radish-chart/gaba.jpg" alt="GABA 含量圖表" loading="lazy"
             class="bento-nutrients-wide-img" />
+          <p class="source">資料來源：嘉義大學</p>
         </li>
 
         <!-- ⑤ 高含量益生菌 + 圖表 col×2 -->
@@ -307,6 +309,7 @@
             </p>
           </div>
           <img src="assets/image/radish-chart/pm.jpg" alt="益生菌含量圖表" loading="lazy" class="bento-nutrients-wide-img" />
+          <p class="source">資料來源：嘉義大學</p>
         </div>
 
       </ol>
@@ -379,7 +382,7 @@
           <div class="safety-icon-wrap">
             <span aria-hidden="true" class="material-symbols-outlined">coronavirus</span>
           </div>
-          <h4 class="safety-item-heading font-headline">無黃麴毒素</h4>
+          <h4 class="safety-item-heading font-headline">無橘黴素</h4>
           <p class="safety-item-body">嚴選食材來源，全程冷鏈管控<br>從源頭杜絕黴菌污染。</p>
         </div>
         <div class="safety-item">
@@ -431,9 +434,7 @@
 
   <!-- ⑦  PRODUCTS ── 歲月的獻禮 ──────────────────────────────────────── -->
   <section id="products-section" class="products-section">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-
-      <div class="products-header">
+          <div class="products-header">
         <span class="products-eyebrow ">
           Our Collection
         </span>
@@ -442,56 +443,34 @@
         </h2>
       </div>
 
-      <div >
-        <swiper
-          class="w-full arrow-horizontal"
-          [navigation]="true"
-          [spaceBetween]="24"
-          [breakpoints]="{ '640': { slidesPerView: 1 }, '768': { slidesPerView: 2 }, '1024': { slidesPerView: 2 } }"
-        >
-          <ng-template swiperSlide>
+      <div>
+        <swiper class="w-full arrow-horizontal" [navigation]="true" [spaceBetween]="24"
+          [breakpoints]="{ '640': { slidesPerView: 1 }, '768': { slidesPerView: 2 }, '1024': { slidesPerView: 3 } }">
+          <ng-template swiperSlide *ngFor="let product of products">
             <div class="product-card">
               <div class="product-img-wrap">
-                <img src="assets/image/photo/product-chicken-essence.png" alt="蘊和堂 黑金萃取禮盒" loading="lazy" width="360"
+                <img *ngIf="product.image; else noImg" [src]="product.image" [alt]="product.subtitle" loading="lazy" width="360"
                   height="360" class="w-full h-auto object-contain" />
+                <ng-template #noImg>
+                  <div class="product-placeholder">
+                    <span aria-hidden="true" class="material-symbols-outlined text-5xl">ramen_dining</span>
+                  </div>
+                </ng-template>
               </div>
               <div class="product-info">
-                <h3 class="product-name font-headline">黑金萃取禮盒</h3>
-                <p class="product-subtitle ">Black Gold Extract</p>
-                <p class="product-desc">
-                  濃縮三十年精華，每日一包，為繁忙生活注入時光的穩定力量。
-                </p>
-                <div class="product-price font-headline">
-                  NT$&nbsp;2,580
-                </div>
-              </div>
-            </div>
-          </ng-template>
+                <h3 class="product-name font-headline">{{ product.name }}</h3>
+                <p class="product-subtitle">{{ product.subtitle }}</p>
+                <p class="product-desc">{{ product.desc }}</p>
 
-          <ng-template swiperSlide>
-            <div class="product-card">
-              <div class="product-img-wrap">
-                <div class="product-placeholder">
-                  <span aria-hidden="true" class="material-symbols-outlined text-5xl">
-                    ramen_dining
-                  </span>
-                </div>
-              </div>
-              <div class="product-info">
-                <h3 class="product-name font-headline">老菜脯雞湯精粹</h3>
-                <p class="product-subtitle ">Aged Radish Soup Base</p>
-                <p class="product-desc">
-                  如同母親的手藝，簡單加熱，即可享有一碗溫潤脾胃的傳承好湯。
-                </p>
                 <div class="product-price font-headline">
-                  NT$&nbsp;1,280
+                  <p>定價 NT$&nbsp;{{ formatPrice(product.price) }}</p>
+                  <p *ngIf="product.memberPrice" class="text-red-800">會員 NT$&nbsp;{{ formatPrice(product.memberPrice) }}</p>
                 </div>
               </div>
             </div>
           </ng-template>
         </swiper>
       </div>
-    </div>
   </section>
 
   <!-- ⑦-B  PROCESS ── 製程介紹 ──────────────────────────────────────────── -->
@@ -603,18 +582,6 @@
           <!-- Connectors -->
           <!-- Left Column: Operations -->
           <ul class="org-chart-main-grid">
-            <!-- Black Gold Chicken Essence -->
-            <li class="org-chart-section">
-              <div class="org-chart-section-box org-chart-section-box-secondary">
-                <span>黑金-滴雞精</span>
-                <span>Black Gold Essence</span>
-              </div>
-              <div class="org-chart-line w-px h-8"></div>
-              <div class="org-chart-section-items">
-                <div class="org-chart-section-item">倉管課</div>
-                <div class="org-chart-section-item">業務課</div>
-              </div>
-            </li>
             <!-- Cleaning Division -->
             <li class="org-chart-section">
               <div class="org-chart-section-box org-chart-section-box-secondary">
@@ -626,6 +593,18 @@
                 <li class="org-chart-section-item">課長</li>
                 <li class="org-chart-section-item">專員</li>
               </ol>
+            </li>
+            <!-- Black Gold Chicken Essence -->
+            <li class="org-chart-section">
+              <div class="org-chart-section-box org-chart-section-box-secondary">
+                <span>保健食品部</span>
+                <span>Black Gold Essence</span>
+              </div>
+              <div class="org-chart-line w-px h-8"></div>
+              <div class="org-chart-section-items">
+                <div class="org-chart-section-item">倉管課</div>
+                <div class="org-chart-section-item">業務課</div>
+              </div>
             </li>
             <!-- Right Column: General Affairs & Support -->
             <li class="org-chart-right-column">
@@ -639,7 +618,8 @@
                 <li class="org-chart-section-item">財務&amp;行政</li>
                 <li class="org-chart-section-item">資訊</li>
                 <li class="org-chart-section-item">行銷</li>
-                <li class="org-chart-section-item">人資/兼行銷</li>
+                <li class="org-chart-section-item">人資</li>
+                <li class="org-chart-section-item">法務</li>
               </ol>
             </li>
           </ul>
@@ -658,16 +638,16 @@
             <h2 class="parent-content-title">築泓健康科技<br />母公司介紹</h2>
             <div class="parent-content-divider"></div>
             <p class="parent-content-motto">
-              用善（膳）來築夢
+              用善（膳）心來築夢
             </p>
             <p class="parent-content-body">
               健康，是每個人都值得擁有的日常。
             </p>
             <p class="parent-content-body">
-              築泓健康科技，以「善膳養生」為核心，致力讓每個世代的人——從孩子到長者，都能輕鬆接受天然的營養補充。
+              築泓健康科技，以「健康養生」為核心，致力讓每個世代的人——從孩子到長者，都能輕鬆接受天然的營養補充。
             </p>
             <p class="parent-content-body">
-              我們以老菜脯結合滴雞精，解決長久以來補品「難以入口」的困境，讓無腥味成為橋樑，讓補養真正發生在每一個家庭的餐桌上。充分的營養，是健康的起點。我們用每一包產品，築起這個夢。
+              我們以老菜脯滴雞精作為首創品牌，解決長久以來補品「難以入口」的困境，讓無腥味成為橋樑，讓補養真正發生在每一個家庭的餐桌上。充分的營養，是健康的起點。我們用每一包產品，築起這個夢。
             </p>
           </div>
           <div class="parent-content-features">
@@ -733,18 +713,17 @@
   </section>
   <!-- ⑧  BRAND PARTNERS ── 深綠底 ──────────────────────────────────────── -->
   <div class="partners-section">
-    <div class="partners-inner">
-      <h3 class="partners-heading font-headline">
-        品牌夥伴 · 攜手推廣健康生活
-      </h3>
-      <div class="partners-list">
-        <div class="partner-item">
-          <img src="assets/image/partner/春生LOGO-03.png" alt="春生" loading="lazy" class="partner-logo-img" />
-        </div>
-        <div class="partner-item">
-          <img src="assets/image/partner/alic-logo.png" alt="alic" loading="lazy" class="partner-logo-img" />
-        </div>
-      </div>
+    <h3 class="partners-heading font-headline">
+      品牌夥伴 · 攜手推廣健康生活
+    </h3>
+    <div class="partners-list">
+      <swiper class="partners-swiper" [config]="logoStateService.partnersSwiperConfig">
+        <ng-template swiperSlide *ngFor="let p of logoStateService.partnerLogos">
+          <div class="partner-item">
+            <img [src]="p.src" [alt]="p.alt" loading="lazy" class="partner-logo-img" />
+          </div>
+        </ng-template>
+      </swiper>
     </div>
   </div>
 

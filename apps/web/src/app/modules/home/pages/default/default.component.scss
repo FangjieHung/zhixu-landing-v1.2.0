@@ -58,8 +58,7 @@
 }
 
 .hero-eyebrow {
-  @apply uppercase text-xs block mb-6;
-  letter-spacing: 0.3em;
+  @apply text-lg tracking-widest block mb-2;
   color: var(--md-sys-color-secondary-fixed);
 }
 
@@ -264,6 +263,11 @@
 
 .bento-nutrients-wide-cell {
   @apply border border-white/20 md:col-span-2 p-8 items-center;
+
+  .source {
+    @apply text-xs text-right tracking-widest mt-4;
+    color: color-mix(in srgb, var(--md-sys-color-on-secondary) 70%, transparent);
+  }
 }
 
 .bento-nutrients-wide-text {
@@ -562,7 +566,7 @@
 }
 
 .product-card {
-  @apply border p-8 md:p-10 flex flex-col sm:flex-row gap-6 items-center transition-all duration-500;
+  @apply border p-8 md:p-10 flex flex-col gap-6 transition-all duration-500;
   background-color: var(--md-sys-color-surface-container-low);
   border-color: color-mix(in srgb, var(--md-sys-color-secondary) 10%, transparent);
   &:hover {
@@ -571,7 +575,7 @@
 }
 
 .product-img-wrap {
-  @apply w-full sm:w-2/5 flex-shrink-0;
+  @apply w-full flex-shrink-0;
 }
 
 .product-placeholder {
@@ -581,16 +585,16 @@
 }
 
 .product-info {
-  @apply w-full sm:w-3/5;
+  @apply w-full;
 }
 
 .product-name {
-  @apply font-bold text-xl mb-1;
+  @apply font-bold text-2xl mb-1;
   color: var(--md-sys-color-primary);
 }
 
 .product-subtitle {
-  @apply text-sm mb-4;
+  @apply text-base mb-4;
   color: var(--md-sys-color-secondary);
 }
 
@@ -600,7 +604,7 @@
 }
 
 .product-price {
-  @apply text-2xl font-bold mb-5;
+  @apply text-xl font-bold mb-5;
   color: var(--md-sys-color-primary);
 }
 
@@ -776,7 +780,7 @@
 
   &::after {
     @apply absolute w-px h-12 inset-x-0 -bottom-12 m-auto;
-    content: '';
+    content: "";
     background-color: color-mix(in srgb, var(--md-sys-color-secondary) 35%, transparent);
   }
 
@@ -794,9 +798,9 @@
   color: var(--md-sys-color-on-secondary);
   border-color: color-mix(in srgb, var(--md-sys-color-primary) 10%, transparent);
 
-    &::before {
+  &::before {
     @apply absolute w-px h-12 inset-x-0 -top-12 m-auto mt-4;
-    content: '';
+    content: "";
     background-color: color-mix(in srgb, var(--md-sys-color-secondary) 35%, transparent);
   }
 }
@@ -964,40 +968,6 @@
   color: var(--md-sys-color-on-surface-variant);
 }
 
-/* ── ⑧ Partners ─────────────────────────────────────────────────────────── */
-.partners-section {
-  @apply py-16;
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-}
-
-.partners-inner {
-  @apply max-w-5xl mx-auto;
-}
-
-.partners-heading {
-  @apply font-bold text-center text-xl md:text-2xl mb-10;
-}
-
-.partners-list {
-  @apply flex flex-wrap justify-center items-center gap-10 md:gap-16;
-}
-
-.partner-item {
-  @apply flex items-center justify-center;
-}
-
-.partner-logo-img {
-  @apply w-full max-w-52 object-center object-contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.75;
-  transition: opacity 0.3s ease;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 /* ── ⑨ Franchise / Contact ──────────────────────────────────────────────── */
 .franchise-section {
   @apply py-24 xl:py-32;
@@ -1023,7 +993,7 @@
 }
 
 .franchise-benefit-item {
-  @apply flex items-start gap-3;
+  @apply flex items-center gap-3;
 }
 
 .franchise-benefit-icon {

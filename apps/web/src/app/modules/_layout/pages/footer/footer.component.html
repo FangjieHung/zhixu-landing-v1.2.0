@@ -20,7 +20,7 @@
           {{ addr }}
         </ng-container>
         <ng-template #defaultAddr>
-          臺中市太平區永平路三段 168 巷 3 號
+          臺中市太平區永平路三段 168 巷 3 號 1 樓
         </ng-template>
         <br/>
         <ng-container *ngIf="('PHONE' | aryFindValue: (response?.contactDetails || []): 'name': 'value') as phone; else defaultPhone">

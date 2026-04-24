@@ -7,6 +7,10 @@ import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SwiperModule } from 'swiper/angular';
+import SwiperCore, { Autoplay, Navigation } from 'swiper';
+
+// Register Swiper modules globally so features like autoplay work
+SwiperCore.use([Autoplay, Navigation]);
 
 // Custom packages
 import { SharedModule as CoreSharedModule } from '@core/shared';
