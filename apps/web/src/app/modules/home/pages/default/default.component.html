@@ -31,7 +31,7 @@
         </h1>
 
         <p class="hero-desc">
-          如同母親親手熬煮的湯頭，蘊和堂將時光的精華與草本的溫度，封存在每一滴黑金萃取中。
+          如同母親親手熬煮的湯頭，蘊和堂將時光的精華與草本的溫度，封存在每一滴黑金萃取中。去油去腥、喝了不怕胖，讓妳在乎自己的方式，可以更從容。
         </p>
 
         <div class="hero-cta-group">
@@ -102,6 +102,10 @@
             <p class="brand-stat-num font-headline">0<span class="text-base">%</span></p>
             <p class="brand-stat-label ">Additives</p>
           </div>
+          <div class="brand-stat-item">
+            <p class="brand-stat-num font-headline">6<span class="text-base">kcal</span></p>
+            <p class="brand-stat-label ">Per Serving</p>
+          </div>
         </div>
       </div>
     </div>
@@ -133,6 +137,10 @@
           那是時間釀造的味道——<br />
           三十年以上的歲月，凝縮在一小片深棕色的蘿蔔裡，<br />
           清熱潤肺，健脾養胃，是老一輩人早就知道的事。
+        </p>
+        <p>
+          完全去油、徹底無腥——補了不長肉，也不再需要捏著鼻子喝下去。<br />
+          讓養生這件事，輕盈融入妳忙碌的每一天。
         </p>
       </div>
     </div>
@@ -196,18 +204,18 @@
           </li>
 
           <li>
-            <h4 class="headline-medium font-headline">熬過這一關，身體也需要補回來</h4>
+            <h4 class="headline-medium font-headline">熬了整年，補回來，但不想因此胖一圈</h4>
             <p class="body-large">
-              蘊和堂含高含量支鏈胺基酸（BCAA），幫助肌肉修復與合成，加速疲勞代謝。
-              熬夜、手術後、長期高壓——這是身體最需要被補充的時候。
+              高含量支鏈胺基酸（BCAA）幫助修復、加速代謝，卻不多給一克脂肪。
+              無腥味、不長肉，即使在控制體態的階段，也能安心每天補。
             </p>
           </li>
 
           <li>
             <h4 class="headline-medium font-headline">給自己，也給孩子</h4>
             <p class="body-large">
-              零防腐劑、零人工香料、完全去油——對懷孕、坐月子
-              或備孕中的妳來說，這是最不需要猶豫的那一包。
+              去油去腥、零防腐劑、零人工香料——不怕胖、喝得下去，
+              對懷孕、坐月子或備孕中的妳來說，這是最不需要猶豫的那一包。
             </p>
           </li>
         </ol>
@@ -253,9 +261,8 @@
           <span class="bento-nutrients-eyebrow">Low Calories</span>
           <h4 class="font-headline text-xl font-bold mb-3">一口清潤，只有 6 大卡</h4>
           <div class="bento-cell-divider"></div>
-          <p class="text-sm text-on-primary-container/70 mb-1">真正的養，不是堆砌熱量</p>
-          <p class="text-sm text-on-primary-container/70">每天喝，身體輕盈地接受</p>
-          <div class="bento-cal-compare mt-4">
+          <p class="text-sm text-on-primary-container/70 mb-3">真正的養生，不是堆砌熱量<br>每天喝，身體輕盈地接受</p>
+          <div class="bento-cal-compare mt-auto">
             <div class="bento-cal-item">
               <span class="bento-cal-num font-headline">6</span>
               <span class="bento-cal-unit">kcal</span>
@@ -331,31 +338,17 @@
       </div>
 
       <!-- 三張認證卡 -->
-      <div class="cert-grid">
-        <div class="cert-card">
-          <div class="cert-frame">
-            <img src="assets/image/photo/certificate-iso22000-blur.jpg" alt="ISO 22000 食品安全管理國際認證" loading="lazy" />
+      <swiper class="cert-swiper" [config]="certSwiperConfig">
+        <ng-template swiperSlide *ngFor="let cert of certifications">
+          <div class="cert-card">
+            <div class="cert-frame">
+              <img [src]="cert.image" [alt]="cert.alt" loading="lazy" />
+            </div>
+            <h4 class="cert-name font-headline">{{ cert.name }}</h4>
+            <p class="cert-label">{{ cert.label }}</p>
           </div>
-          <h4 class="cert-name font-headline">ISO 22000</h4>
-          <p class="cert-label">食品安全管理國際認證</p>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-frame">
-            <img src="assets/image/photo/certificate-haccp-blur.jpg" alt="HACCP 危害分析重要管制點認證" loading="lazy" />
-          </div>
-          <h4 class="cert-name font-headline">HACCP</h4>
-          <p class="cert-label">危害分析重要管制點認證</p>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-frame">
-            <img src="assets/image/photo/certificate-sgs-blur.png" alt="SGS 國際檢驗認證" loading="lazy" />
-          </div>
-          <h4 class="cert-name font-headline">SGS</h4>
-          <p class="cert-label">國際第三方檢驗認證</p>
-        </div>
-      </div>
+        </ng-template>
+      </swiper>
     </div>
   </section>
 
@@ -403,8 +396,8 @@
     </div>
   </section>
 
-  <!-- ⑥-C  PRODUCT LIABILITY ── 產品責任險 ─────────────────────────────── -->
-  <section id="liability-section" class="liability-section">
+  <!-- ⑥-C  PRODUCT LIABILITY ── 產品責任險 未提供─────────────────────────────── -->
+  <section *ngIf="false" id="liability-section" class="liability-section">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="liability-inner">
         <!-- 左：文字 -->
@@ -434,43 +427,44 @@
 
   <!-- ⑦  PRODUCTS ── 歲月的獻禮 ──────────────────────────────────────── -->
   <section id="products-section" class="products-section">
-          <div class="products-header">
-        <span class="products-eyebrow ">
-          Our Collection
-        </span>
-        <h2 class="products-heading font-headline">
-          歲月的獻禮
-        </h2>
-      </div>
+    <div class="products-header">
+      <span class="products-eyebrow ">
+        Our Collection
+      </span>
+      <h2 class="products-heading font-headline">
+        歲月的獻禮
+      </h2>
+    </div>
 
-      <div>
-        <swiper class="w-full arrow-horizontal" [navigation]="true" [spaceBetween]="24"
-          [breakpoints]="{ '640': { slidesPerView: 1 }, '768': { slidesPerView: 2 }, '1024': { slidesPerView: 3 } }">
-          <ng-template swiperSlide *ngFor="let product of products">
-            <div class="product-card">
-              <div class="product-img-wrap">
-                <img *ngIf="product.image; else noImg" [src]="product.image" [alt]="product.subtitle" loading="lazy" width="360"
-                  height="360" class="w-full h-auto object-contain" />
-                <ng-template #noImg>
-                  <div class="product-placeholder">
-                    <span aria-hidden="true" class="material-symbols-outlined text-5xl">ramen_dining</span>
-                  </div>
-                </ng-template>
-              </div>
-              <div class="product-info">
-                <h3 class="product-name font-headline">{{ product.name }}</h3>
-                <p class="product-subtitle">{{ product.subtitle }}</p>
-                <p class="product-desc">{{ product.desc }}</p>
-
-                <div class="product-price font-headline">
-                  <p>定價 NT$&nbsp;{{ formatPrice(product.price) }}</p>
-                  <p *ngIf="product.memberPrice" class="text-red-800">會員 NT$&nbsp;{{ formatPrice(product.memberPrice) }}</p>
+    <div>
+      <swiper class="w-full arrow-horizontal" [navigation]="true" [spaceBetween]="24"
+        [breakpoints]="{ '640': { slidesPerView: 1 }, '768': { slidesPerView: 2 }, '1024': { slidesPerView: 3 } }">
+        <ng-template swiperSlide *ngFor="let product of products">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img *ngIf="product.image; else noImg" [src]="product.image" [alt]="product.subtitle" loading="lazy"
+                width="360" height="360" class="w-full h-auto object-contain" />
+              <ng-template #noImg>
+                <div class="product-placeholder">
+                  <span aria-hidden="true" class="material-symbols-outlined text-5xl">ramen_dining</span>
                 </div>
+              </ng-template>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name font-headline">{{ product.name }}</h3>
+              <p class="product-subtitle">{{ product.subtitle }}</p>
+              <p class="product-desc">{{ product.desc }}</p>
+
+              <div class="product-price font-headline">
+                <p>定價 NT$&nbsp;{{ formatPrice(product.price) }}</p>
+                <p *ngIf="product.memberPrice" class="text-red-800">會員 NT$&nbsp;{{ formatPrice(product.memberPrice) }}
+                </p>
               </div>
             </div>
-          </ng-template>
-        </swiper>
-      </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
   </section>
 
   <!-- ⑦-B  PROCESS ── 製程介紹 ──────────────────────────────────────────── -->
@@ -509,7 +503,7 @@
           </div>
           <div class="process-step-num font-headline">02</div>
           <h4 class="process-step-title font-headline">低溫慢萃</h4>
-          <p class="process-step-desc">以密封低溫工藝萃取，最大程度保留胺基酸與活性成分，不破壞精華。</p>
+          <p class="process-step-desc">以密封低溫工藝萃取，油脂自然分離、無腥無膻，喝了不長肉，最大程度保留胺基酸與活性成分。</p>
         </div>
 
         <div class="process-step-arrow">
@@ -619,7 +613,6 @@
                 <li class="org-chart-section-item">資訊</li>
                 <li class="org-chart-section-item">行銷</li>
                 <li class="org-chart-section-item">人資</li>
-                <li class="org-chart-section-item">法務</li>
               </ol>
             </li>
           </ul>
@@ -669,31 +662,9 @@
           <div class="parent-carousel-corner parent-carousel-corner-top"></div>
           <div class="parent-carousel-corner parent-carousel-corner-bottom"></div>
           <div class="parent-carousel-frame">
-            <swiper class="parent-carousel" [slidesPerView]="1" [loop]="true"
-              [autoplay]="{ delay: 4000, disableOnInteraction: false }" [pagination]="{ clickable: true }">
-              <ng-template swiperSlide>
-                <img src="assets/image/office/S__89260117_0.jpg" alt="Company Office 1"
-                  class="w-full h-full object-cover" />
-              </ng-template>
-              <ng-template swiperSlide>
-                <img src="assets/image/office/S__89260118_0.jpg" alt="Company Office 2"
-                  class="w-full h-full object-cover" />
-              </ng-template>
-              <ng-template swiperSlide>
-                <img src="assets/image/office/S__89260119_0.jpg" alt="Company Office 3"
-                  class="w-full h-full object-cover" />
-              </ng-template>
-              <ng-template swiperSlide>
-                <img src="assets/image/office/S__89260120_0.jpg" alt="Company Office 4"
-                  class="w-full h-full object-cover" />
-              </ng-template>
-              <ng-template swiperSlide>
-                <img src="assets/image/office/S__89260121_0.jpg" alt="Company Office 5"
-                  class="w-full h-full object-cover" />
-              </ng-template>
-              <ng-template swiperSlide>
-                <img src="assets/image/office/S__89260122_0.jpg" alt="Company Office 6"
-                  class="w-full h-full object-cover" />
+            <swiper #parentCarousel class="parent-carousel" [config]="parentCarouselConfig">
+              <ng-template swiperSlide *ngFor="let s of parentSlides">
+                <img [src]="s.src" [alt]="s.alt" class="w-full h-full object-cover" />
               </ng-template>
             </swiper>
           </div>
@@ -717,8 +688,8 @@
       品牌夥伴 · 攜手推廣健康生活
     </h3>
     <div class="partners-list">
-      <swiper class="partners-swiper" [config]="logoStateService.partnersSwiperConfig">
-        <ng-template swiperSlide *ngFor="let p of logoStateService.partnerLogos">
+      <swiper #partnersSwiper class="partners-swiper" [config]="partnersSwiperConfig">
+        <ng-template swiperSlide *ngFor="let p of partnerLogos">
           <div class="partner-item">
             <img [src]="p.src" [alt]="p.alt" loading="lazy" class="partner-logo-img" />
           </div>
@@ -787,16 +758,11 @@
         </div>
 
         <!-- LINE QR -->
-        <div class="flex flex-col gap-3 pt-2">
+        <a href="https://line.me/R/ti/p/@596xciid" target="_blank" class="block gap-3 pt-2">
           <p class="contact-qr-label">Line</p>
-          <div class="contact-qr-frame">
-            <div class="contact-qr-placeholder">
-              <span aria-hidden="true" class="material-symbols-outlined text-4xl mb-1">qr_code_2</span>
-              <span class="text-[9px] tracking-tighter uppercase">Line QR Code</span>
-            </div>
-          </div>
+          <img class="contact-qr" src="assets/image/logo/line-qrcode.png" alt="築泓健康科技" loading="lazy" />
           <p class="contact-qr-hint">掃描上方 QR Code 立即在線諮詢</p>
-        </div>
+        </a>
       </div>
     </div>
   </section>

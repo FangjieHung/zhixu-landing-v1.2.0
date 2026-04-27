@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Injector, inject, ViewChild, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { LogoStateService } from '../../../../shared/services/logo-state.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -43,10 +42,8 @@ export class DefaultContainerComponent extends BBDBaseComponent implements OnIni
   }
 
   constructor(
-    private logoStateService: LogoStateService,
     protected override injector: Injector) {
     super(injector);
-    this.isLogoLarge$ = this.logoStateService.isLargeLogo$;
   }
 
   ngOnInit(): void {

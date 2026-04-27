@@ -13,7 +13,7 @@ const routes: Routes = [
       title: `${env.siteName}`,
       decscription: `${env.siteName}`,
       url: `${env.siteServer}`,
-      image: `${env.siteServer}/assets/image/og/tslmai.png`
+      image: `${env.siteServer}/assets/image/og/chuhung-og.png`
     }
   }
 ];

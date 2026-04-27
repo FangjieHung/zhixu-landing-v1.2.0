@@ -36,7 +36,7 @@ export class SEOServ {
       { property: 'og:site_name', content: this.appEnv.siteName },
       { property: 'og:title', content: this.appEnv.siteName },
       { property: 'og:url', content: this.appEnv.siteServer },
-      { property: 'og:image', content: `${this.appEnv.siteServer}/assets/image/og/tslmai.png` },
+      { property: 'og:image', content: `${this.appEnv.siteServer}/assets/image/og/chuhung-og.png` },
       { property: 'og:description', content: this.appEnv.siteName },
       { name: 'keywords', content: '蘊和堂' },
       { name: 'description', content: this.appEnv.siteName }
@@ -46,7 +46,7 @@ export class SEOServ {
   updateMetaTags(
     title = this.appEnv.siteName,
     url = this.appEnv.siteServer,
-    image = `${this.appEnv.siteServer}/assets/image/og/tslmai.png`,
+    image = `${this.appEnv.siteServer}/assets/image/og/chuhung-og.png`,
     description = this.appEnv.siteName
   ) {
     this.metaTitle = title;

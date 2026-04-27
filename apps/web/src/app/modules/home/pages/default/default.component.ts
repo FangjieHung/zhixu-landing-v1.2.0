@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, OnInit, Injector, AfterViewInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, Injector, AfterViewInit, ViewChild, inject } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { forkJoin } from 'rxjs';
-import { LogoStateService } from '../../../../shared/services/logo-state.service';
 
 // Third party packages
 import SwiperCore, { Autoplay, Navigation } from 'swiper';
 import type { SwiperOptions } from 'swiper';
+import { SwiperComponent } from 'swiper/angular';
 SwiperCore.use([Autoplay, Navigation]);
 
 // Custom packages
@@ -22,7 +22,7 @@ import { AppMsgApiServ } from '@core/services';
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss'],
 })
-export class DefaultComponent extends BBDBaseComponent implements OnInit {
+export class DefaultComponent extends BBDBaseComponent implements OnInit, AfterViewInit {
   private _appMsgApiServ = inject(AppMsgApiServ);
   ads: BannerAdView[] = [];
   newsMsgs: AppNewsMsgView[] = [];
@@ -68,24 +68,136 @@ export class DefaultComponent extends BBDBaseComponent implements OnInit {
       memberPrice: 8888,
     },
   ];
+
+  certifications = [
+    {
+      name: 'ISO 22000',
+      label: '食品安全管理國際認證',
+      image: 'assets/image/photo/certificate-iso22000-blur.jpg',
+      alt: 'ISO 22000 食品安全管理國際認證',
+    },
+    {
+      name: 'HACCP',
+      label: '危害分析重要管制點認證',
+      image: 'assets/image/photo/certificate-haccp-blur.jpg',
+      alt: 'HACCP 危害分析重要管制點認證',
+    },
+    {
+      name: 'SGS',
+      label: '國際第三方檢驗認證',
+      image: 'assets/image/photo/certificate-sgs-blur.png',
+      alt: 'SGS 國際檢驗認證',
+    },
+        {
+      name: 'SGS',
+      label: '橘黴素未檢出',
+      image: 'assets/image/photo/certificate-sgs-citrinin.jpg',
+      alt: 'SGS 橘黴素未檢出',
+    },
+  ];
+
+      // Partner logos centralized here so multiple components can reuse the same data
+  private _partnerLogosBase = [
+    { src: 'assets/image/partner/春生LOGO-03.png', alt: '春生' },
+    { src: 'assets/image/partner/alic-logo.png', alt: 'alic' },
+    { src: 'assets/image/partner/city-parking.png', alt: 'city-parking' },
+    // { src: 'assets/image/partner/環景logo.png', alt: '環景' },
+  ];
+  // Repeat to ensure enough slides for Swiper v8 loop mode (needs slidesPerView * 2 minimum)
+  partnerLogos = [...this._partnerLogosBase, ...this._partnerLogosBase];
+
+  certSwiperConfig: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    navigation: true,
+    breakpoints: {
+      640: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  };
+
+    // 合作夥伴
+  partnersSwiperConfig: SwiperOptions = {
+    slidesPerView: 1,
+    loop: true,
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    spaceBetween: 24,
+    breakpoints: {
+      320: { slidesPerView: 1 },
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
+  };
+
+  // 母公司照片
+  parentSlides: { src: string; alt: string }[] = [
+    { src: 'assets/image/office/S__89260117_0.jpg', alt: 'Company Office 1' },
+    { src: 'assets/image/office/S__89260118_0.jpg', alt: 'Company Office 2' },
+    { src: 'assets/image/office/S__89260119_0.jpg', alt: 'Company Office 3' },
+    { src: 'assets/image/office/S__89260120_0.jpg', alt: 'Company Office 4' },
+    { src: 'assets/image/office/S__89260121_0.jpg', alt: 'Company Office 5' },
+    { src: 'assets/image/office/S__89260122_0.jpg', alt: 'Company Office 6' },
+  ];
+
+  parentCarouselConfig: SwiperOptions = {
+    slidesPerView: 1,
+    loop: true,
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { clickable: true },
+  };
+
   formatPrice = (v: number) => new Intl.NumberFormat('en-US').format(v);
 
   constructor(
-    public logoStateService: LogoStateService,
     protected override injector: Injector) {
     super(injector);
     if (this.isBrowser)
       gsap.registerPlugin(ScrollTrigger);
   }
 
+  @ViewChild('partnersSwiper') partnersSwiper?: SwiperComponent;
+  @ViewChild('parentCarousel') parentCarousel?: SwiperComponent;
+
   ngOnInit(): void {
     this.getCaches();
+    console.log('DefaultComponent initialized');
+  }
+
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      // Delay to ensure Swiper instances are initialized
+      setTimeout(() => {
+        try {
+          const ps = (this.partnersSwiper as any)?.swiper;
+          if (ps && ps.autoplay && ps.params?.autoplay) {
+            ps.autoplay.start();
+            console.log('partnersSwiper autoplay started programmatically');
+          }
+
+          const pc = (this.parentCarousel as any)?.swiper;
+          if (pc && pc.autoplay && pc.params?.autoplay) {
+            pc.autoplay.start();
+            console.log('parentCarousel autoplay started programmatically');
+          }
+        } catch (e) {
+          console.warn('Failed to start swiper autoplay', e);
+        }
+      }, 0);
+    }
   }
 
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
-
+  
   getCaches(): void {
     this.spinnerServ.show();
     forkJoin([

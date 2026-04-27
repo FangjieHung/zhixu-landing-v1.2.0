@@ -119,7 +119,7 @@ export class BBDQuillEditorComponent extends BBDBaseComponent implements OnInit,
     const imageinput = document.createElement('input');
     imageinput.setAttribute('type', 'file');
     imageinput.setAttribute('accept', 'image/png, image/gif, image/jpeg, image/bmp, image/x-icon');
-    imageinput.classList.add('ql-image');
+    // imageinput.classList.add('ql-image');
     imageinput.addEventListener('change', () => {
       if (imageinput.files != null && imageinput.files[0] != null) {
         const formData = new FormData();

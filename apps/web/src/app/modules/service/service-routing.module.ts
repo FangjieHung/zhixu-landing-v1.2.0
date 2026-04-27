@@ -11,7 +11,7 @@ const routes: Routes = [
       title: `清潔服務｜${env.siteName}`,
       description: '辦公室、居家、園藝、無水洗車，專業清潔服務',
       url: `${env.siteServer}/service`,
-      image: `${env.siteServer}/assets/image/og/tslmai.png`
+      image: `${env.siteServer}/assets/image/og/chuhung-og.png`
     }
   }
 ];

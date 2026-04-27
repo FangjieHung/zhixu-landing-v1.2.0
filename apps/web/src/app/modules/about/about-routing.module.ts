@@ -11,7 +11,7 @@ const routes: Routes = [
       title: `組織章程｜${env.siteName}`,
       decscription: '組織章程',
       url: `${env.siteServer}/charter`,
-      image: `${env.siteServer}/assets/image/og/tslmai.png`
+      image: `${env.siteServer}/assets/image/og/chuhung-og.png`
     }
   },
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
       title: `理監事成員｜${env.siteName}`,
       decscription: '理監事成員',
       url: `${env.siteServer}/supervisor`,
-      image: `${env.siteServer}/assets/image/og/tslmai.png`
+      image: `${env.siteServer}/assets/image/og/chuhung-og.png`
     }
   },
   {
@@ -31,7 +31,7 @@ const routes: Routes = [
       title: `委員會組織｜${env.siteName}`,
       decscription: '委員會組織',
       url: `${env.siteServer}/committee`,
-      image: `${env.siteServer}/assets/image/og/tslmai.png`
+      image: `${env.siteServer}/assets/image/og/chuhung-og.png`
     }
   },
   {
@@ -41,7 +41,7 @@ const routes: Routes = [
       title: `隱私權｜${env.siteName}`,
       decscription: '隱私權',
       url: `${env.siteServer}/privacy`,
-      image: `${env.siteServer}/assets/image/og/tslmai.png`
+      image: `${env.siteServer}/assets/image/og/chuhung-og.png`
     }
   },
   {
@@ -51,7 +51,7 @@ const routes: Routes = [
       title: `服務條款｜${env.siteName}`,
       decscription: '服務條款',
       url: `${env.siteServer}/terms`,
-      image: `${env.siteServer}/assets/image/og/tslmai.png`
+      image: `${env.siteServer}/assets/image/og/chuhung-og.png`
     }
   }
 ];
