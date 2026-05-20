@@ -60,7 +60,7 @@
   </header>
 
   <!-- ②  BRAND STORY ── 左老菜脯圖 + 直排 + 右文字 ──────────────────────── -->
-  <section id="about-section" class="brand-story-section">
+  <section id="about-section">
     <div class="brand-story-inner">
 
       <!-- 左：老菜脯圖 -->
@@ -91,7 +91,8 @@
 
         <div class="brand-body text-muted">
           <p>
-            民間流傳被譽為「窮人的人蔘 <span class="text-secondary">*</span> 」的老菜脯，是經過時光、食鹽與微生物長時間共同交織出的生命結晶。在蘊和堂，我們堅持選用無毒契作白蘿蔔，封存在陶甕中，埋入地底深處。
+            民間流傳被譽為「窮人的人蔘 <span class="text-secondary">*</span>
+            」的老菜脯，是經過時光、食鹽與微生物長時間共同交織出的生命結晶。在蘊和堂，我們堅持選用無毒契作白蘿蔔，封存在陶甕中，埋入地底深處。
           </p>
           <p>
             經過光陰轉化，蘿蔔由白轉褐，終至透黑發亮。這不只是發酵，更是大自然賦予的溫潤補給，含有豐富多酚、礦物質與天然酵素，是全家人補充日常營養的好選擇。
@@ -126,6 +127,10 @@
       </div>
     </div>
   </section>
+  <div class="video-wrapper">
+    <youtube-player videoId="394tnfrVVX4" [playerVars]="playerVars"></youtube-player>
+    <youtube-player videoId="4Ue2UimmAMg" [playerVars]="playerVars"></youtube-player>
+  </div>
 
   <!-- ③  品牌初心 ── 全幅深綠底，左文字 + 右職人圖 ───────────────────────── -->
   <section id="mission-section" class="mission-section">
@@ -437,7 +442,7 @@
   </section>
 
   <!-- ⑥-C  PRODUCT LIABILITY ── 產品責任險 未提供─────────────────────────────── -->
-  <section *ngIf="false" id="liability-section" class="liability-section">
+  <section id="liability-section" class="liability-section">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="liability-inner">
         <!-- 左：文字 -->
@@ -448,18 +453,10 @@
             蘊和堂已投保產品責任險，為每一位消費者的飲用安全提供法律層面的雙重保障。
             從製程到上架，每一個環節都有憑據可查，每一口都值得您放心。
           </p>
-          <div class="liability-note">
-            <span aria-hidden="true" class="material-symbols-outlined">info</span>
-            <span>雞蛋來源聲明文件備查中，如需查閱請聯絡客服</span>
-          </div>
         </div>
         <!-- 右：圖片 placeholder -->
         <div class="liability-img-wrap">
-          <div class="liability-placeholder">
-            <span aria-hidden="true" class="material-symbols-outlined text-5xl mb-3">shield_with_heart</span>
-            <p class="text-sm tracking-widest uppercase opacity-60">Product Liability<br />Insurance Certificate</p>
-            <p class="text-xs mt-4 opacity-40">（實際憑證圖待補）</p>
-          </div>
+          <img src="assets/image/certificate/insurance.webp" alt="產品責任險憑證">
         </div>
       </div>
     </div>

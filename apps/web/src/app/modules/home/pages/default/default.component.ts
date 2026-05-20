@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, OnInit, Injector, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { forkJoin } from 'rxjs';
@@ -32,7 +32,7 @@ export class DefaultComponent extends BBDBaseComponent implements OnInit {
       name: '心意入門禮盒',
       subtitle: '8 入',
       desc: '獻給重要之人的貼心心意，份量精緻不張揚，是初次送禮或日常關懷的理想選擇。',
-      image: 'assets/image/product/product-00.jpg',
+      image: 'assets/image/product/product-08.jpg',
       price: 1600,
       memberPrice: 1280,
     },
@@ -48,7 +48,7 @@ export class DefaultComponent extends BBDBaseComponent implements OnInit {
       name: '深度滋補雅藏禮盒',
       subtitle: '30 入',
       desc: '為重視長期調養者準備的誠意之選，適合重要節慶、家族贈禮或企業團贈。',
-      image: 'assets/image/product/product-08.jpg',
+      image: 'assets/image/product/product-30.jpg',
       price: 6000,
       memberPrice: 4500,
     },
@@ -56,7 +56,7 @@ export class DefaultComponent extends BBDBaseComponent implements OnInit {
       name: '極致尊榮典藏禮盒',
       subtitle: '60 入',
       desc: '品牌最高規格禮盒，象徵最深厚的心意與關懷，適合頂級送禮、企業貴賓與長期滋養。',
-      image: 'assets/image/product/product-09.webp',
+      image: 'assets/image/product/product-60.webp',
       price: 12000,
       memberPrice: 9000,
     },
@@ -120,6 +120,15 @@ export class DefaultComponent extends BBDBaseComponent implements OnInit {
         slidesPerView: 5,
       },
     },
+  };
+
+  videoWidth = 320;
+  videoHeight = 180;
+  playerVars = {
+    autoplay: 0,
+    controls: 1,
+    modestbranding: 1,
+    rel: 0,
   };
 
   // 母公司照片

@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SwiperModule } from 'swiper/angular';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 import SwiperCore, { Autoplay, Navigation } from 'swiper';
 
 // Register Swiper modules globally so features like autoplay work
@@ -45,7 +46,7 @@ const CUST_WIDGETS = [
   ImagePreviewDialogWidgetComponent,
   JsonViewDialogWidgetComponent,
 ];
-const THIRD_MODULES = [InfiniteScrollModule, NgxSpinnerModule, SwiperModule];
+const THIRD_MODULES = [InfiniteScrollModule, NgxSpinnerModule, SwiperModule, YouTubePlayerModule];
 
 @NgModule({
   declarations: [
