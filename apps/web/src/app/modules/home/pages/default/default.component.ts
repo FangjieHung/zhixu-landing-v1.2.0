@@ -32,7 +32,7 @@ export class DefaultComponent extends BBDBaseComponent implements OnInit {
       name: '心意入門禮盒',
       subtitle: '8 入',
       desc: '獻給重要之人的貼心心意，份量精緻不張揚，是初次送禮或日常關懷的理想選擇。',
-      image: 'assets/image/product/product-08.jpg',
+      image: 'assets/image/product/product-12.jpg',
       price: 1600,
       memberPrice: 1280,
     },
@@ -40,7 +40,7 @@ export class DefaultComponent extends BBDBaseComponent implements OnInit {
       name: '日常尊養禮盒',
       subtitle: '12 入',
       desc: '專為細水長流的滋養所設，體面份量，適合送給長輩或重視日常調養的對象。',
-      image: 'assets/image/product/product-08.jpg',
+      image: 'assets/image/product/product-12.jpg',
       price: 2400,
       memberPrice: 1920,
     },
@@ -95,7 +95,7 @@ export class DefaultComponent extends BBDBaseComponent implements OnInit {
     { src: 'assets/image/partner/city-parking.png', alt: 'city-parking' },
     // { src: 'assets/image/partner/環景logo.png', alt: '環景' },
   ];
-  
+
   partnerLogos = [...this._partnerLogosBase, ...this._partnerLogosBase];
 
   certSwiperConfig: SwiperOptions = {
