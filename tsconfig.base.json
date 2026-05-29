@@ -19,7 +19,9 @@
       "@core/consts": ["libs/core/src/lib/consts/index.ts"],
       "@core/models": ["libs/core/src/lib/models/index.ts"],
       "@core/services": ["libs/core/src/lib/services/index.ts"],
-      "@core/shared": ["libs/core/src/lib/shared/index.ts"]
+      "@core/shared": ["libs/core/src/lib/shared/index.ts"],
+      "@zhixu-angular16-apps/zhixu/domain": ["libs/zhixu/domain/src/index.ts"],
+      "@zhixu-angular16-apps/zhixu/data-access": ["libs/zhixu/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

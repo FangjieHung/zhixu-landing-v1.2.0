@@ -1,0 +1,149 @@
+<section #section class="lm-section">
+  <div #stage class="lm-stage">
+
+    <div class="lm-topbar" aria-hidden="true">
+      <div class="lm-tb-left">
+        <span class="lm-tb-link">MENU</span>
+        <span class="lm-tb-link">RESIDENCES</span>
+      </div>
+      <div class="lm-monogram">之序</div>
+      <div class="lm-tb-right">
+        <span class="lm-tb-link">CONTACT US</span>
+        <span class="lm-heart" aria-hidden="true">♡</span>
+      </div>
+    </div>
+
+    <svg
+      #map
+      class="lm-map"
+      viewBox="0 0 1000 600"
+      preserveAspectRatio="xMidYMid slice"
+      role="img"
+      aria-label="之序 · 周邊位置示意圖"
+    >
+      <!-- Base cream wash already provided by .lm-map background; SVG just paints features. -->
+
+      <!-- Park / green-mass polygons (olive) -->
+      <g class="lm-parks" fill="#cdd0a4" fill-opacity="0.78">
+        <path d="M 70 60 Q 180 40 280 90 Q 320 160 230 200 Q 130 200 80 150 Z" />
+        <path d="M 420 70 Q 540 50 620 110 Q 650 180 560 210 Q 460 200 420 140 Z" />
+        <path d="M 780 50 Q 880 70 940 140 Q 920 220 820 200 Q 740 160 780 80 Z" />
+        <path d="M 60 380 Q 160 360 220 420 Q 240 500 140 530 Q 60 510 50 440 Z" />
+        <path d="M 420 460 Q 540 430 620 500 Q 600 560 500 560 Q 430 540 410 490 Z" />
+        <path d="M 770 420 Q 880 410 940 480 Q 930 560 830 560 Q 760 530 760 460 Z" />
+        <path d="M 360 280 Q 420 260 460 300 L 440 360 Q 380 360 350 320 Z" opacity="0.55" />
+      </g>
+
+      <!-- Light running-track inside one of the upper parks -->
+      <g class="lm-track" fill="none" stroke="#a8a572" stroke-width="2" stroke-linecap="round">
+        <ellipse cx="220" cy="135" rx="56" ry="22" />
+      </g>
+
+      <!-- River — dusty blue, curving across map -->
+      <g class="lm-river" fill="none" stroke="#a8c0c8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M -20 220 Q 140 200 240 240 Q 340 280 460 250 Q 580 220 660 280 Q 760 340 880 300 Q 980 270 1040 310" />
+      </g>
+      <g class="lm-river-inner" fill="none" stroke="#c0d4da" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">
+        <path d="M -20 220 Q 140 200 240 240 Q 340 280 460 250 Q 580 220 660 280 Q 760 340 880 300 Q 980 270 1040 310" />
+      </g>
+
+      <!-- Road network — thin tan lines -->
+      <g class="lm-roads" fill="none" stroke="#c9a771" stroke-width="2.2" stroke-linecap="round" stroke-opacity="0.85">
+        <!-- Horizontal arterial through Springs -->
+        <path d="M 0 300 L 1000 300" />
+        <!-- Vertical arterial through Springs -->
+        <path d="M 500 0 L 500 600" />
+        <!-- Diagonals to corners -->
+        <path d="M 500 300 L 80 90" />
+        <path d="M 500 300 L 920 100" />
+        <path d="M 500 300 L 100 540" />
+        <path d="M 500 300 L 900 540" />
+        <!-- Branch streets -->
+        <path d="M 250 300 L 280 540" />
+        <path d="M 720 300 L 750 540" />
+        <path d="M 250 300 L 230 60" />
+        <path d="M 720 300 L 760 80" />
+        <!-- Subtle grid streets -->
+        <path d="M 0 420 Q 250 400 500 420 T 1000 420" stroke-opacity="0.45" />
+        <path d="M 0 180 Q 250 200 500 180 T 1000 180" stroke-opacity="0.45" />
+      </g>
+
+      <!-- POI markers (numbered chips with labels) -->
+      <g class="lm-pois">
+        <g
+          *ngFor="let p of pois; let i = index; trackBy: poisTrack"
+          class="lm-poi"
+          [attr.data-i]="i"
+          [attr.transform]="'translate(' + p.x + ',' + p.y + ')'"
+        >
+          <circle r="22" fill="#2f3a26" />
+          <text
+            text-anchor="middle"
+            dominant-baseline="central"
+            font-family="Playfair Display, serif"
+            font-size="16"
+            fill="#f0e6d0"
+            font-weight="500"
+          >{{ p.min }}</text>
+        </g>
+
+        <g
+          *ngFor="let p of pois; let i = index; trackBy: poisTrack"
+          class="lm-poi"
+          [attr.data-i]="i"
+        >
+          <text
+            [attr.x]="poiLabelX(p)"
+            [attr.y]="p.y - 14"
+            [attr.text-anchor]="p.anchor === 'end' ? 'end' : 'start'"
+            font-family="Montserrat, sans-serif"
+            font-size="9"
+            letter-spacing="2.4"
+            fill="#6b5e52"
+            font-weight="600"
+          >MINUTES BY CAR</text>
+          <text
+            [attr.x]="poiLabelX(p)"
+            [attr.y]="p.y + 4"
+            [attr.text-anchor]="p.anchor === 'end' ? 'end' : 'start'"
+            font-family="Noto Serif SC, serif"
+            font-size="17"
+            fill="#1c1a17"
+            font-weight="500"
+          >{{ p.name }}</text>
+        </g>
+      </g>
+
+      <!-- Center pin · 之序 -->
+      <g class="lm-pin" transform="translate(500, 300)">
+        <circle class="pin-pulse" r="34" fill="#2f3a26" opacity="0.55" />
+        <circle r="34" fill="#2f3a26" />
+        <!-- Simple tower glyph -->
+        <g transform="translate(-9, -16)" fill="#f0e6d0">
+          <rect x="6" y="0" width="6" height="22" rx="0.5" />
+          <rect x="0" y="6" width="4" height="16" rx="0.5" />
+          <rect x="14" y="6" width="4" height="16" rx="0.5" />
+          <rect x="7" y="-4" width="4" height="4" />
+        </g>
+        <text
+          x="0"
+          y="22"
+          text-anchor="middle"
+          font-family="Playfair Display, serif"
+          font-style="italic"
+          font-size="11"
+          fill="#f0e6d0"
+          letter-spacing="0.8"
+        >之序</text>
+      </g>
+    </svg>
+
+    <div class="lm-caption">
+      <div class="lm-cap-eyebrow">07 · THE LOCATION · 位置之必然</div>
+      <div class="lm-cap-line">
+        以一棟樓為起點，<br />
+        被七座公園與一條筏子溪環抱。
+      </div>
+    </div>
+  </div>
+</section>

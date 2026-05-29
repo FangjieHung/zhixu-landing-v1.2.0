@@ -1,33 +1,7 @@
-<><!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
-<nav class="nav-bar">
 
-  <!-- Logo -->
-  <a routerLink="/" class="nav-logo shrink-0">
-    <img src="assets/image/logo/landscape.svg" alt="蘊和堂" />
-  </a>
+<nav >
 
-  <!-- Desktop links -->
-  <div class="hidden lg:flex items-center gap-1 ml-auto">
-    <button *ngFor="let menu of navList"
-            class="nav-link"
-            (click)="scrollTo(menu.section)">
-      {{ menu.label }}
-    </button>
 
-    <!-- CTA -->
-    <button class="btn-filled ml-5 max-h-10" (click)="scrollTo('products-section')">
-      立即選購
-    </button>
-  </div>
-
-  <!-- Mobile hamburger -->
-  <button class="lg:hidden ml-auto w-10 h-10 flex items-center justify-center"
-          style="color: var(--md-sys-color-primary);"
-          (click)="toggleSideMenu()"
-          aria-label="開啟選單">
-    <span class="material-symbols-outlined" *ngIf="!snav?.opened">menu</span>
-    <span class="material-symbols-outlined" *ngIf="snav?.opened">menu_open</span>
-  </button>
 </nav>
 
 <!-- ═══ SIDENAV CONTAINER ═══════════════════════════════════════════════════ -->

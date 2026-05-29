@@ -46,7 +46,7 @@ export class SEOServ {
       { name: 'twitter:title', content: this.appEnv.siteName },
       { name: 'twitter:description', content: '傳承職人手藝的老菜脯滴雞精、陶甕窖藏熬製。' },
       { name: 'twitter:image', content: `${this.appEnv.siteServer}/assets/image/og/chuhung-og.png` },
-      { name: 'keywords', content: '蘊和堂' },
+      { name: 'keywords', content: '之序｜水湳 · 綠海星嶼' },
       { name: 'description', content: '傳承職人手藝的老菜脯滴雞精、陶甕窖藏熬製。' }
     ]);
     this.setCanonical(this.appEnv.siteServer);

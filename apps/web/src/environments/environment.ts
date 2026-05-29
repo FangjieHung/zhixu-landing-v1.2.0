@@ -7,7 +7,7 @@ export const environment = {
   appPfm: 'WEB',
   storageTokenName: 'chuhungWebDevToken',
   storageAuthUserName: 'chuhungWebDevAuthUser',
-  siteName: '蘊和堂',
+  siteName: '之序｜水湳 · 綠海星嶼',
   siteServer: 'http://localhost:4200',
   apiServer: 'http://localhost:5038/Portal',
   cdnServer: 'http://localhost:5038/',

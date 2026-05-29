@@ -11,7 +11,7 @@ const routes: Routes = [
     component: DefaultComponent,
     data: {
       title: `${env.siteName}｜老菜脯滴雞精．職人手藝傳承`,
-      description: '蘊和堂｜傳承職人手藝的老菜脯滴雞精，無毒契作白蘿蔔、陶甕地下窖藏。',
+      description: '之序｜水湳 · 綠海星嶼｜傳承職人手藝的老菜脯滴雞精，無毒契作白蘿蔔、陶甕地下窖藏。',
       url: `${env.siteServer}/`,
       image: `${env.siteServer}/assets/image/og/chuhung-og.png`
     }

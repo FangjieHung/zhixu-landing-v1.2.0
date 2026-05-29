@@ -3,7 +3,7 @@
 // Include the base styles for Angular Material components
 @include mat.core();
 
-// Custom palette — 蘊和堂 Forest Green
+// Custom palette — 之序｜水湳 · 綠海星嶼 Forest Green
 $primary-palette: (
   50:  #e8f0e8,
   100: #c5d9c5,
@@ -88,7 +88,7 @@ $light-theme: mat.define-light-theme(
 @include mat.all-component-themes($light-theme);
 
 :root {
-  // ─── 蘊和堂 Brand — M3 Color System ───────────────────────────────────────
+  // ─── 之序｜水湳 · 綠海星嶼 Brand — M3 Color System ───────────────────────────────────────
   // Primary: Forest Green #173018
   --md-sys-color-primary:                    #173018;
   --md-sys-color-surface-tint:               #4a6548;

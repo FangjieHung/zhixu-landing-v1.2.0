@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zhuhong.com.tw/sitemap.xml
+Sitemap: https://zhixu-test.com.tw/sitemap.xml

@@ -44,11 +44,58 @@ export class DefaultComponent extends BBDBaseComponent implements AfterViewInit,
     circle: `${this.assetBase}/公設-內部/164.jpg`,
     tower: `${this.assetBase}/外觀/108.jpg`,
     map: `${this.assetBase}/機能地圖/500.svg`,
+    craftHero: `${this.assetBase}/外觀/158.jpg`,
   };
 
-  readonly heroBars: number[] = [44, 50, 56, 60, 62, 58, 52, 46, 40, 38, 42, 48, 54, 58, 60, 56];
-  readonly whyNowBars: number[] = [36, 40, 46, 52, 56, 60, 64, 60, 54, 48, 44, 40];
-  readonly contactBars: number[] = [44, 52, 60, 58, 50, 44, 40, 44, 50, 56, 60, 58, 52, 46];
+  /** Editorial mosaic of indoor amenity photos. */
+  readonly amenities: Array<{ src: string; label: string; sub?: string; size: 'lg' | 'md' | 'sm' | 'tall' }> = [
+    { src: `${this.assetBase}/公設-內部/164.jpg`, label: '迎賓大廳', sub: 'LOBBY · 入門儀式', size: 'lg' },
+    { src: `${this.assetBase}/公設-內部/170.jpg`, label: '雙廳交誼', sub: 'SOCIAL LOUNGE', size: 'md' },
+    { src: `${this.assetBase}/公設-內部/176.jpg`, label: '私宴餐廳', sub: 'PRIVATE DINING', size: 'md' },
+    { src: `${this.assetBase}/公設-內部/182.jpg`, label: '酒窖品鑑', sub: 'WINE CELLAR', size: 'tall' },
+    { src: `${this.assetBase}/公設-內部/188.jpg`, label: '私人健身房', sub: 'FITNESS', size: 'md' },
+    { src: `${this.assetBase}/公設-內部/254.jpg`, label: '室內泳池', sub: 'SWIMMING POOL', size: 'lg' },
+    { src: `${this.assetBase}/公設-內部/260.jpg`, label: '蒸氣三溫暖', sub: 'SAUNA', size: 'sm' },
+    { src: `${this.assetBase}/公設-內部/266.jpg`, label: '兒童閱讀室', sub: 'READING ROOM', size: 'md' },
+    { src: `${this.assetBase}/公設-內部/273.jpg`, label: '會議廳', sub: 'EXECUTIVE LOUNGE', size: 'md' },
+    { src: `${this.assetBase}/公設-內部/281.jpg`, label: '影視廳', sub: 'CINEMA', size: 'lg' },
+    { src: `${this.assetBase}/公設-內部/287.jpg`, label: 'SPA 美容室', sub: 'SPA', size: 'sm' },
+    { src: `${this.assetBase}/公設-內部/296.jpg`, label: '空中花園', sub: 'SKY GARDEN', size: 'tall' },
+  ];
+
+  /** Full-bleed nearby major-development slides. */
+  readonly district: Array<{ src: string; eyebrow: string; title: string; body: string }> = [
+    {
+      src: `${this.assetBase}/周邊機能/128.jpg`,
+      eyebrow: '01 · 2025 · 開幕',
+      title: '台中綠美圖',
+      body: '由日本 SANAA 設計、67,000 平方米的圖書館與美術館合體建築，把一座城市的閱讀史與當代藝術，安置在你的步行半徑內。',
+    },
+    {
+      src: `${this.assetBase}/周邊機能/131.jpg`,
+      eyebrow: '02 · 2025.10 · 試營運',
+      title: '台中國際會展中心',
+      body: '亞洲新指標級會展空間，全年承載產業旗艦展、跨國品牌發表。鄰居的訪客，就是這個時代的決策者。',
+    },
+    {
+      src: `${this.assetBase}/周邊機能/134.jpg`,
+      eyebrow: '03 · 2024 · 已啟用',
+      title: '水湳轉運中心',
+      body: '高鐵、城際巴士、市公車三軌共構，10 分鐘車程銜接整個中部生活圈。出門，已不再是時間的計算題。',
+    },
+    {
+      src: `${this.assetBase}/周邊機能/150.jpg`,
+      eyebrow: '04 · 2026 · 啟用',
+      title: '流行音樂與影音中心',
+      body: '台中對標小巨蛋的旗艦音樂場域。從你客廳的窗，就能聽見一座城市的脈搏。',
+    },
+    {
+      src: `${this.assetBase}/周邊機能/364.jpg`,
+      eyebrow: '05 · 規劃中',
+      title: '台中大巨蛋 · 中央公園',
+      body: '67 公頃中央公園已成形，大巨蛋規劃進駐——之序四面臨路，每一面都是這座城市的展示櫥窗。',
+    },
+  ];
 
   readonly navItems: Array<{ id: string; label: string }> = [
     { id: 'trust', label: '建商 / 營造' },
@@ -131,10 +178,7 @@ export class DefaultComponent extends BBDBaseComponent implements AfterViewInit,
       // ───── Hero entrance ─────
       const heroTl = gsap.timeline({ defaults: { ease, duration: 1.1 } });
       heroTl
-        .from('.hero .bar-motif span', {
-          scaleY: 0, transformOrigin: 'bottom', stagger: 0.025, duration: 0.7, ease: 'power2.out',
-        })
-        .from('.hero .eyebrow', { y: 18, opacity: 0, duration: 0.7 }, '-=0.4')
+        .from('.hero .eyebrow', { y: 18, opacity: 0, duration: 0.7 })
         .from('.hero h1.zh', { y: 36, opacity: 0, duration: 1.2 }, '-=0.3')
         .from('.hero .lede', { y: 24, opacity: 0, duration: 0.9 }, '-=0.7')
         .from('.hero .stack .tl', { y: 16, opacity: 0, stagger: 0.12, duration: 0.6 }, '-=0.5')
@@ -147,6 +191,57 @@ export class DefaultComponent extends BBDBaseComponent implements AfterViewInit,
         yPercent: 12,
         ease: 'none',
         scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+      });
+
+      // ───── THE CRAFT (甲級營造) reveals ─────
+      gsap.utils.toArray<HTMLElement>('.craft .craft-anchor, .craft .craft-card').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0, y: 36, duration: 1.2, ease,
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+        });
+      });
+      gsap.from('.craft .craft-hero img', {
+        scale: 1.12, opacity: 0.4, duration: 2, ease: 'power2.out',
+        scrollTrigger: { trigger: '.craft .craft-hero', start: 'top 85%', toggleActions: 'play none none none' },
+      });
+
+      // ───── THE AMENITIES mosaic ─────
+      gsap.utils.toArray<HTMLElement>('.amenities-section .am-head > *, .amenities-section .am-foot > *').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0, y: 24, duration: 1, ease,
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+        });
+      });
+      gsap.utils.toArray<HTMLElement>('.amenities-section .am-tile').forEach((tile, i) => {
+        gsap.from(tile, {
+          opacity: 0, y: 40, duration: 1.1, ease,
+          scrollTrigger: { trigger: tile, start: 'top 90%', toggleActions: 'play none none none' },
+        });
+        const img = tile.querySelector<HTMLImageElement>('img');
+        if (img) {
+          gsap.from(img, {
+            scale: 1.15, duration: 1.6, ease: 'power2.out',
+            scrollTrigger: { trigger: tile, start: 'top 92%', toggleActions: 'play none none none' },
+          });
+        }
+      });
+
+      // ───── THE DISTRICT (附近重大建設) — fullscreen slides ─────
+      gsap.utils.toArray<HTMLElement>('.district .dt-slide').forEach((slide) => {
+        const img = slide.querySelector<HTMLImageElement>('img');
+        const overlay = slide.querySelector<HTMLElement>('.dt-overlay');
+        if (img) {
+          gsap.to(img, {
+            yPercent: -12, ease: 'none',
+            scrollTrigger: { trigger: slide, start: 'top bottom', end: 'bottom top', scrub: true },
+          });
+        }
+        if (overlay) {
+          gsap.from(overlay.children, {
+            opacity: 0, y: 28, duration: 1, stagger: 0.15, ease,
+            scrollTrigger: { trigger: slide, start: 'top 70%', toggleActions: 'play none none none' },
+          });
+        }
       });
 
       // ───── Generic section reveal ─────
@@ -198,18 +293,6 @@ export class DefaultComponent extends BBDBaseComponent implements AfterViewInit,
             ease,
             scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
           });
-        });
-      });
-
-      // ───── Bar motifs (everywhere except hero) ─────
-      gsap.utils.toArray<HTMLElement>('section:not(.hero) .bar-motif').forEach((motif) => {
-        gsap.from(motif.querySelectorAll('span'), {
-          scaleY: 0,
-          transformOrigin: 'bottom',
-          stagger: 0.03,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: motif, start: 'top 85%', toggleActions: 'play none none none' },
         });
       });
 
@@ -284,8 +367,6 @@ export class DefaultComponent extends BBDBaseComponent implements AfterViewInit,
     const el = document.getElementById(id);
     if (el) window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
   }
-
-  barHeight(v: number, h = 58): string { return `${(v * h) / 70}px`; }
 
   trackByIndex(index: number): number { return index; }
 

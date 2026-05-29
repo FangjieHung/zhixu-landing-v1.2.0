@@ -7,7 +7,7 @@ export const environment = {
   appPfm: 'CMS',
   storageTokenName: 'chuhungCmsDevToken',
   storageAuthUserName: 'chuhungCmsDevAuthUser',
-  siteName: '蘊和堂內容管理平台',
+  siteName: '之序｜水湳 · 綠海星嶼內容管理平台',
   siteServer: 'http://localhost:4200',
   apiServer: 'http://localhost:5038/Portal',
   cdnServer: 'http://localhost:5038',

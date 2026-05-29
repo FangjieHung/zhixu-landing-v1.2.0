@@ -3,9 +3,9 @@ export const environment = {
   appPfm: 'WEB',
   storageTokenName: 'chuhungWebToken',
   storageAuthUserName: 'chuhungWebAuthUser',
-  siteName: '蘊和堂',
-  siteServer: 'https://zhuhong.com.tw',
-  apiServer: 'https://apiv1.zhuhong.com.tw/Portal',
-  cdnServer: 'https://apiv1.zhuhong.com.tw',
+  siteName: '之序｜水湳 · 綠海星嶼',
+  siteServer: 'https://zhixu-test.com.tw',
+  apiServer: 'https://apiv1.zhixu-test.com.tw/Portal',
+  cdnServer: 'https://apiv1.zhixu-test.com.tw',
   downloadUrl: '/AppAttach/DownloadAppFileAtt'
 };

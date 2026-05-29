@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Custom packages
-import { DefaultContainerComponent } from './modules/_layout'
+import { DefaultContainerComponent } from './modules/_layout';
 
 const routes: Routes = [
   {
@@ -14,11 +14,22 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+            loadChildren: () =>
+              import('./modules/home/home.module').then((m) => m.HomeModule),
+          },
+          {
+            path: '',
+            loadChildren: () =>
+              import('./modules/map-story/map-story.module').then(
+                (m) => m.MapStoryModule
+              ),
           },
           {
             path: 'service',
-            loadChildren: () => import('./modules/service/service.module').then(m => m.ServiceModule)
+            loadChildren: () =>
+              import('./modules/service/service.module').then(
+                (m) => m.ServiceModule
+              ),
           },
           {
             path: '**',
@@ -32,12 +43,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking',
-    anchorScrolling: 'enabled',
-    scrollPositionRestoration: 'enabled',
-    onSameUrlNavigation: 'reload',
-  })],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabledBlocking',
+      anchorScrolling: 'enabled',
+      scrollPositionRestoration: 'enabled',
+      onSameUrlNavigation: 'reload',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
