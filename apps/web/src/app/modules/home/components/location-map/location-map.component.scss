@@ -69,13 +69,19 @@
 .lm-river, .lm-roads, .lm-track { will-change: transform; }
 
 /* POI groups start hidden — GSAP animates */
-.lm-poi { will-change: transform, opacity; }
+.lm-poi,
+.lm-far-poi { will-change: transform, opacity; }
+.lm-bg-mark { will-change: opacity; }
+
+/* Phase 2 routes — GSAP animates strokeDashoffset */
+.lm-route-path { will-change: stroke-dashoffset; }
+.lm-route-label { will-change: opacity; }
 
 /* Center pin sits above all */
 .lm-pin { will-change: transform; }
 .lm-pin .pin-pulse { transform-box: fill-box; transform-origin: center; }
 
-/* Bottom caption */
+/* Bottom caption — phase 1 & phase 2 stacked at same position for cross-fade */
 .lm-caption {
   position: absolute;
   left: 36px;
@@ -83,6 +89,7 @@
   z-index: 3;
   max-width: 38ch;
   color: var(--lm-ink);
+  will-change: opacity, transform;
 }
 .lm-cap-eyebrow {
   font-family: 'Montserrat', sans-serif;
@@ -90,7 +97,7 @@
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--lm-text-muted);
+  color: #c9b88a;
   margin-bottom: 1rem;
 }
 .lm-cap-line {
@@ -98,7 +105,7 @@
   font-size: clamp(1.4rem, 2.2vw, 2rem);
   line-height: 1.55;
   letter-spacing: 0.04em;
-  color: var(--lm-ink);
+  color: #ece4d3;
   font-weight: 500;
 }
 

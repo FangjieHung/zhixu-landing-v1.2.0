@@ -6,8 +6,7 @@
       *ngFor="let item of navItems"
       (click)="scrollToId(item.id)"
       [style.color]="active === item.id ? 'var(--accent)' : null"
-      >{{ item.label }}</a
-    >
+      >{{ item.label }}</a>
   </nav>
   <div class="cta-row">
     <a (click)="scrollToId('contact')">預約參觀</a>
@@ -31,14 +30,13 @@
 <section class="hero dark" id="hero">
   <header class="hero-header">
     <a class="mark" routerLink="/">
-      <img src="assets/image/logo/type-main.svg" alt="之序" class="w-24"/>
+      <img src="assets/image/logo/type-main.svg" alt="之序" class="w-24" />
     </a>
     <nav class="top-nav">
-      <a (click)="scrollToId('trust')">甲級精工</a>
-      <a (click)="scrollToId('whynow')">水湳願景</a>
-      <a (click)="scrollToId('spec')">精工格局</a>
-      <a (click)="scrollToId('design')">大師巨作</a>
-      <a (click)="scrollToId('contact')">預約鑑賞</a>
+      <a
+      *ngFor="let item of navItems"
+      (click)="scrollToId(item.id)"
+      >{{ item.label }}</a>
     </nav>
   </header>
 
@@ -47,15 +45,15 @@
       <div class="stack">
         <h1 class="zh">
           回家，<br />
-          是一場航向中央公園，<br />
+          是航向中央公園，<br />
           泊岸生活的<span class="accent">儀式</span>。
         </h1>
-        <p class="lede" style="font-size: 16px">
-          四面臨路・綠海星嶼，186 戶輕奢寓所，靜候識者。
-        </p>
-        <div style="display: flex; gap: 2rem; margin-top: 0.5rem">
-          <button class="tl" (click)="scrollToId('contact')">預約參觀</button>
-          <button class="tl" (click)="scrollToId('whynow')">了解水湳</button>
+
+        <div class="lede">
+          <p>四面臨路，國際新奢寓所</p>
+          <div style="display: flex; gap: 2rem; margin-top: 5rem">
+            <button class="btn-outline" (click)="scrollToId('contact')">預約參觀</button>
+          </div>
         </div>
       </div>
     </div>
@@ -63,16 +61,13 @@
     <div class="hero-img">
       <div class="ph canopy">
         <img class="ph-img tinted" [src]="img.hero" alt="之序 · 建築外觀" />
-        <div class="overlay-tag">
-          CENTRAL PARK · 綠海星嶼<br />SHUI-NAN · TAICHUNG
-        </div>
       </div>
     </div>
   </div>
 
   <div class="hero-footer">
-    <div class="yearmark" style="color: #b8ad9e">
-      2026 · 之序 · 水湳 · 綠海星嶼
+    <div class="yearmark">
+      CENTRAL PARK <br />SHUI-NAN · TAICHUNG
     </div>
     <div class="scroll-cue">向下 · SCROLL</div>
     <div class="yearmark" style="color: #b8ad9e; text-align: right">
@@ -80,120 +75,44 @@
     </div>
   </div>
 </section>
-
-<!-- 02 · Trust -->
+<!-- The Location · scroll-driven map -->
+<app-location-map></app-location-map>
+<!-- Trust -->
 <section class="trust" id="trust">
-  <div class="trust-head">
-    <div class="eyebrow">
-      <span class="num">02</span><span>THE MAKER · 富華創新 + 總太營造</span>
-    </div>
-  </div>
-
-  <div class="trust-grid">
-    <div class="cell">
-      <div class="label-sm">建商沿革 · DEVELOPER</div>
-      <div class="big zh">富華創新<br />2020</div>
-      <div class="sub">承繼總太地產三十年耕耘，以新名義做同一件事。</div>
-    </div>
-
-    <div class="cell accent-cell">
-      <div class="label-sm" style="color: var(--accent)">
-        營造團隊 · BUILDER
-      </div>
-      <div class="big zh">
-        總太營造<br />
-        <span
-          style="
-            font-size: 0.55em;
-            letter-spacing: 0.18em;
-            color: #b8ad9e;
-            text-transform: uppercase;
-          "
-          >甲級 · since 1976</span
-        >
-      </div>
-      <div class="sub">
-        富華創新集團 100% 自有甲級營造廠。代表作：東方帝國、心之所向。
-      </div>
-      <button
-        class="tl"
-        (click)="scrollToId('builder-deep', 40)"
-        style="margin-top: auto; align-self: flex-start"
-      >
-        細看營造
-      </button>
-    </div>
-
-    <div class="cell">
-      <div class="label-sm">建築設計 · ARCHITECT</div>
-      <div class="big zh">吳六合</div>
-      <div class="sub">郵輪式圓弧語言，操刀台中多件指標性高層住宅。</div>
-      <button
-        class="tl"
-        (click)="scrollToId('design')"
-        style="margin-top: auto; align-self: flex-start"
-      >
-        查看設計者
-      </button>
-    </div>
-
-    <div class="cell">
-      <div class="label-sm">物業管理 · MANAGEMENT</div>
-      <div class="big zh">飯店式管家</div>
-      <div class="sub">
-        入住後管家服務，合作物業公司確認中——預約時可詳閱合約樣本。
-      </div>
-    </div>
-  </div>
-
-  <div class="lineage">
-    <div class="eyebrow" style="color: #8e827a">
-      關於品牌轉型 · ON THE NAME CHANGE
-    </div>
-    <div class="quote">
-      富華創新承繼總太地產三十年耕耘，<br />
-      以新名義，<span class="lighter">做同一件事——</span><br />
-      蓋一棟值得等待的房子。
-    </div>
-  </div>
-
   <div class="builder-deep" id="builder-deep">
     <div class="anchor-q">
-      誰把它蓋起來，<br />
-      比誰畫它，<br />
-      <span class="lighter">更決定它能住多久。</span>
+      富華創新承繼總太三十年耕耘，<br />
+      以新名義做同一件事 &#8212; <br />
+      <span class="lighter">蓋一棟值得等待的房子。</span>
     </div>
 
     <div class="builder-body">
       <div class="bd-left">
         <div class="eyebrow">
-          <span class="num">02 / B</span><span>THE BUILDER · 總太營造</span>
+          <span>THE BUILDER ·總太營造</span>
         </div>
         <div style="height: 1.5rem"></div>
         <p class="bd-essay">
-          富華創新有一件事，跟大多數建設公司不一樣：<br />
-          <span class="strong">自己有甲級營造廠。</span>
+          我們不只蓋一座房子，更是以國家級公共工程、超高層摩天大樓的嚴苛標準，淬鍊一座足以傳承世代的世代傳家行館
         </p>
         <p class="bd-essay">
-          總太營造——前身高章營造，1976 年創立，
-          現為富華創新集團旗下自有甲級營造廠。
-          同一集團，從設計到施工，對每一道牆負責到底。
+          外在，是震撼城市的永恆立面；<br />
+          內在，是安放您與家人、財富最優雅的避風港。
         </p>
         <p class="bd-essay">
-          沒有中間轉包，沒有利益分叉——<br />
-          因為蓋的就是自己的作品。
+          <span class="strong">頂級的安全感，從來不需喧嘩。</span>
         </p>
       </div>
 
       <div class="bd-right">
         <div class="bd-stat">
           <div class="bd-stat-num">甲級</div>
-          <div class="bd-stat-k">營造商等級</div>
-          <div class="bd-stat-v">台灣最高 · 富華創新 100% 持股</div>
+          <div class="bd-stat-k">營造商</div>
+          <div class="bd-stat-v">國家最高殿堂認證，承載建築的凌空雄心</div>
         </div>
         <div class="bd-stat">
           <div class="bd-stat-num">1976</div>
-          <div class="bd-stat-k">創立年份</div>
+          <div class="bd-stat-k">創立</div>
           <div class="bd-stat-v">前身高章營造 · 半世紀工地紀律</div>
         </div>
         <div class="bd-stat">
@@ -209,73 +128,7 @@
       </div>
     </div>
 
-    <div class="bd-works">
-      <div class="bd-works-head">
-        <div class="eyebrow">
-          <span class="num">02 / C</span
-          ><span>承作記錄 · DELIVERED BY 總太</span>
-        </div>
-        <div class="bd-works-cap">同一組人，同樣的標準，現在正在蓋之序。</div>
-      </div>
-      <div class="bd-works-grid">
-        <div class="bd-work">
-          <div class="ph dark bd-img">
-            <img class="ph-img" [src]="img.work1" alt="心之所向" />
-            <div class="caption-fade">心之所向 · DELIVERED 2024</div>
-          </div>
-          <div class="bd-work-meta">
-            <div class="bd-work-name">
-              心之所向<span class="bd-work-en">Heart's Destination</span>
-            </div>
-            <div class="bd-work-award">
-              2025 · 國家卓越建設獎 · 最佳施工品質類 · 卓越獎
-            </div>
-            <div class="bd-work-note">
-              富華創新與總太營造前一案 · 對之序最直接的信任轉移。
-            </div>
-          </div>
-        </div>
-        <div class="bd-work">
-          <div class="ph walnut bd-img">
-            <img class="ph-img" [src]="img.work2" alt="東方帝國" />
-            <div class="caption-fade">東方帝國 · DELIVERED 2011</div>
-          </div>
-          <div class="bd-work-meta">
-            <div class="bd-work-name">
-              東方帝國<span class="bd-work-en">Eastern Empire</span>
-            </div>
-            <div class="bd-work-award">
-              2011 · 國家卓越建設獎 · 最佳施工品質類 · 卓越獎
-            </div>
-            <div class="bd-work-note">
-              台中七期超高豪宅 · 全台罕見 SS+PC 純鋼骨工法。
-            </div>
-          </div>
-        </div>
-        <div class="bd-work">
-          <div class="ph linen bd-img">
-            <img class="ph-img" [src]="img.work3" alt="聚作 / 拾光 / 織築" />
-            <div class="caption-fade">聚作 · 拾光 · 織築</div>
-          </div>
-          <div class="bd-work-meta">
-            <div class="bd-work-name">
-              聚作 · 拾光 · 織築<span class="bd-work-en">Other Works</span>
-            </div>
-            <div class="bd-work-award">
-              2023 聚作金質獎 · 2017 拾光金質獎 · 2020 國家優良營造商
-            </div>
-            <div class="bd-work-note">
-              連續金質獎與優良營造商認證 · 紀錄不是一次。
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="bd-final">
-      設計讓人看見它，<br />
-      <span class="accent-em">營造讓人住得進去。</span>
-    </div>
   </div>
 
   <!-- 02 / D · THE CRAFT — 甲級營造的 VVIP 語氣 -->
@@ -470,8 +323,7 @@
   </div>
 </section>
 
-<!-- The Location · scroll-driven map -->
-<app-location-map></app-location-map>
+
 
 <!-- 04 · Spec Sheet -->
 <section class="spec" id="spec">
@@ -514,7 +366,7 @@
   </div>
 
   <div class="pull-wrap">
-    <div class="eyebrow" style="color: #b8ad9e">SCALE · 規模語意</div>
+    <div class="eyebrow">SCALE · 規模語意</div>
     <div class="pull">
       186 戶——<span class="quiet">不多也不少，</span><br />
       剛好是讓一棟樓有溫度，<br />
@@ -568,7 +420,7 @@
   </div>
 </section>
 
-<!-- THE AMENITIES · 室內公設 大量照片 -->
+<!-- THE AMENITIES · 室內公設 章節式敘事 (Springs-inspired) -->
 <section class="amenities-section" id="amenities">
   <header class="am-head">
     <div class="eyebrow">
@@ -589,22 +441,28 @@
     </p>
   </header>
 
-  <div class="am-mosaic">
-    <figure
-      *ngFor="let a of amenities; let i = index; trackBy: trackByIndex"
-      class="am-tile"
-      [class.am-tile-lg]="a.size === 'lg'"
-      [class.am-tile-md]="a.size === 'md'"
-      [class.am-tile-sm]="a.size === 'sm'"
-      [class.am-tile-tall]="a.size === 'tall'"
+  <div class="am-story">
+    <article
+      *ngFor="let ch of amenityChapters; let i = index; trackBy: trackByIndex"
+      class="am-chapter"
+      [class.am-chapter-hero]="ch.layout === 'hero'"
+      [class.am-chapter-left]="ch.layout === 'left'"
+      [class.am-chapter-right]="ch.layout === 'right'"
     >
-      <img [src]="a.src" [alt]="a.label" />
-      <figcaption class="am-cap">
-        <span class="am-cap-sub">{{ a.sub }}</span>
-        <span class="am-cap-label">{{ a.label }}</span>
-      </figcaption>
-      <div class="am-tile-no">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</div>
-    </figure>
+      <div class="am-ch-media">
+        <img [src]="ch.src" [alt]="ch.zh" />
+        <span class="am-ch-side" *ngIf="ch.side">{{ ch.side }}</span>
+      </div>
+      <div class="am-ch-text">
+        <div class="am-ch-eyebrow">
+          <span class="num">{{ ch.no }}</span>
+          <span class="en">{{ ch.en }}</span>
+        </div>
+        <h3 class="am-ch-poetry">{{ ch.poetry }}</h3>
+        <div class="am-ch-zh">{{ ch.zh }}</div>
+        <p class="am-ch-body">{{ ch.body }}</p>
+      </div>
+    </article>
   </div>
 
   <footer class="am-foot">
@@ -616,6 +474,100 @@
       預約 · 走一遍會館
     </button>
   </footer>
+</section>
+
+<!-- THE EQUIPMENT · 住戶精品設備 -->
+<section class="equipment-section" id="equipment">
+  <header class="eq-head">
+    <div class="eyebrow">
+      <span class="num">04 / C</span
+      ><span>THE EQUIPMENT · 入戶即頂規</span>
+    </div>
+    <h2 class="eq-headline">
+      入戶之前，<br />
+      一切已經<span class="accent">就位。</span>
+    </h2>
+    <p class="eq-lede">
+      德意原裝廚電、日德並陳衛浴、全屋恆境空調、智慧家居中控。
+      <strong>四大系譜</strong>，皆為住家而設，不為展示而堆。<br />
+      <em>真正的奢侈，是看不見的標準。</em>
+    </p>
+  </header>
+
+  <div class="eq-story">
+    <section
+      *ngFor="let cat of equipmentCategories; let ci = index; trackBy: trackByIndex"
+      class="eq-cat"
+    >
+      <div class="eq-cat-head">
+        <div class="eq-cat-no">{{ cat.no }}</div>
+        <div class="eq-cat-meta">
+          <div class="eq-cat-en">{{ cat.en }}</div>
+          <h3 class="eq-cat-zh">{{ cat.zh }}</h3>
+          <p class="eq-cat-lede">{{ cat.lede }}</p>
+        </div>
+      </div>
+
+      <div class="eq-grid">
+        <figure
+          *ngFor="let it of cat.items; trackBy: trackByIndex"
+          class="eq-card"
+        >
+          <div class="eq-card-img">
+            <img [src]="it.src" [alt]="it.brand + ' · ' + it.model" />
+          </div>
+          <figcaption class="eq-card-meta">
+            <div class="eq-brand">{{ it.brand }}</div>
+            <div class="eq-model">{{ it.model }}</div>
+            <p class="eq-desc">{{ it.desc }}</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </div>
+
+  <footer class="eq-foot">
+    <div class="eq-coda">
+      <span class="quiet">完整品牌清單 ——</span>
+      <span class="loud">隨型錄附上。</span>
+    </div>
+    <button class="tl" (click)="scrollToId('contact')">
+      索取設備規格表
+    </button>
+  </footer>
+</section>
+
+<!-- SPRINGS BAYS · sticky-stacking 半屏雙欄敘事 -->
+<section class="springs-bays" id="springs-bays">
+  <article
+    *ngFor="let bay of springsBays; let i = index; trackBy: trackByIndex"
+    class="sb-bay"
+    [attr.id]="bay.id"
+    [attr.data-theme]="bay.theme"
+    [style.z-index]="i + 1"
+  >
+    <div class="sb-frame">
+      <div class="sb-image">
+        <img [src]="bay.src" [alt]="bay.title" />
+        <div class="sb-headline">
+          <h2 class="sb-title">{{ bay.title }}</h2>
+          <div class="sb-tag">{{ bay.tag }}</div>
+        </div>
+      </div>
+
+      <aside class="sb-panel">
+        <div class="sb-panel-inner">
+          <p class="sb-lede">{{ bay.lede }}</p>
+
+          <ul class="sb-stats">
+            <li *ngFor="let s of bay.stats; trackBy: trackByIndex">
+              <span class="sb-stat">{{ s }}</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </article>
 </section>
 
 <!-- 05 · The Circle -->
