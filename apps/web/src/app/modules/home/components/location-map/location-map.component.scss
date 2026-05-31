@@ -69,9 +69,8 @@
 .lm-river, .lm-roads, .lm-track { will-change: transform; }
 
 /* POI groups start hidden — GSAP animates */
-.lm-poi,
-.lm-far-poi { will-change: transform, opacity; }
-.lm-bg-mark { will-change: opacity; }
+.lm-poi { will-change: transform, opacity; }
+.lm-edge-marker { will-change: opacity; }
 
 /* Phase 2 routes — GSAP animates strokeDashoffset */
 .lm-route-path { will-change: stroke-dashoffset; }
@@ -107,6 +106,51 @@
   letter-spacing: 0.04em;
   color: #ece4d3;
   font-weight: 500;
+}
+
+/* TEMP: 路徑收集 debug 浮層 */
+.lm-debug-panel {
+  position: absolute;
+  top: 80px;
+  right: 24px;
+  z-index: 10;
+  max-width: 280px;
+  background: rgba(18, 16, 14, 0.92);
+  border: 1px solid rgba(201, 184, 138, 0.4);
+  font-family: 'Montserrat', sans-serif;
+  color: #c9b88a;
+}
+.lm-debug-hover {
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(201, 184, 138, 0.2);
+  pointer-events: none;
+}
+.lm-debug-points {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 8px 16px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #ece4d3;
+  pointer-events: none;
+}
+.lm-debug-row { font-variant-numeric: tabular-nums; }
+.lm-debug-clear {
+  width: 100%;
+  padding: 8px 16px;
+  background: rgba(201, 184, 138, 0.15);
+  color: #c9b88a;
+  border: 0;
+  border-top: 1px solid rgba(201, 184, 138, 0.2);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  &:hover { background: rgba(201, 184, 138, 0.25); }
 }
 
 @media (max-width: 900px) {

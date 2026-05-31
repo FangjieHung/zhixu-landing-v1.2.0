@@ -34,35 +34,29 @@ interface Route {
   duration: number;
 }
 
-interface BgMark {
+interface EdgeMarker {
+  /** 圓心 x（通常 = 0，圓心在 viewBox 左邊外側，視覺上只看到 1/4 ~ 1/2 圓） */
   x: number;
   y: number;
+  /** 半圓半徑 */
+  r: number;
+  min: number;
   name: string;
   reveal: number;
 }
 
-// 之序（水湳智慧城）真實經緯度，請至 Google Maps 確認後更新
-const MAP_CENTER = { lat: 24.1714, lng: 120.6352 };
-
-// 經緯度 → SVG 像素的縮放係數，與 viewBox 搭配
-// x 較大讓水平方向 POI 分散；y 保留 5500 才能把機場（lat 24.265）容納在 viewBox 上緣
-const MAP_SCALE = { x: 10000, y: 5500 };
-
 // SVG viewBox 對齊底圖 (assets/image/map/map-bg.svg) 的 1831×1013
-// SVG_CENTER 預設放在底圖幾何中心，若之序在底圖中的實際位置不在中央，請改成那個座標
-const SVG_CENTER = { x: 915, y: 506 };
+// SVG_CENTER = 之序在底圖上的實際 SVG 座標（使用者用 debug 浮層校正過）
+const SVG_CENTER = { x: 895, y: 596 };
 
-function latLngToSvg(lat: number, lng: number): { x: number; y: number } {
-  return {
-    x: Math.round(SVG_CENTER.x + (lng - MAP_CENTER.lng) * MAP_SCALE.x),
-    y: Math.round(SVG_CENTER.y - (lat - MAP_CENTER.lat) * MAP_SCALE.y),
-  };
-}
+// transform-origin in CSS % — 鏡頭 zoom 以「之序」為中心
+// 895 / 1831 ≈ 48.88 %, 596 / 1013 ≈ 58.83 %
+const ZOOM_ORIGIN = '48.9% 58.8%';
 
 // 鏡頭縮放關鍵節點
-const ZOOM_PHASE1_START = 4.68; // = 2.6 * 1.8，緊鎖之序
-const ZOOM_PHASE1_END = 1.8;    // 顯示原本 1000×600 範圍（近端 POI 都在）
-const ZOOM_PHASE2_END = 1.0;    // 顯示完整 1800×1080 範圍（含遠端 POI / 路線）
+const ZOOM_PHASE1_START = 3.4;  // 緊鎖之序
+const ZOOM_PHASE1_END = 1.3;    // 顯示 8 個近端 POI 涵蓋範圍
+const ZOOM_PHASE2_END = 1.0;    // 顯示完整 viewBox（含左側 1/4 圓示意）
 
 @Component({
   selector: 'app-location-map',
@@ -79,39 +73,35 @@ export class LocationMapComponent
 
   private gsapCtx?: gsap.Context;
 
+  /** 之序在底圖上的 SVG viewBox 座標 — 中心 pin 的位置 */
+  readonly centerPin = SVG_CENTER;
+
   /**
-   * Phase 1 近端 POI（步行/短車程）。
-   * 座標由 latLngToSvg() 從真實經緯度算出；min 為非尖峰時段車程估算。
-   * 更新方式：Google Maps 右鍵複製座標 → 填入 latLngToSvg(lat, lng)。
+   * Phase 1 近端 POI — 座標由使用者用 debug 浮層在 map-bg.svg 上點過，直接寫死。
+   * min 為非尖峰時段車程估算，待使用者用 Google Maps 路線確認。
    */
   readonly pois: Poi[] = [
-    { ...latLngToSvg(24.178, 120.629), min: 3,  name: '中央公園 · 主入口',   reveal: 0.30, anchor: 'end',   vAnchor: 'above' },
-    { ...latLngToSvg(24.176, 120.622), min: 5,  name: '綠美圖',             reveal: 0.36, anchor: 'end',   vAnchor: 'below' },
-    { ...latLngToSvg(24.169, 120.643), min: 7,  name: '國際會展中心',        reveal: 0.40, anchor: 'start', vAnchor: 'above' },
-    { ...latLngToSvg(24.162, 120.638), min: 8,  name: '水湳轉運中心',        reveal: 0.44, anchor: 'end',   vAnchor: 'below' },
-    { ...latLngToSvg(24.138, 120.685), min: 15, name: '台中車站',            reveal: 0.48, anchor: 'end',   vAnchor: 'above' },
-    { ...latLngToSvg(24.183, 120.648), min: 12, name: '台中大巨蛋 · 規劃中', reveal: 0.52, anchor: 'start', vAnchor: 'above' },
+    { x: 755, y: 592, min: 3, name: '中央公園 · 主入口',   reveal: 0.28, anchor: 'end',   vAnchor: 'above' },
+    { x: 776, y: 363, min: 5, name: '台中綠美圖',         reveal: 0.32, anchor: 'end',   vAnchor: 'above' },
+    { x: 710, y: 248, min: 8, name: '水湳轉運中心',       reveal: 0.36, anchor: 'end',   vAnchor: 'above' },
+    { x: 268, y: 290, min: 7, name: '台中國際會展中心',   reveal: 0.40, anchor: 'start', vAnchor: 'above' },
+    { x: 598, y: 835, min: 2, name: '台中超巨蛋',         reveal: 0.44, anchor: 'end',   vAnchor: 'below' },
+    { x: 845, y: 693, min: 2, name: '台中流行影音中心',   reveal: 0.48, anchor: 'start', vAnchor: 'below' },
+    { x: 855, y: 697, min: 2, name: '水湳經貿園區站',     reveal: 0.52, anchor: 'start', vAnchor: 'above' },
+    { x: 861, y: 935, min: 5, name: '捷運文華高中站',     reveal: 0.56, anchor: 'end',   vAnchor: 'below' },
   ];
 
   /**
-   * Phase 2 遠端 POI（區域級地標）。
-   * 機場真實緯度會落在 viewBox 上緣（y≈25）被 navbar 覆蓋，
-   * 改用方向指示位置 y=140，作為「往北 18 分鐘」的方向標。
+   * Phase 2 邊界示意（中科、七期）— 圓心擺在 viewBox 左邊界 x=0，
+   * 視覺上只露出右側 1/4 ~ 1/2 的弧，作為「往該方向 X 分鐘」的方向標。
    */
-  readonly farPois: Poi[] = [
-    { ...latLngToSvg(24.161, 120.643), min: 10, name: '七期 · 市政中心', reveal: 0.78, anchor: 'end'   },
-    { ...latLngToSvg(24.180, 120.610), min: 8,  name: '中部科學園區',    reveal: 0.82, anchor: 'end'   },
-    { x: 760, y: 160,                  min: 18, name: '台中國際機場',    reveal: 0.86, anchor: 'start', vAnchor: 'below' },
-  ];
-
-  /** Phase 2 背景剪影記號（無分鐘數，僅作為城市座標感）。 */
-  readonly bgMarks: BgMark[] = [
-    { ...latLngToSvg(24.184, 120.668), name: '文華高中',     reveal: 0.84 },
-    { ...latLngToSvg(24.116, 120.616), name: '高鐵 · 台中站', reveal: 0.86 },
+  readonly edgeMarkers: EdgeMarker[] = [
+    { x: 0, y: 122, r: 90, min: 8,  name: '中部科學園區', reveal: 0.78 },
+    { x: 0, y: 952, r: 90, min: 10, name: '台中七期',     reveal: 0.84 },
   ];
 
   /**
-   * Phase 2 線路 — d 為手繪示意 path，並非精準 GIS 對位。
+   * Phase 2 線路 — d 為手繪示意 path，使用者尚未提供精準描線。
    * 顏色採台灣官方規範：國道綠、快速道路紅、捷運色票。
    */
   readonly routes: Route[] = [
@@ -176,8 +166,42 @@ export class LocationMapComponent
     line2: '抵達台中所有要地。',
   };
 
+  /** TEMP: 路徑收集 debug 浮層，收集完所有座標後刪除 */
+  debugHover = '移動滑鼠到地圖上 · 點擊累積座標 · 「清空」重置';
+  debugPoints: Array<{ x: number; y: number }> = [];
+
   constructor(injector: Injector, private host: ElementRef<HTMLElement>) {
     super(injector);
+  }
+
+  onMapHover(event: MouseEvent): void {
+    const local = this.svgPoint(event);
+    if (!local) return;
+    this.debugHover = `Hover · x=${Math.round(local.x)}  y=${Math.round(local.y)}`;
+  }
+
+  onMapClick(event: MouseEvent): void {
+    const local = this.svgPoint(event);
+    if (!local) return;
+    const p = { x: Math.round(local.x), y: Math.round(local.y) };
+    this.debugPoints = [...this.debugPoints, p];
+    console.log(`[location-map] +P${this.debugPoints.length} = { x: ${p.x}, y: ${p.y} }`);
+  }
+
+  clearDebugPoints(): void {
+    this.debugPoints = [];
+    console.log('[location-map] debug points cleared');
+  }
+
+  /** 把 viewport mouse 座標轉成 SVG viewBox 座標 */
+  private svgPoint(event: MouseEvent): { x: number; y: number } | null {
+    const svg = this.mapRef.nativeElement;
+    const pt = svg.createSVGPoint();
+    pt.x = event.clientX;
+    pt.y = event.clientY;
+    const ctm = svg.getScreenCTM();
+    if (!ctm) return null;
+    return pt.matrixTransform(ctm.inverse());
   }
 
   ngAfterViewInit(): void {
@@ -211,11 +235,10 @@ export class LocationMapComponent
         path.style.strokeDashoffset = `${len}`;
       });
 
-      // 初始狀態
-      gsap.set(svg, { scale: ZOOM_PHASE1_START, transformOrigin: '50% 50%' });
+      // 初始狀態 — 鏡頭緊鎖在之序、其他元素隱藏
+      gsap.set(svg, { scale: ZOOM_PHASE1_START, transformOrigin: ZOOM_ORIGIN });
       gsap.set('.lm-poi', { opacity: 0, scale: 0.6, transformOrigin: '50% 50%' });
-      gsap.set('.lm-far-poi', { opacity: 0, scale: 0.6, transformOrigin: '50% 50%' });
-      gsap.set('.lm-bg-mark', { opacity: 0 });
+      gsap.set('.lm-edge-marker', { opacity: 0 });
       gsap.set('.lm-route-label', { opacity: 0 });
       gsap.set('.lm-caption-near', { opacity: 0, y: 24 });
       gsap.set('.lm-caption-far', { opacity: 0, y: 24 });
@@ -224,8 +247,7 @@ export class LocationMapComponent
       if (prefersReduced) {
         gsap.set(svg, { scale: ZOOM_PHASE2_END });
         gsap.set('.lm-poi', { opacity: 0, scale: 1 });
-        gsap.set('.lm-far-poi', { opacity: 1, scale: 1 });
-        gsap.set('.lm-bg-mark', { opacity: 0.7 });
+        gsap.set('.lm-edge-marker', { opacity: 1 });
         gsap.set('.lm-route-label', { opacity: 1 });
         gsap.set('.lm-caption-far', { opacity: 1, y: 0 });
         routePaths.forEach((path) => { path.style.strokeDashoffset = '0'; });
@@ -258,7 +280,7 @@ export class LocationMapComponent
         );
       });
 
-      tl.to('.lm-caption-near', { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' }, 0.54);
+      tl.to('.lm-caption-near', { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' }, 0.56);
 
       // ── Phase 2（0.59 ~ 1.0）───────────────────────────────────
       // 近端 POI 與 caption 淡出
@@ -282,21 +304,12 @@ export class LocationMapComponent
         );
       });
 
-      // 遠端 POI reveal
-      this.farPois.forEach((poi, i) => {
+      // Edge markers (中科、七期) reveal
+      this.edgeMarkers.forEach((m, i) => {
         tl.to(
-          `.lm-far-poi[data-i="${i}"]`,
-          { opacity: 1, scale: 1, duration: 0.04, ease: 'power2.out' },
-          poi.reveal,
-        );
-      });
-
-      // 背景剪影標記
-      this.bgMarks.forEach((mark, i) => {
-        tl.to(
-          `.lm-bg-mark[data-i="${i}"]`,
-          { opacity: 0.7, duration: 0.04, ease: 'power2.out' },
-          mark.reveal,
+          `.lm-edge-marker[data-i="${i}"]`,
+          { opacity: 1, duration: 0.05, ease: 'power2.out' },
+          m.reveal,
         );
       });
 
@@ -334,12 +347,17 @@ export class LocationMapComponent
     return poi.vAnchor === 'below' ? poi.y + 54 : poi.y + 4;
   }
 
+  /** Edge marker 半圓 path d — 圓心 (0, 0)、半徑 r、開口朝右 */
+  edgeMarkerPath(r: number): string {
+    return `M 0 ${-r} A ${r} ${r} 0 0 1 0 ${r} Z`;
+  }
+
   poisTrack(_index: number, p: Poi): number {
     return p.min * 1000 + p.x;
   }
 
-  bgMarksTrack(_index: number, m: BgMark): number {
-    return m.x * 1000 + m.y;
+  edgeMarkersTrack(_index: number, m: EdgeMarker): number {
+    return m.y;
   }
 
   routesTrack(_index: number, r: Route): string {

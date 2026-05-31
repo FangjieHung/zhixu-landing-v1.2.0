@@ -6,9 +6,11 @@
       #map
       class="lm-map"
       viewBox="0 0 1831 1013"
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio="xMidYMid meet"
       role="img"
       aria-label="之序 · 周邊位置示意圖"
+      (mousemove)="onMapHover($event)"
+      (click)="onMapClick($event)"
     >
       <!-- Base map illustration — assets/image/map/map-bg.svg -->
       <image
@@ -49,24 +51,44 @@
         >{{ r.label }}</text>
       </g>
 
-      <!-- ── Phase 2: background silhouette marks ─────────────────────── -->
-      <g class="lm-bg-marks">
+      <!-- ── Phase 2: edge markers (中科、七期) ──────────────────────── -->
+      <g class="lm-edge-markers">
         <g
-          *ngFor="let m of bgMarks; let i = index; trackBy: bgMarksTrack"
-          class="lm-bg-mark"
+          *ngFor="let m of edgeMarkers; let i = index; trackBy: edgeMarkersTrack"
+          class="lm-edge-marker"
           [attr.data-i]="i"
           [attr.transform]="'translate(' + m.x + ',' + m.y + ')'"
         >
-          <circle r="6" fill="#a89d8c" />
+          <!-- 右半圓（開口朝右），圓心在 viewBox 左邊界外 -->
+          <path [attr.d]="edgeMarkerPath(m.r)" fill="#2f3a26" />
           <text
-            x="0"
-            y="-14"
+            x="30"
+            y="0"
             text-anchor="middle"
-            font-family="Noto Serif SC, serif"
-            font-size="14"
+            dominant-baseline="central"
+            font-family="Playfair Display, serif"
+            font-size="22"
+            fill="#f0e6d0"
             font-weight="500"
-            fill="#a89d8c"
-            letter-spacing="0.06em"
+          >{{ m.min }}</text>
+          <text
+            x="105"
+            y="-8"
+            text-anchor="start"
+            font-family="Montserrat, sans-serif"
+            font-size="10"
+            letter-spacing="2.4"
+            fill="#c9b88a"
+            font-weight="600"
+          >MINUTES BY CAR</text>
+          <text
+            x="105"
+            y="14"
+            text-anchor="start"
+            font-family="Noto Serif SC, serif"
+            font-size="18"
+            fill="#ece4d3"
+            font-weight="500"
           >{{ m.name }}</text>
         </g>
       </g>
@@ -117,54 +139,8 @@
         </g>
       </g>
 
-      <!-- ── Phase 2: far POI markers ─────────────────────────────────── -->
-      <g class="lm-far-pois">
-        <g
-          *ngFor="let p of farPois; let i = index; trackBy: poisTrack"
-          class="lm-far-poi"
-          [attr.data-i]="i"
-          [attr.transform]="'translate(' + p.x + ',' + p.y + ')'"
-        >
-          <circle r="22" fill="#2f3a26" />
-          <text
-            text-anchor="middle"
-            dominant-baseline="central"
-            font-family="Playfair Display, serif"
-            font-size="16"
-            fill="#f0e6d0"
-            font-weight="500"
-          >{{ p.min }}</text>
-        </g>
-
-        <g
-          *ngFor="let p of farPois; let i = index; trackBy: poisTrack"
-          class="lm-far-poi"
-          [attr.data-i]="i"
-        >
-          <text
-            [attr.x]="poiLabelX(p)"
-            [attr.y]="poiLabelTopY(p)"
-            [attr.text-anchor]="p.anchor === 'end' ? 'end' : 'start'"
-            font-family="Montserrat, sans-serif"
-            font-size="9"
-            letter-spacing="2.4"
-            fill="#c9b88a"
-            font-weight="600"
-          >MINUTES BY CAR</text>
-          <text
-            [attr.x]="poiLabelX(p)"
-            [attr.y]="poiLabelBottomY(p)"
-            [attr.text-anchor]="p.anchor === 'end' ? 'end' : 'start'"
-            font-family="Noto Serif SC, serif"
-            font-size="17"
-            fill="#ece4d3"
-            font-weight="500"
-          >{{ p.name }}</text>
-        </g>
-      </g>
-
       <!-- Center pin · 之序 -->
-      <g class="lm-pin" transform="translate(915, 506)">
+      <g class="lm-pin" [attr.transform]="'translate(' + centerPin.x + ',' + centerPin.y + ')'">
         <circle class="pin-pulse" r="34" fill="#2f3a26" opacity="0.55" />
         <circle r="34" fill="#2f3a26" />
         <!-- Simple tower glyph -->
@@ -186,6 +162,17 @@
         >之序</text>
       </g>
     </svg>
+
+    <!-- TEMP: 路徑收集 debug 浮層 — 取得所有路線座標後刪除 -->
+    <div class="lm-debug-panel">
+      <div class="lm-debug-hover">{{ debugHover }}</div>
+      <div class="lm-debug-points" *ngIf="debugPoints.length">
+        <div class="lm-debug-row" *ngFor="let p of debugPoints; let i = index">
+          P{{ i + 1 }} = ({{ p.x }}, {{ p.y }})
+        </div>
+      </div>
+      <button class="lm-debug-clear" (click)="clearDebugPoints(); $event.stopPropagation()">清空</button>
+    </div>
 
     <div class="lm-caption lm-caption-near">
       <div class="lm-cap-eyebrow">{{ captionNear.eyebrow }}</div>

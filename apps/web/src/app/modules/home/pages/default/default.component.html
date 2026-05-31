@@ -149,6 +149,7 @@
       <div class="craft-hero-caption">CRAFTED FOR A CENTURY · 為傳世而砌</div>
     </div>
 
+    <!----
     <div class="craft-grid">
       <article class="craft-card">
         <div class="cc-eyebrow">I · 工藝與血統</div>
@@ -210,6 +211,7 @@
         <div class="cc-foot">A NAME THAT OUTLIVES ITS OWNER</div>
       </article>
     </div>
+  -->
 
     <div class="craft-coda">
       <span>頂級的安全感，從來不需喧嘩。</span>
@@ -219,7 +221,7 @@
   </div>
 </section>
 
-<!-- THE DISTRICT · 附近重大建設（滿版） -->
+<!-- THE DISTRICT · 附近重大建設（滿版） 
 <section class="district" id="district">
   <header class="dt-head">
     <div class="eyebrow">
@@ -246,6 +248,7 @@
     <div class="dt-pagination">0{{ i + 1 }} / 0{{ district.length }}</div>
   </article>
 </section>
+-->
 
 <!-- 03 · Why Now -->
 <section class="frame" id="whynow">
@@ -259,6 +262,7 @@
     </div>
 
     <div class="col-wide">
+      <!--
       <h2 class="pull-zh xl" style="margin-bottom: 2.5rem">
         水湳，<br />在你的步行距離裡<br />成形。
       </h2>
@@ -284,8 +288,7 @@
           <div class="name">{{ m.name }}</div>
           <div class="when">{{ m.when }}</div>
         </div>
-      </div>
-
+      </div>-->
       <div class="walk">
         <div class="left">
           <div class="eyebrow">
@@ -322,8 +325,6 @@
     </div>
   </div>
 </section>
-
-
 
 <!-- 04 · Spec Sheet -->
 <section class="spec" id="spec">
@@ -420,7 +421,7 @@
   </div>
 </section>
 
-<!-- THE AMENITIES · 室內公設 章節式敘事 (Springs-inspired) -->
+<!-- THE AMENITIES · 室內公設 章節式敘事 (Springs-inspired) 
 <section class="amenities-section" id="amenities">
   <header class="am-head">
     <div class="eyebrow">
@@ -475,8 +476,9 @@
     </button>
   </footer>
 </section>
+-->
 
-<!-- THE EQUIPMENT · 住戶精品設備 -->
+<!-- THE EQUIPMENT · 住戶精品設備 
 <section class="equipment-section" id="equipment">
   <header class="eq-head">
     <div class="eyebrow">
@@ -536,6 +538,7 @@
     </button>
   </footer>
 </section>
+-->
 
 <!-- SPRINGS BAYS · sticky-stacking 半屏雙欄敘事 -->
 <section class="springs-bays" id="springs-bays">
@@ -570,7 +573,7 @@
   </article>
 </section>
 
-<!-- 05 · The Circle -->
+<!-- 05 · The Circle 
 <section class="frame circle" id="circle">
   <div class="inner">
     <div class="col-narrow">
@@ -632,7 +635,7 @@
       </div>
     </div>
   </div>
-</section>
+</section>-->
 
 <!-- 06 · The Design -->
 <section class="frame design" id="design">
@@ -665,26 +668,33 @@
       <div class="arc-essay">
         <div class="left">
           <div class="eyebrow">
-            <span class="num">06 / A</span><span>THE ARC · 圓弧語言</span>
+            <span class="num">06 / A</span><span>THE CLUBHOUSE · 獨棟會館</span>
           </div>
           <div style="height: 1.5rem"></div>
           <h3 class="pull-zh">
-            在直線構成的<br />水湳天際線裡，<br />之序的圓弧<br />悄悄出現。
+            獨棟公設，<br />讓你的家，<br />只是你的家。
           </h3>
         </div>
         <div class="right">
           <p class="body zh">
-            那個靈感，來自一艘<span style="color: var(--accent)">泊岸的船</span
+            靈感來自一艘<span style="color: var(--accent)">泊岸的船</span
             >—— 流線沒有銳角，回家不需要稜角。
           </p>
           <p class="body zh">
-            光線進來的方式不一樣。<br />
-            你住進來，自然就會知道。
+            一條動線屬於生活，一條動線屬於招待<br />
+            ——細節，請於現場親見。
           </p>
-          <div class="echo">圓弧曲線，是對這塊地段最誠實的回應。</div>
+          <!---
+          <div class="echo">圓弧曲線，是對這塊地段最誠實的回應。</div> -->
+          <div style="margin-top: 5rem; display: flex; justify-content: flex-end">
+        <button class="tl" (click)="scrollToId('contact')">
+          預約入內 · 從建材看到公設
+        </button>
+      </div>
         </div>
       </div>
 
+      <!--
       <div class="design-credits">
         <div class="dc-row">
           <div class="dc-role">建築設計 · ARCHITECT</div>
@@ -699,26 +709,17 @@
 
       <div class="clubhouse-anchor">
         <div class="eyebrow">
-          <span class="num">06 / B</span><span>THE CLUBHOUSE · 獨棟會館</span>
+          <span class="num">06 / B</span><span></span>
         </div>
-        <h3 class="pull-zh xl" style="margin-top: 2rem; max-width: 20ch">
-          獨棟公設，<br />是讓你的家，<br /><span style="color: var(--accent)"
-            >只是你的家。</span
-          >
-        </h3>
         <p
           class="body zh lg"
           style="margin-top: 2rem; max-width: 40ch; color: var(--fg-2)"
         >
-          一條動線屬於生活，一條動線屬於招待——細節，請於現場親見。
+          
         </p>
       </div>
-
-      <div style="margin-top: 5rem; display: flex; justify-content: flex-end">
-        <button class="tl" (click)="scrollToId('contact')">
-          預約入內 · 從建材看到公設
-        </button>
-      </div>
+-->
+      
     </div>
   </div>
 </section>
