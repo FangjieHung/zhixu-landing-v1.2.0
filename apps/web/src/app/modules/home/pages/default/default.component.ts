@@ -498,8 +498,22 @@ export class DefaultComponent extends BBDBaseComponent implements AfterViewInit,
         },
       });
 
-      // Refresh after fonts/layout settle
-      setTimeout(() => ScrollTrigger.refresh(), 250);
+      // ── Refresh after fonts/layout settle ──
+      // 兩個關鍵動作：
+      // 1. 等 layout 設完（fonts/images），再做一次 layout-aware refresh
+      // 2. **逐個 instance 呼叫 .refresh()**：GSAP static refresh() 有個 bug，
+      //    對於 cross-component pin（如 child component 的 ScrollTrigger 在 parent
+      //    建立 pin-spacer 前先 init），static refresh 不會重新偵測 spacer
+      //    影響後續 trigger 的位置。必須逐個 instance refresh 才會修正 start/end。
+      //    （location-map 的 lm-stage pin 起始位置就因此偏早 1260px = district
+      //    pin-spacer 高度）
+      const refreshAll = () => {
+        ScrollTrigger.getAll().forEach((t) => t.refresh());
+      };
+      // 第一輪：等 fonts/img 載完
+      setTimeout(refreshAll, 300);
+      // 第二輪：保險，等 hero 圖片 decode 完
+      setTimeout(refreshAll, 1000);
     }, root);
   }
 

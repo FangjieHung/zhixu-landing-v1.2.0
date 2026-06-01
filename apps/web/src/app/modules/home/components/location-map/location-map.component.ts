@@ -404,9 +404,6 @@ export class LocationMapComponent
           invalidateOnRefresh: true,
         },
       });
-      // DEBUG: expose for browser inspection
-      (window as unknown as { __lmST?: unknown }).__lmST = tl.scrollTrigger;
-      (window as unknown as { __lmSection?: unknown }).__lmSection = section;
 
       // ── Phase 1（0 ~ 0.59）─────────────────────────────────────
       tl.to(svg, { scale: ZOOM_PHASE1_END, duration: 0.59 }, 0);
