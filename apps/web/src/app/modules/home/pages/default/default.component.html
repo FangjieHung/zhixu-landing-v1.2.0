@@ -12,7 +12,7 @@
       <a
         *ngIf="!isMobileView() || !mobileHidden(item.id)"
         (click)="scrollToId(item.id)"
-        [style.color]="active === item.id ? 'var(--accent)' : null"
+        [class.nav-focused]="active === item.id"
         >{{ navLabel(item) }}</a
       >
     </ng-container>
@@ -43,10 +43,7 @@
         航向中央公園，<br />
         泊岸理想生活。
       </h1>
-
-      <button class="btn-stroked" (click)="scrollToId('contact')">
-        預約鑒賞
-      </button>
+      <button (click)="scrollToId('contact')" class="primary">預約鑒賞 · BOOK A VIEWING</button>
     </div>
 
     <div class="hero-foot">
@@ -120,7 +117,7 @@
 </section>
 
 <!-- The Location · scroll-driven map -->
-<app-location-map></app-location-map>
+<app-location-map id="location-map"></app-location-map>
 
 <!-- Section 1 ·  — left-large / right-small (3 videos) -->
 <section class="frame design" id="design">
@@ -433,7 +430,7 @@
   <!--
   <div class="footnote foot">
     坪數採建坪計算 · 售價恕不在網頁揭露 · 完整型錄請於預約時索取
-  </div>-->
+  </div>
 
   <div style="margin-top: 4rem; display: flex; justify-content: flex-end">
     <button
@@ -444,6 +441,7 @@
       索取電子型錄
     </button>
   </div>
+  -->
 </section>
 
 <!-- Contact -->
@@ -544,7 +542,7 @@
       </div>
       <a href="https://maps.app.goo.gl/rEoJMzbfVJVQYr7A9" class="ph linen map" target="_blank" rel="noopener noreferrer">
         <img class="ph-img" [src]="img.map" alt="接待中心位置圖" />
-        <div class="caption-fade">敦化路二段 · 經貿路<span class="caption-disclaimer">情境示意僅供參考</span></div>
+        <div class="caption-fade">敦化路二段 · 經貿路</div>
       </a>
     </div>
   </div>
