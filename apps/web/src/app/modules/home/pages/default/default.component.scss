@@ -135,12 +135,14 @@ ul {
     max-height var(--dur-slow) var(--ease-editorial);
   max-height: none;
   &.shown {
-    @apply py-0;
-    background: rgba(26, 26, 24, 0.55);
+    @apply bg-gradient-to-b from-black/30 to-black/10 py-0 border-b-0;
     backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    border-bottom-color: rgba(240, 235, 224, 0.12);
+    -webkit-backdrop-filter: blur(1rem) saturate(140%);
     max-height: 4rem;
+  }
+
+  .nav-focused {
+    @apply underline;
   }
 
   .mark {
@@ -186,9 +188,9 @@ ul {
       text-decoration: none;
       cursor: pointer;
       transition: color var(--dur-base) var(--ease-editorial);
-      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
       &:hover {
-        color: var(--accent);
+        color: var(--color-text-on-dark);
       }
     }
   }
@@ -218,7 +220,10 @@ ul {
   .topbar {
     padding: 14px 20px;
     nav.ghost {
-      display: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
     }
   }
 }
@@ -317,14 +322,12 @@ section.frame {
 /* Frame bridges — section 頂部 16vh 漸層銜接上一節色調 */
 /* design 接在 lm-stage (#212a36 深藍) 之後 → 米色 design 頂部 fade from 深藍 */
 section.frame.design {
-  
   background-size: 100% 16vh;
   background-repeat: no-repeat;
   background-position: top;
 }
 /* whynow 接在 springs-bays (var(--bg-2) 深咖) 之後 → 米色 whynow 頂部 fade from 深咖 */
 section.frame#whynow {
-  
   background-size: 100% 16vh;
   background-repeat: no-repeat;
   background-position: top;
@@ -368,7 +371,7 @@ section.frame#whynow {
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: 0.01em;
-  
+
   font-size: clamp(2rem, 4.2vw, 3.4rem);
   margin: 0;
 }
@@ -799,7 +802,7 @@ p.body {
 .trust {
   background-color: var(--bg-2);
   /* trust 接在 design (米色) 之後 → 深咖 trust 頂部 fade from 米色 */
-  
+
   background-size: 100% 16vh;
   background-repeat: no-repeat;
   background-position: top;
@@ -1447,7 +1450,7 @@ p.body {
 /* Spec */
 .spec {
   background-color: var(--bg-2);
-  
+
   background-size: 100% 16vh;
   background-repeat: no-repeat;
   background-position: top;
