@@ -42,13 +42,7 @@ export class DefaultComponent
   readonly assetBase = 'assets/image';
   readonly img = {
     hero: `${this.assetBase}/photo/hero-bg.webp`,
-    work1: `${this.assetBase}/refers/外觀/102.jpg`,
-    work2: `${this.assetBase}/refers/外觀/104.jpg`,
-    work3: `${this.assetBase}/refers/外觀/105.jpg`,
-    circle: `${this.assetBase}/refers/公設-內部/164.jpg`,
-    tower: `${this.assetBase}/refers/外觀/108.jpg`,
     map: `${this.assetBase}/map/contact-map.webp`,
-    craftHero: `${this.assetBase}/refers/外觀/158.jpg`,
   };
 
   /**
@@ -67,7 +61,7 @@ export class DefaultComponent
       id: 'bay-sanctuary',
       title: 'Sanctuary',
       tag: 'A DAILY RETURN TO SELF',
-      src: `${this.assetBase}/rephoto衛浴/toto-main.jpg`,
+      src: `${this.assetBase}/photo/toto-main.jpg`,
       lede: '以 TOTO 全系列精工衛浴，重新定義沐浴的儀式感。智能馬桶、豪華浴缸、四合一暖風機，每一件配備皆源自對生活品質的嚴謹堅持——洗浴不再只是日常清潔，而是每日可以期待的私人療癒時光。',
       stats: [
         'TOTO 全自動智能馬桶 · 一體成型免縫設計',
@@ -289,7 +283,10 @@ export class DefaultComponent
           // 初始態：圖片偏移到邊緣之外，標題透明，veil 透明
           const offsets: Record<string, { x: number; y: number }> = {
             'di-img--tl': { x: -120, y: -60 },
+            'di-img--tc': { x: 0, y: -90 },
             'di-img--tr': { x: 120, y: -80 },
+            'di-img--ml': { x: -90, y: 0 },
+            'di-img--mr': { x: 90, y: 0 },
             'di-img--bl': { x: -100, y: 80 },
             'di-img--br': { x: 100, y: 60 },
           };

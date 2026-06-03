@@ -41,13 +41,13 @@ export class SEOServ {
       { property: 'og:title', content: this.appEnv.siteName },
       { property: 'og:url', content: this.appEnv.siteServer },
       { property: 'og:image', content: `${this.appEnv.siteServer}/assets/image/og/chuhung-og.png` },
-      { property: 'og:description', content: '傳承職人手藝的老菜脯滴雞精、陶甕窖藏熬製。' },
+      { property: 'og:description', content: '當投資客在算投報率，真正的贏家在挑生活率。富華創新「之序」坐落水湳重劃區核心，純自住質地，精選高樓層大 4 房，為您與家人實現一次到位的傳家格局。' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: this.appEnv.siteName },
-      { name: 'twitter:description', content: '傳承職人手藝的老菜脯滴雞精、陶甕窖藏熬製。' },
+      { name: 'twitter:description', content: '當投資客在算投報率，真正的贏家在挑生活率。富華創新「之序」坐落水湳重劃區核心，純自住質地，精選高樓層大 4 房，為您與家人實現一次到位的傳家格局。' },
       { name: 'twitter:image', content: `${this.appEnv.siteServer}/assets/image/og/chuhung-og.png` },
       { name: 'keywords', content: '之序｜水湳 · 綠海星嶼' },
-      { name: 'description', content: '傳承職人手藝的老菜脯滴雞精、陶甕窖藏熬製。' }
+      { name: 'description', content: '當投資客在算投報率，真正的贏家在挑生活率。富華創新「之序」坐落水湳重劃區核心，純自住質地，精選高樓層大 4 房，為您與家人實現一次到位的傳家格局。' }
     ]);
     this.setCanonical(this.appEnv.siteServer);
   }
@@ -56,7 +56,7 @@ export class SEOServ {
     title = this.appEnv.siteName,
     url = this.appEnv.siteServer,
     image = `${this.appEnv.siteServer}/assets/image/og/chuhung-og.png`,
-    description = '傳承職人手藝的老菜脯滴雞精、陶甕窖藏熬製。'
+    description = '當投資客在算投報率，真正的贏家在挑生活率。富華創新「之序」坐落水湳重劃區核心，純自住質地，精選高樓層大 4 房，為您與家人實現一次到位的傳家格局。'
   ) {
     this.metaTitle = title;
     this.upsertMeta({ property: 'og:type' }, { property: 'og:type', content: 'website' });

@@ -658,6 +658,30 @@ p.body {
     right: 4%;
   }
 
+  // 上中 · 橫版 (409) — 頂部居中略偏左
+  .di-img--tc {
+    width: clamp(160px, 18vw, 260px);
+    aspect-ratio: 16 / 9;
+    top: 0;
+    left: calc(50% - 9vw);
+  }
+
+  // 中左 · 直版 (428) — 左邊緣居中
+  .di-img--ml {
+    width: clamp(90px, 10vw, 150px);
+    aspect-ratio: 3 / 4;
+    top: 30%;
+    left: 0;
+  }
+
+  // 中右 · 橫版 (479) — 右邊緣居中偏下
+  .di-img--mr {
+    width: clamp(90px, 10vw, 150px);
+    aspect-ratio: 4 / 3;
+    bottom: 22%;
+    right: 0;
+  }
+
   /* ── 文字主體：寬佔 2/3 畫面 ── */
   .di-headline {
     position: relative;
@@ -683,7 +707,7 @@ p.body {
     @apply font-serif;
     font-size: clamp(1.8rem, 3.6vw, 3.4rem);
     line-height: 1.65;
-    color: var(--color-text-on-light);
+    color: var(--color-accent-warm);
     font-weight: 400;
     letter-spacing: 0.02em;
   }
@@ -752,6 +776,12 @@ p.body {
       aspect-ratio: 1 / 1;
       bottom: 8%;
       right: 4%;
+    }
+
+    .di-img--tc,
+    .di-img--ml,
+    .di-img--mr {
+      display: none;
     }
 
     .di-headline {
