@@ -123,10 +123,12 @@ export class DefaultComponent
   ];
 
   readonly navItems: Array<{ id: string; label: string }> = [
+    { id: 'district-intro', label: '水湳特區' },
     { id: 'trust', label: '甲級精工' },
-    { id: 'whynow', label: '水湳願景' },
     { id: 'spec', label: '精工格局' },
+    { id: 'springs-bays', label: '生活樣貌' },
     { id: 'design', label: '大師巨作' },
+    { id: 'contact', label: '預約鑒賞' },
   ];
 
   readonly walks: Walk[] = [
