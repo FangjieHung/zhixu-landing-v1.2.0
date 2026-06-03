@@ -146,11 +146,11 @@ ul {
   }
 
   .mark {
-    @apply flex flex-col items-start gap-2 w-fit;
+    @apply flex items-end gap-2 w-fit;
     transform-origin: left center;
     transition: transform var(--dur-slow) var(--ease-editorial);
     img {
-      @apply invert brightness-0 w-20;
+      @apply invert brightness-0 w-16 md:w-20 mr-1;
     }
     .en {
       @apply text-xs tracking-widest text-white italic font-serif leading-normal;
@@ -420,7 +420,7 @@ p.body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: right;
     z-index: 0;
   }
 
