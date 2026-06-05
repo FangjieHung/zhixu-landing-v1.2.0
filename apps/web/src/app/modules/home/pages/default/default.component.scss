@@ -82,31 +82,25 @@ ul {
   object-position: center;
   display: block;
 }
+
 .ph img.ph-img.tinted {
   filter: brightness(0.85);
 }
+
 .caption-fade {
+  @apply text-white text-lg absolute left-0 bottom-0 px-3.5 py-3;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.7);
   position: absolute;
-  left: 14px;
-  bottom: 12px;
   pointer-events: none;
   z-index: 2;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 
   .caption-disclaimer {
-    display: block;
-    font-size: 0.625rem;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    text-transform: none;
-    opacity: 0.6;
-    margin-top: 3px;
+    @apply text-base block font-bold opacity-60;
   }
 }
 
@@ -284,19 +278,20 @@ ul {
 
 /* Section frame */
 section.frame {
-  padding: 8rem 3rem;
+  @apply p-6 2xl:p-12;
   position: relative;
   background-color: var(--bg-1);
   .inner {
-    display: grid;
+    @apply md:grid gap-8 items-start;
     grid-template-columns: var(--col-narrow) var(--col-wide);
-    gap: 2rem;
-    align-items: start;
   }
   .col-narrow {
     position: sticky;
     top: 110px;
     align-self: start;
+    .eyebrow {
+      margin-bottom: 4rem;
+    }
   }
   .col-wide {
     min-width: 0;
@@ -311,6 +306,7 @@ section.frame.design {
   background-position: top;
 }
 
+/*
 section.frame {
   padding: 4rem 1.25rem;
   .inner {
@@ -321,6 +317,7 @@ section.frame {
     position: static;
   }
 }
+  */
 
 .eyebrow {
   display: flex;
@@ -353,13 +350,10 @@ section.frame {
   margin: 0;
 }
 .pull-zh {
-  @apply font-serif font-bold;
+  @apply font-serif font-bold text-2xl 2xl:text-4xl;
   font-family: "Noto Serif TC", serif;
-  font-weight: 500;
-  line-height: 1.25;
   letter-spacing: 0.04em;
   color: var(--color-accent-warm);
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
   margin: 0;
 }
 p.body {
@@ -461,10 +455,7 @@ p.body {
   }
 
   .hero-foot {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 2rem;
+    @apply grid md:grid-cols-3 gap-8 items-end;
   }
 
   .hero-lede {
@@ -472,19 +463,17 @@ p.body {
     flex-direction: column;
     gap: 0.5rem;
     .hero-sub {
-      margin: 0;
+      @apply text-xl lg:text-2xl xl:text-3xl mb-2 justify-center flex flex-wrap items-center lg:justify-start;
       font-family: "Noto Serif TC", serif;
-      font-size: clamp(1rem, 1.6vw, 1.3rem);
       letter-spacing: 0.12em;
       color: var(--color-text-on-dark);
       text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
     }
     .hero-yearmark {
-      margin: 0;
+      @apply text-base leading-normal justify-center flex flex-wrap items-center lg:justify-start;
       font-family: var(--font-display);
-      font-size: 0.75rem;
       font-weight: 500;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: rgba(240, 235, 224, 0.78);
       text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
@@ -492,62 +481,258 @@ p.body {
   }
 
   .scroll-cue {
-    position: relative;
-    text-align: right;
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(240, 235, 224, 0.78);
-    padding-bottom: 50px;
-    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
-    &::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      display: block;
-      width: 1px;
-      height: 38px;
-      background: currentColor;
-      opacity: 0.4;
+    @apply relative -bottom-5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      margin-top: 12px;
+      margin-bottom: 0;
+      font-family: var(--font-sans);
+      font-size: 0.5625rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-indent: 0.28em;
+      text-transform: uppercase;
+      color: #f0ebe0;
+      animation:
+        scrollCueColorText 5s ease-out infinite,
+        scrollCueNudgeText 5s ease-out infinite;
     }
-    &::before {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 38px;
-      width: 1px;
-      height: 10px;
-      background: var(--accent);
-      animation: scroll-cue-travel 1.8s cubic-bezier(0.55, 0.1, 0.25, 1) infinite;
-      pointer-events: none;
+
+    .mouse {
+      background-color: #b8ad9e;
+      background-image: linear-gradient(transparent 0%, transparent 50%, #f0ebe0 50%, #f0ebe0 100%);
+      position: relative;
+      width: 31px;
+      height: 53px;
+      border-radius: 100px;
+      background-size: 100% 200%;
+      animation:
+        scrollCueColorSlide 5s linear infinite,
+        scrollCueNudgeMouse 5s ease-out infinite;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+      }
+
+      &::before {
+        width: 29px;
+        height: 51px;
+        background-color: #1a1a18;
+        border-radius: 100px;
+      }
+
+      &::after {
+        background-color: #f0ebe0;
+        width: 6px;
+        height: 6px;
+        border-radius: 100%;
+        animation: scrollCueTrackBallSlide 5s linear infinite;
+      }
     }
   }
 }
 
-@keyframes scroll-cue-travel {
+@keyframes scrollCueColorSlide {
   0% {
-    transform: translateY(-8px);
-    opacity: 0;
+    background-position: 0% 100%;
   }
   20% {
-    opacity: 1;
+    background-position: 0% 0%;
+  }
+  21% {
+    background-color: #b8ad9e;
+  }
+  29.99% {
+    background-color: #f0ebe0;
+    background-position: 0% 0%;
+  }
+  30% {
+    background-color: #b8ad9e;
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 0% 0%;
+  }
+  51% {
+    background-color: #b8ad9e;
+  }
+  59% {
+    background-color: #f0ebe0;
+    background-position: 0% 0%;
+  }
+  60% {
+    background-color: #b8ad9e;
+    background-position: 0% 100%;
   }
   80% {
-    opacity: 1;
+    background-position: 0% 0%;
   }
+  81% {
+    background-color: #b8ad9e;
+  }
+  90%,
   100% {
-    transform: translateY(30px);
+    background-color: #f0ebe0;
+  }
+}
+
+@keyframes scrollCueTrackBallSlide {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(-12px);
+  }
+  6% {
+    opacity: 1;
+    transform: scale(0.9) translateY(3px);
+  }
+  14% {
     opacity: 0;
+    transform: scale(0.4) translateY(24px);
+  }
+  15%,
+  19% {
+    opacity: 0;
+    transform: scale(0.4) translateY(-12px);
+  }
+  28%,
+  29.99% {
+    opacity: 1;
+    transform: scale(1) translateY(-12px);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) translateY(-12px);
+  }
+  36% {
+    opacity: 1;
+    transform: scale(0.9) translateY(3px);
+  }
+  44% {
+    opacity: 0;
+    transform: scale(0.4) translateY(24px);
+  }
+  45%,
+  49% {
+    opacity: 0;
+    transform: scale(0.4) translateY(-12px);
+  }
+  58%,
+  59.99% {
+    opacity: 1;
+    transform: scale(1) translateY(-12px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1) translateY(-12px);
+  }
+  66% {
+    opacity: 1;
+    transform: scale(0.9) translateY(3px);
+  }
+  74% {
+    opacity: 0;
+    transform: scale(0.4) translateY(24px);
+  }
+  75%,
+  79% {
+    opacity: 0;
+    transform: scale(0.4) translateY(-12px);
+  }
+  88%,
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(-12px);
+  }
+}
+
+@keyframes scrollCueNudgeMouse {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(5px);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(5px);
+  }
+  90% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollCueNudgeText {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(2px);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(2px);
+  }
+  90% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollCueColorText {
+  21% {
+    color: #b8ad9e;
+  }
+  30% {
+    color: #f0ebe0;
+  }
+  51% {
+    color: #b8ad9e;
+  }
+  60% {
+    color: #f0ebe0;
+  }
+  81% {
+    color: #b8ad9e;
+  }
+  90% {
+    color: #f0ebe0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero .scroll-cue::before {
-    animation: none;
-    opacity: 0;
+  .hero .scroll-cue {
+    .mouse,
+    p {
+      animation: none;
+    }
+    .mouse::after {
+      animation: none;
+    }
   }
 }
 
@@ -572,11 +757,17 @@ p.body {
       gap: 1.5rem;
     }
     .scroll-cue {
-      text-align: left;
-      padding-bottom: 0;
-      &::after,
-      &::before {
-        display: none;
+      .mouse {
+        width: 22px;
+        height: 38px;
+        &::before {
+          width: 20px;
+          height: 34px;
+        }
+        &::after {
+          width: 4px;
+          height: 4px;
+        }
       }
     }
   }
@@ -929,7 +1120,7 @@ p.body {
   }
 
   .anchor-q {
-    @apply text-2xl lg:text-3xl xl:text-5xl font-serif;
+    @apply text-center text-3xl xl:text-5xl font-serif md:text-left;
     line-height: 1.35;
     letter-spacing: 0.06em;
     color: var(--color-text-on-dark);
@@ -942,27 +1133,22 @@ p.body {
   }
 
   .bd-grid {
-    display: grid;
-    grid-template-columns: 5fr 6fr;
-    gap: 4rem;
-    align-items: start;
+    @apply w-full xl:w-2/3 ml-auto; 
   }
 
   /* 左欄文字：sticky 釘在左下，捲過右側卡片時持續停留 */
-  .bd-left {
-    position: sticky;
-    bottom: 3rem;
-    align-self: end;
-    z-index: 1;
+  .bd-essay-wrap {
+    @apply col-span-full;
   }
+
   .bd-essay {
-    @apply text-lg;
+    @apply text-lg max-w-lg;
     font-family: "Noto Sans TC", var(--font-sans);
     line-height: 2.1;
     letter-spacing: 0.06em;
     color: #e2d8c8;
     margin: 0 0 1.4rem;
-    max-width: 40ch;
+
     .strong {
       color: var(--accent);
       font-weight: 500;
@@ -971,10 +1157,9 @@ p.body {
 
   /* 右欄：垂直堆疊的毛玻璃卡片 */
   .bd-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
+    @apply grid md:grid-cols-2 gap-8 lg:w-2/3 ml-auto;
   }
+
   .bd-stat {
     position: relative;
     min-height: clamp(360px, 52vh, 560px);
@@ -988,36 +1173,24 @@ p.body {
     -webkit-backdrop-filter: blur(14px) saturate(120%);
     overflow: hidden;
 
-    .bd-stat-k {
+    .bd-title,
+    .bd-describe {
+      @apply flex items-start flex-col flex-wrap;
+    }
+
+    .bd-title {
+      @apply mb-auto text-5xl;
+      font-family: var(--font-display);
+      color: var(--color-text-on-dark);
+    }
+
+    .bd-describe {
+      @apply text-lg font-bold tracking-wide;
       font-family: var(--font-sans);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
       color: #c4b9a8;
     }
-    .bd-stat-num {
-      font-family: var(--font-display);
-      font-size: clamp(2.6rem, 5vw, 4.5rem);
-      line-height: 1.04;
-      color: var(--color-text-on-dark);
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      text-align: right;
-      margin-top: auto;
-    }
-    .bd-stat-v {
-      font-family: "Noto Sans TC", var(--font-sans);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      letter-spacing: 0.05em;
-      color: #b8ad9e;
-      text-align: right;
-      max-width: 34ch;
-      margin-top: 1rem;
-      margin-left: auto;
-    }
   }
+
   .bd-works {
     margin-top: 4rem;
   }
@@ -1112,7 +1285,7 @@ p.body {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
-  .builder-deep .bd-left {
+  .builder-deep .bd-essay-wrap {
     position: static;
     bottom: auto;
   }
@@ -1190,20 +1363,10 @@ p.body {
       text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
       pointer-events: none;
       .sb-title {
-        font-family: "Playfair Display", "Noto Serif TC", serif;
-        font-size: clamp(4.5rem, 9vw, 8rem);
-        line-height: 0.9;
-        font-weight: 300;
-        letter-spacing: -0.01em;
-        margin: 0 0 1rem;
-        font-style: italic;
+        @apply font-serif text-4xl font-bold tracking-wide mb-3;
       }
       .sb-tag {
-        font-family: var(--font-display);
-        font-size: 0.75rem;
-        letter-spacing: 0.36em;
-        text-transform: uppercase;
-        color: rgba(243, 234, 215, 0.78);
+        @apply font-serif text-xl tracking-wide;
       }
     }
   }
@@ -1333,13 +1496,7 @@ p.body {
     align-items: end;
     .eyebrow {
       color: #b8ad9e;
-    }
-    .lead {
-      font-family: "Noto Serif TC", serif;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.3;
-      letter-spacing: 0.04em;
-      color: var(--color-text-on-dark);
+      margin-bottom: 2rem;
     }
   }
   .grid {
@@ -1524,6 +1681,10 @@ p.body {
     object-fit: cover;
     display: block;
   }
+
+  .caption-fade {
+    @apply bg-gradient-to-t from-black/50 to-black/0 w-full;
+  }
 }
 
 .video-grid {
@@ -1606,9 +1767,6 @@ p.body {
     padding-bottom: 3rem;
     border-bottom: 1px solid #3a3128;
     align-items: end;
-    .eyebrow {
-      color: #b8ad9e;
-    }
     .invite {
       font-family: "Noto Serif TC", serif;
       font-size: clamp(2.25rem, 4vw, 3.6rem);
@@ -1631,41 +1789,80 @@ p.body {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      label {
-        font-family: var(--font-sans);
-        font-size: 1rem;
-        font-weight: 600;
-        letter-spacing: 0.26em;
-        text-transform: uppercase;
-        color: #8e827a;
-      }
-      input,
-      select,
-      textarea {
+    // mat-form-field dark-theme overrides (fill appearance)
+    ::ng-deep mat-form-field {
+      width: 100%;
+      display: block;
+
+      // Fill wrapper: transparent bg, no rounded clip, keep bottom line only.
+      // border-radius:0 + a touch of overflow room prevents the floating label
+      // from being clipped at the top edge.
+      .mat-mdc-text-field-wrapper {
         background: transparent;
-        border: 0;
-        border-bottom: 1px solid #3a3128;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      // Kill the default grey hover/focus overlay that fill draws on top
+      .mat-mdc-form-field-focus-overlay {
+        background: transparent;
+      }
+
+      // Infix: give the floating label enough headroom so it isn't cut off,
+      // and honour the requested min height.
+      .mat-mdc-form-field-infix {
+        min-height: 3.25rem;
+        padding-top: 1.75rem;
+        padding-bottom: 0.5rem;
+      }
+
+      // Floating label
+      .mat-mdc-floating-label,
+      .mdc-floating-label {
+        color: #8e827a;
+        font-family: var(--font-sans);
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      // Input / textarea text + placeholder
+      .mat-mdc-input-element {
         color: var(--color-text-on-dark);
         font-family: "Noto Sans TC", var(--font-sans);
         font-size: 1rem;
         letter-spacing: 0.04em;
-        padding: 10px 0 12px;
-        outline: none;
-        transition: border-color var(--dur-base) var(--ease-editorial);
-        appearance: none;
-        -webkit-appearance: none;
-        border-radius: 0;
-        &:focus {
-          border-bottom-color: var(--accent);
+        caret-color: var(--accent);
+        &::placeholder {
+          color: #6b5e52;
         }
       }
-      select option {
-        background: var(--bg-2);
-        color: var(--color-text-on-dark);
+
+      // Bottom line — idle
+      .mdc-line-ripple::before {
+        border-bottom-color: #3a3128;
+      }
+      // Bottom line — active / focused
+      .mdc-line-ripple::after {
+        border-bottom-color: var(--accent);
+      }
+
+      // Focused state
+      &.mat-focused .mat-mdc-floating-label,
+      &.mat-focused .mdc-floating-label {
+        color: var(--accent);
+      }
+
+      // Error state
+      &.mat-form-field-invalid {
+        .mdc-line-ripple::before {
+          border-bottom-color: #e05a4f;
+        }
+        .mat-mdc-floating-label,
+        .mdc-floating-label {
+          color: #e05a4f;
+        }
       }
     }
     .radios {
@@ -1691,9 +1888,8 @@ p.body {
     }
   }
   .info {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+    @apply flex flex-col gap-9 not-italic;
+
     .blk {
       display: flex;
       flex-direction: column;
@@ -1707,9 +1903,8 @@ p.body {
         color: #8e827a;
       }
       .value {
+        @apply text-lg w-fit space-y-1;
         font-family: "Noto Serif TC", serif;
-        font-size: 1.125rem;
-        line-height: 1.8;
         color: var(--color-text-on-dark);
         letter-spacing: 0.04em;
         .en {

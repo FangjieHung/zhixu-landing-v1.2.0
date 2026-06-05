@@ -468,7 +468,7 @@ export class DefaultComponent
       const bdSection = root.querySelector<HTMLElement>('.builder-deep');
       if (bdSection) {
         const bdBg = bdSection.querySelector<HTMLElement>('.bd-bg');
-        const bdLeft = bdSection.querySelector<HTMLElement>('.bd-left');
+        const bdLeft = bdSection.querySelector<HTMLElement>('.bd-essay-wrap');
         const bdStats = gsap.utils.toArray<HTMLElement>('.builder-deep .bd-stat');
 
         // 背景 parallax：整段捲動期間背景緩慢位移（bg 層較容器高 → 不露邊）

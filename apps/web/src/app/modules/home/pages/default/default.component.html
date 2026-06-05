@@ -1,5 +1,5 @@
 <!-- Sticky topbar -->
-<div class="topbar" [class.shown]="scrolled">
+<header class="topbar" [class.shown]="scrolled">
   <a class="mark" routerLink="/">
     <img src="assets/image/logo/type-main.svg" alt="之序" />
     <div class="en">
@@ -7,430 +7,535 @@
       <p>New Divide</p>
     </div>
   </a>
-  <nav class="ghost">
+  <nav class="ghost" aria-label="主要導覽">
     <ng-container *ngFor="let item of navItems">
       <a
         *ngIf="!isMobileView() || !mobileHidden(item.id)"
-        (click)="scrollToId(item.id)"
+        [href]="'#' + item.id"
+        (click)="$event.preventDefault(); scrollToId(item.id)"
         [class.nav-focused]="active === item.id"
         >{{ navLabel(item) }}</a
       >
     </ng-container>
   </nav>
-</div>
+</header>
 
 <!-- Floating CTA -->
 <div class="cta-dock" [class.shown]="pastHero">
-  <button class="primary" (click)="scrollToId('contact')">
-    預約鑒賞
-  </button>
-  <button
+  <button class="primary" (click)="scrollToId('contact')">預約鑒賞</button>
+  <a
     class="secondary"
+    href="https://line.me/R/ti/p/@zhixu-taichung"
+    target="_blank"
+    rel="noopener noreferrer"
     style="border-left: 2px solid #00b900; padding-left: 12px"
   >
-    LINE 諮詢 · &#64;zhixu-taichung
-  </button>
+    加入 LINE · 專人服務
+  </a>
 </div>
 
-<!-- 01 · Hero -->
-<section class="hero dark" id="hero">
-  <img class="hero-bg" [src]="img.hero" alt="之序 · 建築外觀" />
-  <div class="hero-vignette"></div>
+<main>
+  <!-- 01 · Hero -->
+  <section class="hero dark" id="hero">
+    <img class="hero-bg" [src]="img.hero" alt="之序 · 建築外觀" />
+    <div class="hero-vignette"></div>
 
-  <div class="hero-content">
-    <div class="hero-title">
-      <h1>
-        航向中央公園，<br />
-        泊岸理想生活。
-      </h1>
-      <button (click)="scrollToId('contact')" class="primary">預約鑒賞</button>
-    </div>
-
-    <div class="hero-foot">
-      <div class="hero-lede">
-        <p class="hero-sub">四面臨路 · 國際新奢寓所</p>
-        <p class="hero-yearmark">水湳 · 渲染合成示意圖</p>
+    <div class="hero-content">
+      <div class="hero-title">
+        <h1>
+          航向中央公園，<br />
+          泊岸理想生活。
+        </h1>
+        <button (click)="scrollToId('contact')" class="primary">
+          預約鑒賞
+        </button>
       </div>
 
-      <div class="scroll-cue">向下捲動</div>
+      <div class="hero-foot">
+        <div class="hero-lede">
+          <p class="hero-sub">
+            <span>四面臨路</span><span>&#8739;</span><span>國際新奢寓所</span>
+          </p>
+          <p class="hero-yearmark">
+            <span>國際會展中心</span><span class="px-2">&#183;</span
+            ><span>綠美圖 </span><span>渲染合成示意圖</span>
+          </p>
+        </div>
+
+        <div class="scroll-cue">
+          <div class="mouse"></div>
+          <p>Scroll</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- District Intro · 周邊國際特區 -->
-<section class="district-intro" id="district-intro">
-  <div class="di-canvas">
-    <img
-      class="di-img di-img--01"
-      src="assets/image/infrastructure/387.webp"
-      alt="水湳國際特區 周邊建設"
-      loading="lazy"
-    />
-    <img
-      class="di-img di-img--02"
-      src="assets/image/infrastructure/409.webp"
-      alt="水湳國際特區 周邊建設"
-      loading="lazy"
-    />
-    <img
-      class="di-img di-img--03"
-      src="assets/image/infrastructure/396.webp"
-      alt="水湳國際特區 周邊建設"
-      loading="lazy"
-    />
-    <img
-      class="di-img di-img--04"
-      src="assets/image/infrastructure/428.webp"
-      alt="水湳國際特區 周邊建設"
-      loading="lazy"
-    />
-    <img
-      class="di-img di-img--05"
-      src="assets/image/infrastructure/479.webp"
-      alt="水湳國際特區 周邊建設"
-      loading="lazy"
-    />
+  <!-- District Intro · 周邊國際特區 -->
+  <section class="district-intro" id="district-intro">
+    <div class="di-canvas">
+      <img
+        class="di-img di-img--01"
+        src="assets/image/infrastructure/387.webp"
+        alt="水湳中央公園空拍全景"
+        loading="lazy"
+      />
+      <img
+        class="di-img di-img--02"
+        src="assets/image/infrastructure/409.webp"
+        alt="水湳生醫園區開發現場"
+        loading="lazy"
+      />
+      <img
+        class="di-img di-img--03"
+        src="assets/image/infrastructure/396.webp"
+        alt="水湳國際會展中心周邊"
+        loading="lazy"
+      />
+      <img
+        class="di-img di-img--04"
+        src="assets/image/infrastructure/428.webp"
+        alt="水湳輕軌站點建設進度"
+        loading="lazy"
+      />
+      <img
+        class="di-img di-img--05"
+        src="assets/image/infrastructure/479.webp"
+        alt="水湳智慧城市基礎建設"
+        loading="lazy"
+      />
 
-    <div class="di-headline">
-      <p class="di-title">
-        水湳，<br />
-        在你的步行距離裡成形。
-      </p>
+      <div class="di-headline">
+        <h2 class="di-title">
+          水湳，<br />
+          在你的步行距離裡成形。
+        </h2>
+      </div>
     </div>
-  </div>
 
-  <!-- exit veil：pin 末段淡入，銜接下一節深色 location-map
+    <!-- exit veil：pin 末段淡入，銜接下一節深色 location-map
        注意必須在 .di-canvas 外，否則會跟 canvas 一起上推、暴露 section 米色底 -->
-  <div class="di-exit-veil" aria-hidden="true"></div>
-</section>
+    <div class="di-exit-veil" aria-hidden="true"></div>
+  </section>
 
-<!-- The Location · scroll-driven map -->
-<app-location-map id="location-map"></app-location-map>
+  <!-- The Location · scroll-driven map -->
+  <app-location-map id="location-map"></app-location-map>
 
-<!-- Section 1 ·  — left-large / right-small (3 videos) -->
-<section class="frame design" id="design">
-  <div class="inner">
-    <div class="col-narrow">
-      <div class="eyebrow">
-        <span class="num">綠意漫步中庭・舒心戶外休憩區</span>
-      </div>
-      <div style="height: 4rem"></div>
-      <h3 class="pull-zh">在中央公園的微風裡，泊岸一幅無邊際的風景。</h3>
-    </div>
-
-    <div class="col-wide">
-      <div class="video-grid vg-left-wide">
-        <div class="vg-card vg-card--main">
-          <video muted playsinline preload="none" src="assets/video/garden-01.webm" poster="assets/video/garden-01.webp"></video>
-          <div class="caption-fade">戶外林蔭<span class="caption-disclaimer">情境示意僅供參考</span></div>
-        </div>
-        <div class="vg-card vg-card--side">
-          <video muted playsinline preload="none" src="assets/video/garden-02.webm" poster="assets/video/garden-02.webp"></video>
-          <div class="caption-fade">花園弧形步道<span class="caption-disclaimer">情境示意僅供參考</span></div>
-        </div>
-        <div class="vg-card vg-card--side">
-          <video muted playsinline preload="none" src="assets/video/pool.webm" poster="assets/video/pool.webp"></video>
-          <div class="caption-fade">游泳池<span class="caption-disclaimer">情境示意僅供參考</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Section 2 · — full-width header + 2×2 grid (5 videos) -->
-<section class="frame design" id="design-b">
-  <div class="inner">
-    <div class="col-narrow">
-      <div class="eyebrow">
-        <span class="num">奢華迎賓大廳・多功能交誼美學</span>
-      </div>
-      <div style="height: 4rem"></div>
-      <h3 class="pull-zh">在洗鍊的奢華秩序裡，款待生活與最愛的人。</h3>
-    </div>
-
-    <div class="col-wide">
-      <div class="video-grid vg-top-wide">
-        <div class="vg-card vg-card--top">
-          <video muted playsinline preload="none" src="assets/video/main-gate.webm" poster="assets/video/main-gate.webp"></video>
-          <div class="caption-fade">門廳<span class="caption-disclaimer">情境示意僅供參考</span></div>
-        </div>
-        <div class="vg-card vg-card--bot">
-          <video muted playsinline preload="none" src="assets/video/restaurant.webm" poster="assets/video/restaurant.webp"></video>
-          <div class="caption-fade">食憩<span class="caption-disclaimer">情境示意僅供參考</span></div>
-        </div>
-        <div class="vg-card vg-card--bot">
-          <video muted playsinline preload="none" src="assets/video/theater.webm" poster="assets/video/theater.webp"></video>
-          <div class="caption-fade">多功能視聽室<span class="caption-disclaimer">情境示意僅供參考</span></div>
-        </div>
-        <div class="vg-card vg-card--bot">
-          <video muted playsinline preload="none" src="assets/video/elevator.webm" poster="assets/video/elevator.webp"></video>
-          <div class="caption-fade">電梯廳<span class="caption-disclaimer">情境示意僅供參考</span></div>
-        </div>
-        <div class="vg-card vg-card--bot">
-          <video muted playsinline preload="none" src="assets/video/bar.webm" poster="assets/video/bar.webp"></video>
-          <div class="caption-fade">星空酒吧<span class="caption-disclaimer">情境示意僅供參考</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Trust -->
-<section class="trust" id="trust">
-  <div class="builder-deep" id="builder-deep">
-    <!-- 背景圖：完成後把 background-image 補在 .bd-bg（見 scss 註解）-->
-    <div class="bd-bg" aria-hidden="true"></div>
-    <div class="bd-overlay" aria-hidden="true"></div>
-
-    <div class="anchor-q">
-      用三十年耕耘坐同一件事<br />
-      <span class="lighter">蓋一棟值得等待的房子。</span>
-    </div>
-
-    <div class="bd-grid">
-      <div class="bd-left">
-        <p class="bd-essay">
-          富華創新承襲總太三十年耕耘，我們不只蓋一座房子，更是以每一個住進的家庭思考、及嚴苛標準的工程標準，用心蓋出一座足以傳承世代傳家行館。
-        </p>
-        <p class="bd-essay">
-          外在，是震撼城市的永恆立面；<br />
-          內在，是安放您與家人、財富最優雅的避風港。
-        </p>
-        <p class="bd-essay">
-          <span class="strong">頂級的奢飲，從不需喧嘩。</span>
-        </p>
-      </div>
-
-      <div class="bd-right">
-        <div class="bd-stat">
-          <div class="bd-stat-k">營造商</div>
-          <div class="bd-stat-num">甲級</div>
-          <div class="bd-stat-v">國家最高殿堂認證，承載建築的凌空雄心</div>
-        </div>
-        <div class="bd-stat">
-          <div class="bd-stat-k">創立</div>
-          <div class="bd-stat-num">1976</div>
-          <div class="bd-stat-v">前身高章營造 · 半世紀工地紀律</div>
-        </div>
-        <div class="bd-stat">
-          <div class="bd-stat-k">無酒精工地</div>
-          <div class="bd-stat-num">2009</div>
-          <div class="bd-stat-v">業界首家推行 · 並導入 24h 火警監控</div>
-        </div>
-        <div class="bd-stat">
-          <div class="bd-stat-k">1:1 電腦模擬零誤差</div>
-          <div class="bd-stat-num">3D 虛擬蓋房</div>
-          <div class="bd-stat-v">嚴格工程標準書 ・ 建材進場全面抽驗</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SPRINGS BAYS · sticky-stacking 半屏雙欄敘事 -->
-<section class="springs-bays" id="springs-bays">
-  <article
-    *ngFor="let bay of springsBays; let i = index; trackBy: trackByIndex"
-    class="sb-bay"
-    [attr.id]="bay.id"
-    [attr.data-theme]="bay.theme"
-    [style.z-index]="i + 1"
-  >
-    <div class="sb-frame">
-      <div class="sb-image">
-        <img [src]="bay.src" [alt]="bay.title" />
-        <div class="sb-headline">
-          <h2 class="sb-title">{{ bay.title }}</h2>
-          <div class="sb-tag">{{ bay.tag }}</div>
+  <!-- Section 1 ·  — left-large / right-small (3 videos) -->
+  <section class="frame design" id="design">
+    <div class="inner">
+      <div class="col-narrow">
+        <div class="eyebrow">
+          <span class="num">綠意漫步中庭・戶外休憩區</span>
+          <h2 class="pull-zh">在中央公園的微風裡，泊岸一幅無邊際的風景。</h2>
         </div>
       </div>
 
-      <aside class="sb-panel">
-        <div class="sb-panel-inner">
-          <p class="sb-lede">{{ bay.lede }}</p>
-
-          <ul class="sb-stats">
-            <li *ngFor="let s of bay.stats; trackBy: trackByIndex">
-              <span class="sb-stat">{{ s }}</span>
-            </li>
-          </ul>
-        </div>
-      </aside>
-    </div>
-  </article>
-</section>
-
-<!-- Spec Sheet -->
-<section class="spec" id="spec">
-  <div class="head">
-    <div>
-      <div class="eyebrow">
-        <span class="num">The Foundation</span>
-      </div>
-      <div style="height: 2rem"></div>
-      <h2
-        class="pull"
-        style="
-          color: var(--color-text-on-dark);
-          font-size: clamp(2.8rem, 5vw, 4rem);
-        "
-      >
-        Built<br /> Beyond Standard
-      </h2>
-    </div>
-    <div class="lead">從地底向上，<br />每一道工序都超越標準</div>
-  </div>
-
-  <div class="grid">
-    <div class="cell" *ngFor="let c of specCells; trackBy: trackByIndex">
-      <div class="k">{{ c.k }}</div>
-      <div class="v">
-        <ng-container
-          *ngFor="
-            let part of splitSpecValue(c.v);
-            let last = last;
-            let i = index;
-            trackBy: trackByIndex
-          "
-        >
-          <span>{{ part }}<span class="small" *ngIf="!last"> / </span></span>
-        </ng-container>
-      </div>
-      <div class="vsub">{{ c.sub }}</div>
-    </div>
-  </div>
-
-  <div class="layouts-hero">
-    <img
-      class="layouts-bg"
-      src="assets/image/photo/terrace.webp"
-      alt=""
-      aria-hidden="true"
-    />
-    <!--
-    <div class="layouts-overlay"></div>
-    -->
-    <div class="layouts">
-      <div class="lt">
-        <div class="label-sm">精準的選擇</div>
-        <div class="tt">47 坪<span class="zh">三房 · 兩衛 · 大陽台</span></div>
-        <div class="desc">精品自住首選——方正格局、雙衛皆開窗、光線直進不折。</div>
-        <button
-          class="tl"
-          (click)="scrollToId('contact')"
-          style="align-self: flex-start; color: var(--color-text-on-dark)"
-        >
-          47 坪 · 索取型錄
-        </button>
-      </div>
-      <div class="lt">
-        <div class="label-sm">多一點的餘裕</div>
-        <div class="tt">
-          52 坪<span class="zh">三房 · 雙主臥 · 寬景陽台</span>
-        </div>
-        <div class="desc">
-          給自己更多餘裕——大主臥、寬景陽台、讓四季進得來的空間尺度。
-        </div>
-        <button
-          class="tl"
-          (click)="scrollToId('contact')"
-          style="align-self: flex-start; color: var(--color-text-on-dark)"
-        >
-          52 坪 · 索取型錄
-        </button>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- Contact -->
-<section class="contact" id="contact">
-  <div class="pre">
-    <div>
-      <div class="eyebrow">
-        <span class="num">預約鑒賞</span>
-      </div>
-    </div>
-    <div class="invite">
-      不問決定，<br />
-      只帶你把這裡的每個細節，都看清楚。
-    </div>
-  </div>
-
-  <div class="body-grid">
-    <form class="form" (submit)="submit($event)">
-      <ng-container *ngIf="!submitted; else thanks">
-        <div class="field">
-          <label>姓名</label>
-          <input type="text" placeholder="您的稱呼" required />
-        </div>
-        <div class="field">
-          <label>手機</label>
-          <input
-            type="tel"
-            placeholder="09XX XXX XXX"
-            required
-            pattern="[0-9 \-]+"
-          />
-        </div>
-        <div class="field">
-          <label>電子郵件</label>
-          <input type="email" placeholder="your@email.com" required />
-        </div>
-        <div class="field">
-          <label>留言</label>
-          <textarea placeholder="請留下您預計賞屋時間，或方便聯繫時間" rows="4"></textarea>
-        </div>
-        <button type="submit" class="submit">預約鑒賞</button>
-      </ng-container>
-
-      <ng-template #thanks>
-        <app-booking-thanks></app-booking-thanks>
-      </ng-template>
-    </form>
-
-    <div class="info">
-      <div class="blk">
-        <div class="label">接待中心</div>
-        <div class="value">
-          臺中市北屯區<br />敦化路二段 239 號<br />
-          <span class="en">No. 239, Sec. 2, Dunhua Rd., Beitun Dist., Taichung</span>
-        </div>
-      </div>
-      <div class="blk">
-        <div class="label">營業時間</div>
-        <div class="value">每日 9:00 — 19:00<br />預約優先</div>
-      </div>
-      <div class="blk">
-        <div class="label">電話</div>
-        <div class="value">04 2297 7777</div>
-      </div>
-      <div class="blk">
-        <div class="label">LINE 諮詢</div>
-        <div
-          style="
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-end;
-            margin-top: 0.5rem;
-          "
-        >
-          <div class="qr" aria-hidden="true"></div>
-          <div class="value" style="font-size: 13px; max-width: 20ch">
-            &#64;zhixu-taichung<br />
-            <span class="en" style="margin-top: 0">SCAN · or add by ID</span>
+      <div class="col-wide">
+        <div class="video-grid vg-left-wide">
+          <div class="vg-card vg-card--main">
+            <video
+              muted
+              playsinline
+              preload="none"
+              src="assets/video/garden-01.webm"
+              poster="assets/video/garden-01.webp"
+            ></video>
+            <div class="caption-fade">
+              戶外林蔭<span class="caption-disclaimer">情境示意僅供參考</span>
+            </div>
+          </div>
+          <div class="vg-card vg-card--side">
+            <video
+              muted
+              playsinline
+              preload="none"
+              src="assets/video/garden-02.webm"
+              poster="assets/video/garden-02.webp"
+            ></video>
+            <div class="caption-fade">
+              花園弧形步道<span class="caption-disclaimer"
+                >情境示意僅供參考</span
+              >
+            </div>
+          </div>
+          <div class="vg-card vg-card--side">
+            <video
+              muted
+              playsinline
+              preload="none"
+              src="assets/video/pool.webm"
+              poster="assets/video/pool.webp"
+            ></video>
+            <div class="caption-fade">
+              游泳池<span class="caption-disclaimer">情境示意僅供參考</span>
+            </div>
           </div>
         </div>
       </div>
-      <a href="https://maps.app.goo.gl/rEoJMzbfVJVQYr7A9" class="ph linen map" target="_blank" rel="noopener noreferrer">
-        <img class="ph-img" [src]="img.map" alt="接待中心位置圖" />
-        <div class="caption-fade">敦化路二段 · 經貿路</div>
-      </a>
     </div>
-  </div>
+  </section>
 
-  <div class="footer-bar">
-    <p>2026 · 之序 · 富華創新</p>
-    <p>ALL RIGHTS RESERVED</p>
-  </div>
-</section>
+  <!-- Section 2 · — full-width header + 2×2 grid (5 videos) -->
+  <section class="frame design" id="design-b">
+    <div class="inner">
+      <div class="col-narrow">
+        <div class="eyebrow">
+          <span class="num">迎賓大廳・多功能交誼美學</span>
+          <h2 class="pull-zh">在洗鍊的奢華秩序裡，款待生活與最愛的人。</h2>
+        </div>
+      </div>
+
+      <div class="col-wide">
+        <div class="video-grid vg-top-wide">
+          <div class="vg-card vg-card--top">
+            <video
+              muted
+              playsinline
+              preload="none"
+              src="assets/video/main-gate.webm"
+              poster="assets/video/main-gate.webp"
+            ></video>
+            <div class="caption-fade">
+              門廳<span class="caption-disclaimer">情境示意僅供參考</span>
+            </div>
+          </div>
+          <div class="vg-card vg-card--bot">
+            <video
+              muted
+              playsinline
+              preload="none"
+              src="assets/video/restaurant.webm"
+              poster="assets/video/restaurant.webp"
+            ></video>
+            <div class="caption-fade">
+              食憩<span class="caption-disclaimer">情境示意僅供參考</span>
+            </div>
+          </div>
+          <div class="vg-card vg-card--bot">
+            <video
+              muted
+              playsinline
+              preload="none"
+              src="assets/video/theater.webm"
+              poster="assets/video/theater.webp"
+            ></video>
+            <div class="caption-fade">
+              多功能視聽室<span class="caption-disclaimer"
+                >情境示意僅供參考</span
+              >
+            </div>
+          </div>
+          <div class="vg-card vg-card--bot">
+            <video
+              muted
+              playsinline
+              preload="none"
+              src="assets/video/elevator.webm"
+              poster="assets/video/elevator.webp"
+            ></video>
+            <div class="caption-fade">
+              電梯廳<span class="caption-disclaimer">情境示意僅供參考</span>
+            </div>
+          </div>
+          <div class="vg-card vg-card--bot">
+            <video
+              muted
+              playsinline
+              preload="none"
+              src="assets/video/bar.webm"
+              poster="assets/video/bar.webp"
+            ></video>
+            <div class="caption-fade">
+              星空酒吧<span class="caption-disclaimer">情境示意僅供參考</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="trust" id="trust">
+    <div class="builder-deep" id="builder-deep">
+      <!-- 背景圖：完成後把 background-image 補在 .bd-bg（見 scss 註解）-->
+      <div class="bd-bg" aria-hidden="true"></div>
+      <div class="bd-overlay" aria-hidden="true"></div>
+
+      <h2 class="anchor-q">
+        用三十年耕耘做同一件事<br />
+        <span class="lighter">蓋一棟值得等待的房子。</span>
+      </h2>
+
+      <div class="bd-right">
+        <div class="bd-stat">
+          <h3 class="bd-title"><span>國家級</span><span>甲級營造</span></h3>
+          <p class="bd-describe">
+            以承攬國家公共工程的最高嚴苛標準，把關結構的每一道細節，為您與家人築起足以傳承世代的安心基石。
+          </p>
+        </div>
+        <div class="bd-stat">
+          <h3 class="bd-title"><span>半世紀</span><span>職人紀律</span></h3>
+          <p class="bd-describe">
+            源自 1976 年高章營造的扎實根基，半百年來始終如一的工地嚴格紀律。
+          </p>
+        </div>
+        <div class="bd-stat">
+          <h3 class="bd-title"><span>業界領先</span><span>工地高標準</span></h3>
+          <p class="bd-describe">
+            2009 年起率先推行「無酒精工地」與 24
+            小時全面監控，更堅持材料進場全數嚴格抽檢。
+          </p>
+        </div>
+        <div class="bd-stat">
+          <h3 class="bd-title"><span>3D</span><span>模擬蓋房</span></h3>
+          <p class="bd-describe">
+            全面導入 BIM 衝突管理系統，確保施工零誤差，進行科技化營建流程。
+          </p>
+        </div>
+
+        <div class="bd-essay-wrap">
+          <p class="bd-essay">
+            富華創新承襲總太三十年耕耘，我們不只蓋一座房子，更是以每一個住進的家庭思考、及嚴苛標準的工程標準，用心蓋出一座足以傳承世代傳家行館。
+          </p>
+          <p class="bd-essay">
+            外在，是震撼城市的永恆立面；<br />
+            內在，是安放您與家人、財富最優雅的避風港。
+          </p>
+          <p class="bd-essay">
+            <span class="strong">頂級的奢飲，從不需喧嘩。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPRINGS BAYS · sticky-stacking 半屏雙欄敘事 -->
+  <section class="springs-bays" id="springs-bays">
+    <article
+      *ngFor="let bay of springsBays; let i = index; trackBy: trackByIndex"
+      class="sb-bay"
+      [attr.id]="bay.id"
+      [attr.data-theme]="bay.theme"
+      [style.z-index]="i + 1"
+    >
+      <div class="sb-frame">
+        <div class="sb-image">
+          <img [src]="bay.src" [alt]="bay.title" />
+          <div class="sb-headline">
+            <h2 class="sb-title">{{ bay.title }}</h2>
+            <div class="sb-tag">{{ bay.tag }}</div>
+          </div>
+        </div>
+
+        <aside class="sb-panel">
+          <div class="sb-panel-inner">
+            <p class="sb-lede">{{ bay.lede }}</p>
+
+            <ul class="sb-stats">
+              <li *ngFor="let s of bay.stats; trackBy: trackByIndex">
+                <span class="sb-stat">{{ s }}</span>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </section>
+
+  <!-- Spec Sheet -->
+  <section class="spec" id="spec">
+    <div class="head">
+      <div>
+        <div class="eyebrow">
+          <span class="num">堅固基礎</span>
+        </div>
+        <h2 class="pull">從地底向上，<br />每一道工序都超越標準</h2>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="cell" *ngFor="let c of specCells; trackBy: trackByIndex">
+        <div class="k">{{ c.k }}</div>
+        <div class="v">
+          <ng-container
+            *ngFor="
+              let part of splitSpecValue(c.v);
+              let last = last;
+              let i = index;
+              trackBy: trackByIndex
+            "
+          >
+            <span>{{ part }}<span class="small" *ngIf="!last"> / </span></span>
+          </ng-container>
+        </div>
+        <div class="vsub">{{ c.sub }}</div>
+      </div>
+    </div>
+
+    <div class="layouts-hero">
+      <img
+        class="layouts-bg"
+        src="assets/image/photo/terrace.webp"
+        alt=""
+        aria-hidden="true"
+      />
+      <!--
+    <div class="layouts-overlay"></div>
+    -->
+      <div class="layouts">
+        <div class="lt">
+          <div class="label-sm">精準的選擇</div>
+          <div class="tt">
+            47 坪<span class="zh">三房 · 兩衛 · 大陽台</span>
+          </div>
+          <div class="desc">
+            精品自住首選——方正格局、雙衛皆開窗、光線直進不折。
+          </div>
+          <button
+            class="tl"
+            (click)="scrollToId('contact')"
+            style="align-self: flex-start; color: var(--color-text-on-dark)"
+          >
+            47 坪 · 索取型錄
+          </button>
+        </div>
+        <div class="lt">
+          <div class="label-sm">多一點的餘裕</div>
+          <div class="tt">
+            52 坪<span class="zh">三房 · 雙主臥 · 寬景陽台</span>
+          </div>
+          <div class="desc">
+            給自己更多餘裕——大主臥、寬景陽台、讓四季進得來的空間尺度。
+          </div>
+          <button
+            class="tl"
+            (click)="scrollToId('contact')"
+            style="align-self: flex-start; color: var(--color-text-on-dark)"
+          >
+            52 坪 · 索取型錄
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="pre">
+      <div class="invite">
+        不問決定，<br />
+        只帶你把這裡的每個細節，都看清楚。
+      </div>
+    </div>
+
+    <div class="body-grid">
+      <form class="form" (submit)="submit($event)">
+        <ng-container *ngIf="!submitted; else thanks">
+          <mat-form-field appearance="fill" >
+            <mat-label>姓名</mat-label>
+            <input
+              matInput
+              id="contact-name"
+              type="text"
+              placeholder="您的稱呼"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" >
+            <mat-label>手機</mat-label>
+            <input
+              matInput
+              id="contact-phone"
+              type="tel"
+              placeholder="09XX XXX XXX"
+              required
+              pattern="[0-9 \-]+"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" >
+            <mat-label>電子郵件</mat-label>
+            <input
+              matInput
+              id="contact-email"
+              type="email"
+              placeholder="your@email.com"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>留言</mat-label>
+            <textarea
+              matInput
+              id="contact-message"
+              placeholder="請留下您預計賞屋時間，或方便聯繫時間"
+              rows="4"
+            ></textarea>
+          </mat-form-field>
+
+          <button type="submit" class="submit">預約鑒賞</button>
+        </ng-container>
+
+        <ng-template #thanks>
+          <app-booking-thanks></app-booking-thanks>
+        </ng-template>
+      </form>
+
+      <address class="info">
+        <div class="blk">
+          <div class="label">接待中心</div>
+          <div class="value">
+            <p>臺中市北屯區</p>
+            <p>敦化路二段 239 號</p>
+            <span class="en"
+              >No. 239, Sec. 2, Dunhua Rd., Beitun Dist., Taichung</span
+            >
+          </div>
+        </div>
+        <div class="blk">
+          <div class="label">營業時間</div>
+          <div class="value">
+            <p>每日 9:00 — 19:00</p>
+            <p>預約優先</p>
+          </div>
+        </div>
+        <div class="blk">
+          <div class="label">電話</div>
+          <a class="value" href="tel:+886422977777">04 2297 7777</a>
+        </div>
+        <div class="blk">
+          <div
+            style="
+              display: flex;
+              gap: 1.5rem;
+              align-items: flex-end;
+              margin-top: 0.5rem;
+            "
+          >
+            <div class="qr" aria-hidden="true"></div>
+            <div class="value" style="font-size: 13px; max-width: 20ch">
+              <p>&#64;zhixu-taichung</p>
+              <span class="en" style="margin-top: 0">掃描或 ID 搜尋</span>
+            </div>
+          </div>
+        </div>
+        <a
+          href="https://maps.app.goo.gl/rEoJMzbfVJVQYr7A9"
+          class="ph linen map"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img class="ph-img" [src]="img.map" alt="接待中心位置圖" />
+          <div class="caption-fade">敦化路二段 · 經貿路</div>
+        </a>
+      </address>
+    </div>
+
+    <footer class="footer-bar">
+      <p>2026 · 之序 · 富華創新</p>
+      <p>ALL RIGHTS RESERVED</p>
+    </footer>
+  </section>
+</main>

@@ -12,14 +12,14 @@ module.exports = {
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1' }],      // 12px
         'sm': ['0.875rem', { lineHeight: '1' }],    // 14px
-        'base': ['1rem', { lineHeight: '1' }],       // 16px
-        'lg': ['1.125rem', { lineHeight: '1' }],      // 18px
-        'xl': ['1.25rem', { lineHeight: '1' }],      // 20px
-        '2xl': ['1.5rem', { lineHeight: '1.1' }],          // 24px
-        '3xl': ['2rem',     { lineHeight: '1.1' }],   // 32px
-        '4xl': ['2.25rem', { lineHeight: '1.2' }],      // 36px
-        '5xl': ['3rem', { lineHeight: '1.25' }],          // 48px
-        '6xl': ['3.75rem', { lineHeight: '1.25' }],       // 60px
+        'base': ['1rem', { lineHeight: '1.25' }],       // 16px
+        'lg': ['1.125rem', { lineHeight: '1.7' }],      // 18px
+        'xl': ['1.25rem', { lineHeight: '1.25' }],      // 20px
+        '2xl': ['1.5rem', { lineHeight: '1.25' }],          // 24px
+        '3xl': ['2rem',     { lineHeight: '1.25' }],   // 32px
+        '4xl': ['2.25rem', { lineHeight: '1.25' }],      // 36px
+        '5xl': ['3rem', { lineHeight: '1.5' }],          // 48px
+        '6xl': ['3.75rem', { lineHeight: '1.5' }],       // 60px
       },
       lineHeight: {
         'none': '1',
