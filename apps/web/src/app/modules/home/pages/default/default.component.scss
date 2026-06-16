@@ -1,22 +1,33 @@
 :host {
   --color-surface-light: #f8f0ec;
-  --color-surface-dark: #230000;
+  --color-surface-tertiary: #8c142d;
+  --color-surface-tertiary-dark: #230000;
+
   --color-text-on-light: #2b0a0d;
   --color-text-on-dark: #f5e9e2;
   --color-text-secondary: #7c5a55;
-  --color-accent-warm: #b90a19;
+  --color-text-tertiary: #b90a19;
   --color-divider: #3a1110;
 
+  --color-divider-on-tertiary: #7e231f;
+
+  --brand-gradient: linear-gradient(20deg, var(--color-surface-tertiary) 0%, #4f0404 100%);
   // 金色明度階應用：深底用基準金，淺底改用降明度的金（同色系不同明度）
   --fg-1: var(--token-gold-60, #c89d55);        // 深底標題金
   --fg-1-bright: var(--token-gold-70, #d6b272); // 深底次層亮金
   --fg-1-ink: var(--token-gold-30, #785a24);    // 淺底標題金（對比 ≥4.5:1）
-  --fg-2: var(--token-rose-70, #c1a49b);        // 深底弱化文字
+  --fg-2: var(--token-rose-70, #ad8a80);        // 深底弱化文字
   --fg-2-dim: var(--token-rose-60, #a8908a);    // 深底更弱層級（仍 ≥4.5:1）
-  --fg-2-ink: var(--token-rose-40, #7c5a55);    // 淺底弱化文字（≈5:1）
-  --bg-1: var(--color-surface-light);
-  --bg-2: var(--color-surface-dark);
-  --accent: var(--color-accent-warm);
+
+  /* extracted tokens (centralized color tokens used in this component) */
+  --token-rose-70: #c1a49b;
+  --token-rose-60: #a8908a;
+  --token-rose-40: #7c5a55;
+  --token-rose-muted: #ecd1cb;
+  /* sb-panel (cream) palette made available at component scope for reuse */
+  --sb-panel-cream: #eddcc0;
+  --sb-panel-cream-ink: #2b0a0d;
+  --sb-panel-cream-rule: rgba(31, 26, 20, 0.18);
 
   --ease-editorial: cubic-bezier(0.25, 0.1, 0.25, 1);
   --dur-slow: 600ms;
@@ -26,7 +37,7 @@
   --col-wide: 9.5fr;
 
   display: block;
-  background: var(--bg-1);
+  background: var(--color-surface-light);
   color: var(--fg-1);
   @apply font-sans;
   font-size: 1rem;
@@ -204,7 +215,7 @@ ul {
       cursor: pointer;
       text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
       &:hover {
-        color: var(--accent);
+        color: var(--color-text-tertiary);
         text-decoration-color: transparent;
       }
     }
@@ -279,13 +290,8 @@ ul {
 section.frame {
   @apply p-6 2xl:p-12;
   position: relative;
-  background-color: var(--bg-1);
+  background-color: var(--color-surface-light);
 
-  // 淺底上的 eyebrow / yearmark：同色系降明度，維持 ≥4.5:1
-  .eyebrow,
-  .yearmark {
-    color: var(--fg-2-ink);
-  }
   .inner {
     @apply md:grid gap-8 items-start;
     grid-template-columns: var(--col-narrow) var(--col-wide);
@@ -346,9 +352,7 @@ section.frame {
 }
 
 .pull {
-  @apply font-serif;
-  font-weight: 400;
-  line-height: 1.05;
+  @apply font-semibold font-serif leading-normal;
   letter-spacing: 0.01em;
   color: var(--fg-1);
 
@@ -400,7 +404,7 @@ p.body {
   position: relative;
   overflow: hidden;
   &.dark {
-    background: var(--bg-2);
+    background: var(--color-surface-tertiary);
     color: var(--color-text-on-dark);
   }
 
@@ -451,7 +455,7 @@ p.body {
     max-width: 18ch;
     text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
     .accent {
-      color: var(--accent);
+      color: var(--color-text-tertiary);
     }
   }
 
@@ -776,8 +780,7 @@ p.body {
 
 /* District Intro · 周邊國際特區 */
 .district-intro {
-  // cream 色系 — 對應 springs-bays data-theme="cream"
-  background: #eddcc0;
+  background: var(--color-surface-tertiary);
   color: #2b0a0d;
   overflow: hidden;
   position: relative; // 給 .di-exit-veil 的 inset:0 對齊用
@@ -874,9 +877,8 @@ p.body {
   }
 
   .di-title {
-    @apply font-serif max-w-lg font-bold tracking-wider;
+    @apply text-white font-serif max-w-lg font-bold tracking-wider;
     font-size: clamp(1.8rem, 3.6vw, 3.4rem);
-    color: var(--fg-1-ink); // 金米色底 → 降明度金
   }
 }
 
@@ -965,7 +967,7 @@ p.body {
 
 /* Trust */
 .trust {
-  background-color: var(--bg-2);
+  background-color: var(--color-surface-tertiary);
   /* trust 接在 design (米色) 之後 → 深咖 trust 頂部 fade from 米色 */
 
   background-size: 100% 16vh;
@@ -973,13 +975,13 @@ p.body {
   background-position: top;
   color: var(--color-text-on-dark);
   padding: 5rem 3rem;
-  border-bottom: 1px solid #4a1d1b;
+  border-bottom: 1px solid var(--color-divider-on-tertiary);
   .trust-head {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #4a1d1b;
+    border-bottom: 1px solid var(--color-divider-on-tertiary);
     margin-bottom: 3rem;
     .eyebrow {
       color: #c1a49b;
@@ -1005,7 +1007,7 @@ p.body {
     flex-direction: column;
     gap: 0.8rem;
     padding-right: 1rem;
-    border-right: 1px solid #4a1d1b;
+    border-right: 1px solid var(--color-divider-on-tertiary);
     min-height: 180px;
     &:last-child {
       border-right: 0;
@@ -1049,7 +1051,7 @@ p.body {
     grid-column: 1 / -1;
     margin-top: 3.5rem;
     padding-top: 2.5rem;
-    border-top: 1px solid #4a1d1b;
+    border-top: 1px solid var(--color-divider-on-tertiary);
     display: grid;
     grid-template-columns: 4fr 8fr;
     gap: 2rem;
@@ -1075,7 +1077,7 @@ p.body {
     }
     .cell {
       border-right: 0;
-      border-bottom: 1px solid #4a1d1b;
+      border-bottom: 1px solid var(--color-divider-on-tertiary);
       padding-bottom: 1.5rem;
       min-height: auto;
       &.accent-cell {
@@ -1101,7 +1103,7 @@ p.body {
   margin: -5rem -3rem;
   padding: 6rem 3rem 5rem;
 
-  /* 背景層：parallax(scrub)。背景圖完成後改用下方註解的 background-image */
+  /* 背景層：parallax(scrub)。bg 層比容器高，GSAP 驅動 yPercent:10 視差。*/
   .bd-bg {
     position: absolute;
     left: 0;
@@ -1110,12 +1112,18 @@ p.body {
     height: 124%;
     z-index: -2;
     background-color: #1c0404;
-    background-image: linear-gradient(180deg, #2e0909 0%, #200505 58%, #150202 100%);
-    /* === 背景圖補在這裡 ===
-       background-image: url("/assets/image/photo/builder-bg.webp"); */
-    background-size: cover;
-    background-position: center;
     will-change: transform;
+    overflow: hidden;
+
+    .bd-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
   }
   .bd-overlay {
     position: absolute;
@@ -1151,7 +1159,6 @@ p.body {
     @apply font-sans;
     line-height: 2.1;
     letter-spacing: 0.06em;
-    color: #ead4cb;
     margin: 0 0 1.4rem;
 
     .strong {
@@ -1184,21 +1191,19 @@ p.body {
     }
 
     .bd-title {
-      @apply mb-auto text-5xl;
-      @apply font-serif;
-      color: var(--color-text-on-dark);
+      @apply mb-auto text-5xl font-serif font-semibold;
+      color: var(--color-text-tertiary);
     }
 
     .bd-describe {
-      @apply text-lg font-bold tracking-wide;
-      @apply font-sans;
-      color: #c9aba1;
+      @apply text-lg font-normal tracking-wide;
     }
   }
 
   .bd-works {
     margin-top: 4rem;
   }
+
   .bd-works-head {
     display: flex;
     justify-content: space-between;
@@ -1254,10 +1259,10 @@ p.body {
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--color-text-tertiary);
     line-height: 1.7;
     padding-top: 0.6rem;
-    border-top: 1px solid #4a1d1b;
+    border-top: 1px solid var(--color-divider-on-tertiary);
   }
   .bd-work-note {
     @apply font-sans;
@@ -1269,7 +1274,7 @@ p.body {
   .bd-final {
     margin-top: 5rem;
     padding: 3.5rem 0;
-    border-top: 1px solid #4a1d1b;
+    border-top: 1px solid var(--color-divider-on-tertiary);
     text-align: center;
     font-family: "Noto Serif TC", serif;
     font-size: clamp(1.8rem, 3vw, 2.6rem);
@@ -1277,7 +1282,7 @@ p.body {
     letter-spacing: 0.08em;
     color: var(--color-text-on-dark);
     .accent-em {
-      color: var(--accent);
+      color: var(--color-text-tertiary);
     }
   }
 }
@@ -1310,7 +1315,7 @@ p.body {
    SPRINGS BAYS · image-left / coloured-panel-right (pinned + parallax)
    ════════════════════════════════════════════════════════════ */
 .springs-bays {
-  background: var(--bg-2);
+  background: var(--color-surface-tertiary);
   --sb-panel-cream: #eddcc0;
   --sb-panel-cream-ink: #2b0a0d;
   --sb-panel-cream-rule: rgba(31, 26, 20, 0.18);
@@ -1344,7 +1349,7 @@ p.body {
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background: var(--bg-2);
+    background: var(--color-surface-tertiary);
   }
 
   .sb-image {
@@ -1359,21 +1364,7 @@ p.body {
       filter: brightness(0.94);
       will-change: transform;
     }
-    .sb-headline {
-      position: absolute;
-      left: 3rem;
-      bottom: 3rem;
-      z-index: 2;
-      color: var(--fg-1);
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
-      pointer-events: none;
-      .sb-title {
-        @apply font-serif text-4xl font-bold tracking-wide mb-3;
-      }
-      .sb-tag {
-        @apply font-serif text-xl tracking-wide;
-      }
-    }
+    
   }
 
   .sb-panel {
@@ -1468,13 +1459,7 @@ p.body {
     }
     .sb-image {
       aspect-ratio: 4 / 5;
-      .sb-headline {
-        left: 1.25rem;
-        bottom: 1.5rem;
-        .sb-title {
-          font-size: clamp(3rem, 14vw, 5rem);
-        }
-      }
+      
     }
     .sb-panel .sb-panel-inner {
       padding: 3rem 1.5rem;
@@ -1485,10 +1470,7 @@ p.body {
 
 /* Spec */
 .spec {
-  background-color: var(--bg-2);
-
-  background-size: 100% 16vh;
-  background-repeat: no-repeat;
+  background: var(--brand-gradient) no-repeat;
   background-position: top;
   color: var(--color-text-on-dark);
   padding: 8rem 3rem;
@@ -1497,10 +1479,9 @@ p.body {
     grid-template-columns: 5fr 7fr;
     gap: 3rem;
     padding-bottom: 3rem;
-    border-bottom: 1px solid #4a1d1b;
+    border-bottom: 1px solid var(--color-divider-on-tertiary);
     align-items: end;
     .eyebrow {
-      color: #c1a49b;
       margin-bottom: 2rem;
     }
   }
@@ -1510,8 +1491,8 @@ p.body {
     margin-top: 4rem;
     gap: 0;
     .cell {
-      border-right: 1px solid #4a1d1b;
-      border-bottom: 1px solid #4a1d1b;
+      border-right: 1px solid var(--color-divider-on-tertiary);
+      border-bottom: 1px solid var(--color-divider-on-tertiary);
       padding: 2.5rem 2rem;
       display: flex;
       flex-direction: column;
@@ -1528,8 +1509,6 @@ p.body {
         font-size: 0.875rem;
         font-weight: 600;
         letter-spacing: 0.26em;
-        text-transform: uppercase;
-        color: var(--fg-2-dim);
       }
       .v {
         @apply font-serif;
@@ -1548,10 +1527,9 @@ p.body {
         }
       }
       .vsub {
-        @apply font-sans;
+        @apply text-base;
         font-size: 1rem;
         letter-spacing: 0.06em;
-        color: #c1a49b;
         line-height: 1.7;
       }
     }
@@ -1596,7 +1574,7 @@ p.body {
       @apply flex flex-col flex-1 min-w-fit;
       gap: 1rem;
       padding-top: 2rem;
-      border-top: 1px solid #4a1d1b;
+      border-top: 1px solid var(--color-divider-on-tertiary);
       .label-sm {
         @apply font-sans;
         font-size: 0.875rem;
@@ -1615,7 +1593,7 @@ p.body {
           font-family: "Noto Serif TC", serif;
           text-transform: none;
           margin-left: 12px;
-          color: #c1a49b;
+          color: var(--token-rose-70);
           font-size: 0.7em;
           letter-spacing: 0.06em;
         }
@@ -1625,7 +1603,7 @@ p.body {
         font-size: 1rem;
         line-height: 1.95;
         letter-spacing: 0.06em;
-        color: #c1a49b;
+        color: var(--token-rose-70);
       }
     }
   }
@@ -1656,13 +1634,13 @@ p.body {
         padding: 1.5rem 1rem;
         min-height: auto;
         &:nth-child(3n) {
-          border-right: 1px solid #4a1d1b;
+          border-right: 1px solid var(--color-divider-on-tertiary);
         }
         &:nth-child(2n) {
           border-right: 0;
         }
         &:nth-last-child(-n + 3) {
-          border-bottom: 1px solid #4a1d1b;
+          border-bottom: 1px solid var(--color-divider-on-tertiary);
         }
         &:nth-last-child(-n + 2) {
           border-bottom: 0;
@@ -1762,7 +1740,7 @@ p.body {
 
 /* Contact — 接在 spec (深咖) 之後，同色不需要 bridge */
 .contact {
-  background-color: var(--bg-2);
+  background-color: var(--color-surface-tertiary-dark);
   color: var(--color-text-on-dark);
   padding: 8rem 3rem 4rem;
   .pre {
@@ -1770,7 +1748,7 @@ p.body {
     grid-template-columns: 5fr 7fr;
     gap: 3rem;
     padding-bottom: 3rem;
-    border-bottom: 1px solid #4a1d1b;
+    border-bottom: 1px solid var(--color-divider-on-tertiary);
     align-items: end;
     .invite {
       font-family: "Noto Serif TC", serif;
@@ -1838,7 +1816,7 @@ p.body {
         @apply font-sans;
         font-size: 1rem;
         letter-spacing: 0.04em;
-        caret-color: var(--accent);
+        caret-color: var(--color-text-tertiary);
         &::placeholder {
           color: #7c5a55;
         }
@@ -1846,17 +1824,17 @@ p.body {
 
       // Bottom line — idle
       .mdc-line-ripple::before {
-        border-bottom-color: #4a1d1b;
+        border-bottom-color: var(--color-divider-on-tertiary);
       }
       // Bottom line — active / focused
       .mdc-line-ripple::after {
-        border-bottom-color: var(--accent);
+        border-bottom-color: var(--color-text-tertiary);
       }
 
       // Focused state
       &.mat-focused .mat-mdc-floating-label,
       &.mat-focused .mdc-floating-label {
-        color: var(--accent);
+        color: var(--color-text-tertiary);
       }
 
       // Error state
@@ -1880,12 +1858,12 @@ p.body {
         font-size: 1rem;
         letter-spacing: 0.06em;
         padding: 8px 16px;
-        border: 1px solid #4a1d1b;
+        border: 1px solid var(--color-divider-on-tertiary);
         cursor: pointer;
         user-select: none;
         transition: all var(--dur-base) var(--ease-editorial);
         &.on {
-          color: var(--bg-2);
+          color: var(--color-surface-tertiary);
           background: var(--color-text-on-dark);
           border-color: var(--color-text-on-dark);
         }
@@ -1940,7 +1918,7 @@ p.body {
   .footer-bar {
     margin-top: 6rem;
     padding-top: 2rem;
-    border-top: 1px solid #4a1d1b;
+    border-top: 1px solid var(--color-divider-on-tertiary);
     display: flex;
     justify-content: space-between;
     align-items: baseline;

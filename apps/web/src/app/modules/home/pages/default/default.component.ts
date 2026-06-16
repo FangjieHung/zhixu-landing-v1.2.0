@@ -544,19 +544,19 @@ export class DefaultComponent
 
       if (baysContainer && bays.length) {
         if (isMobile) {
-          // Mobile: simple fade-in per bay, no pin/scrub.
+          // Mobile: per-element fade-in; lede triggers at viewport 50%, stats after.
           bays.forEach((bay) => {
-            const panel = bay.querySelector<HTMLElement>('.sb-panel');
+            const lede  = bay.querySelector<HTMLElement>('.sb-lede');
             const stats = bay.querySelectorAll<HTMLElement>('.sb-stats li');
-            if (panel)
-              gsap.from(panel, {
+            if (lede)
+              gsap.from(lede, {
                 opacity: 0,
                 y: 24,
                 duration: 1,
                 ease,
                 scrollTrigger: {
-                  trigger: bay,
-                  start: 'top 80%',
+                  trigger: lede,
+                  start: 'top 50%',
                   toggleActions: 'play none none none',
                 },
               });
@@ -564,91 +564,82 @@ export class DefaultComponent
               gsap.from(stats, {
                 opacity: 0,
                 y: 20,
-                stagger: 0.1,
-                duration: 0.8,
+                stagger: 0.18,
+                duration: 1.1,
                 ease,
                 scrollTrigger: {
                   trigger: bay,
-                  start: 'top 75%',
+                  start: 'top 60%',
                   toggleActions: 'play none none none',
                 },
               });
           });
         } else {
-          // ── Initial state: bays 2..n parked below viewport ──
+          // ── Bays 1..n: park below viewport ──
           bays.forEach((bay, i) => {
             if (i > 0) gsap.set(bay, { yPercent: 100 });
           });
 
-          // ── Each bay's intro elements (title / lede / stats) start hidden ──
-          bays.forEach((bay) => {
-            const title = bay.querySelector<HTMLElement>('.sb-title');
-            const lede = bay.querySelector<HTMLElement>('.sb-lede');
+          // ── Bay 0: non-scrubbed reveal fires on onEnter ──
+          const bay0 = bays[0];
+          const b0Lede  = bay0?.querySelector<HTMLElement>('.sb-lede');
+          const b0Stats = bay0?.querySelectorAll<HTMLElement>('.sb-stats li');
+          if (b0Lede)  gsap.set(b0Lede,  { opacity: 0, y: 20 });
+          if (b0Stats?.length) gsap.set(b0Stats, { opacity: 0, y: 22 });
+
+          const b0Tl = gsap.timeline({ paused: true });
+          
+          if (b0Lede)  b0Tl.to(b0Lede,  { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 0.14);
+          if (b0Stats?.length) b0Tl.to(b0Stats, { opacity: 1, y: 0, duration: 0.5, stagger: 0.09, ease: 'power2.out' }, 0.28);
+
+          // ── Bays 1+: hide text until their slide-in ──
+          bays.forEach((bay, i) => {
+            if (i === 0) return;
+            const lede  = bay.querySelector<HTMLElement>('.sb-lede');
             const stats = bay.querySelectorAll<HTMLElement>('.sb-stats li');
-            if (title) gsap.set(title, { y: 40, opacity: 0 });
-            if (lede) gsap.set(lede, { opacity: 0, y: 24 });
-            if (stats.length) gsap.set(stats, { opacity: 0, y: 28 });
+            if (lede)  gsap.set(lede,  { opacity: 0, y: 20 });
+            if (stats.length) gsap.set(stats, { opacity: 0, y: 22 });
           });
 
           // ── Master pinned timeline ──
-          // Choreography per "slot" of 1 × viewport scroll:
-          //   slot 0 (dwell)        : bay 1 reveal (title/lede/stats)
-          //   slot 1 (transition)   : bay 2 slides up over bay 1
-          //   slot 2 (dwell)        : bay 2 reveal
-          //   slot 3 (transition)   : bay 3 slides up over bay 2
-          //   slot 4 (dwell)        : bay 3 reveal
-          const slots = Math.max(3, bays.length * 2 - 1); // 5 for 3 bays
+          // slot 0: bay 0 dwell  |  slot 1: bay 1 slides up  |  slot 2: bay 1 dwell
+          // slot 3: bay 2 slides up  |  slot 4: bay 2 dwell  (5 slots for 3 bays)
+          const slots = bays.length * 2 - 1;
           const tl = gsap.timeline({
-            defaults: { ease: 'power2.out' },
             scrollTrigger: {
               trigger: baysContainer,
               start: 'top top',
               end: () => `+=${window.innerHeight * slots}`,
               pin: true,
               pinSpacing: true,
-              scrub: 0.5,
+              scrub: 0.8,
               anticipatePin: 1,
               invalidateOnRefresh: true,
+              onEnter: () => b0Tl.play(),
+              onLeaveBack: () => b0Tl.reverse(),
             },
           });
 
+          // Bay 0 dwell slot
+          tl.to({}, { duration: 1 }, 0);
+
           bays.forEach((bay, i) => {
-            const title = bay.querySelector<HTMLElement>('.sb-title');
-            const lede = bay.querySelector<HTMLElement>('.sb-lede');
+            if (i === 0) return;
+            const lede  = bay.querySelector<HTMLElement>('.sb-lede');
             const stats = bay.querySelectorAll<HTMLElement>('.sb-stats li');
+            const slideStart = 2 * i - 1;
 
-            // For bay i:
-            //   reveal slot = 2 * i
-            //   slide-in slot (for bay i > 0) = 2 * i - 1
-            const revealStart = 2 * i;
+            // Slide bay up; power2.inOut gives a smooth symmetrical arc under scrub
+            tl.to(bay, { yPercent: 0, duration: 1, ease: 'power2.inOut' }, slideStart);
 
-            if (i > 0) {
-              const slideStart = 2 * i - 1;
-              tl.to(
-                bay,
-                { yPercent: 0, duration: 1, ease: 'power3.out' },
-                slideStart
-              );
-            }
+            // lede: appears at 50% of slide (panel entering viewport)
+            // title: appears at 65% (image mostly in view)
+            // stats: appear at 75%, longer stagger for dramatic ripple
+            if (lede)  tl.to(lede,  { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' }, slideStart + 0.5);
+            if (stats.length) tl.to(stats, { opacity: 1, y: 0, stagger: 0.15, duration: 0.5, ease: 'power2.out' }, slideStart + 0.75);
 
-            // Reveal sequence within the dwell slot
-            if (title)
-              tl.to(title, { y: 0, opacity: 1, duration: 0.6 }, revealStart - 0.7 );
-            if (lede)
-              tl.to(
-                lede,
-                { opacity: 1, y: 0, duration: 0.28 },
-                revealStart - 0.4
-              );
-            if (stats.length)
-              tl.to(
-                stats,
-                { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 },
-                revealStart + 0.3
-              );
-
-            // Small "stay" tween so the slot consumes ~1 unit of scroll
-            tl.to({}, { duration: 0.5 }, revealStart + 0.5);
+            // Dwell slot
+            tl.to({}, { duration: 1 }, 2 * i);
           });
         }
       }

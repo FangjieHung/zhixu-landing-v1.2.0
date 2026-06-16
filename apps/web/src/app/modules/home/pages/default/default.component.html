@@ -2,7 +2,7 @@
  
 
 <header class="topbar" [class.shown]="scrolled">
-  <div class="fixed top-0 w-full inset-x-0 text-white z-10">測試版本 v1.1.0</div>
+  
   <a class="mark" routerLink="/">
     <img src="assets/image/logo/type-main.svg" alt="之序" />
     <div class="en">
@@ -151,8 +151,8 @@
               muted
               playsinline
               preload="none"
-              src="assets/video/garden-01.webm"
-              poster="assets/video/garden-01.webp"
+              src="assets/video/facilities/garden-01.webm"
+              poster="assets/video/facilities/garden-01.webp"
             ></video>
             <div class="caption-fade">
               戶外林蔭<span class="caption-disclaimer">情境示意僅供參考</span>
@@ -163,8 +163,8 @@
               muted
               playsinline
               preload="none"
-              src="assets/video/garden-02.webm"
-              poster="assets/video/garden-02.webp"
+              src="assets/video/facilities/garden-02.webm"
+              poster="assets/video/facilities/garden-02.webp"
             ></video>
             <div class="caption-fade">
               花園弧形步道<span class="caption-disclaimer"
@@ -177,8 +177,8 @@
               muted
               playsinline
               preload="none"
-              src="assets/video/pool.webm"
-              poster="assets/video/pool.webp"
+              src="assets/video/facilities/pool.webm"
+              poster="assets/video/facilities/pool.webp"
             ></video>
             <div class="caption-fade">
               游泳池<span class="caption-disclaimer">情境示意僅供參考</span>
@@ -206,8 +206,8 @@
               muted
               playsinline
               preload="none"
-              src="assets/video/main-gate.webm"
-              poster="assets/video/main-gate.webp"
+              src="assets/video/facilities/main-gate.webm"
+              poster="assets/video/facilities/main-gate.webp"
             ></video>
             <div class="caption-fade">
               門廳<span class="caption-disclaimer">情境示意僅供參考</span>
@@ -218,8 +218,8 @@
               muted
               playsinline
               preload="none"
-              src="assets/video/restaurant.webm"
-              poster="assets/video/restaurant.webp"
+              src="assets/video/facilities/restaurant.webm"
+              poster="assets/video/facilities/restaurant.webp"
             ></video>
             <div class="caption-fade">
               食憩<span class="caption-disclaimer">情境示意僅供參考</span>
@@ -230,8 +230,8 @@
               muted
               playsinline
               preload="none"
-              src="assets/video/theater.webm"
-              poster="assets/video/theater.webp"
+              src="assets/video/facilities/theater.webm"
+              poster="assets/video/facilities/theater.webp"
             ></video>
             <div class="caption-fade">
               多功能視聽室<span class="caption-disclaimer"
@@ -244,8 +244,8 @@
               muted
               playsinline
               preload="none"
-              src="assets/video/elevator.webm"
-              poster="assets/video/elevator.webp"
+              src="assets/video/facilities/elevator.webm"
+              poster="assets/video/facilities/elevator.webp"
             ></video>
             <div class="caption-fade">
               電梯廳<span class="caption-disclaimer">情境示意僅供參考</span>
@@ -256,8 +256,8 @@
               muted
               playsinline
               preload="none"
-              src="assets/video/bar.webm"
-              poster="assets/video/bar.webp"
+              src="assets/video/facilities/bar.webm"
+              poster="assets/video/facilities/bar.webp"
             ></video>
             <div class="caption-fade">
               星空酒吧<span class="caption-disclaimer">情境示意僅供參考</span>
@@ -271,8 +271,11 @@
   <!-- Trust -->
   <section class="trust" id="trust">
     <div class="builder-deep" id="builder-deep">
-      <!-- 背景圖：完成後把 background-image 補在 .bd-bg（見 scss 註解）-->
-      <div class="bd-bg" aria-hidden="true"></div>
+      <div class="bd-bg" aria-hidden="true">
+        <video class="bd-bg-video" autoplay muted loop playsinline>
+          <source src="assets/video/cons-site/bg-video.webm" type="video/webm" />
+        </video>
+      </div>
       <div class="bd-overlay" aria-hidden="true"></div>
 
       <h2 class="anchor-q">
@@ -335,10 +338,6 @@
       <div class="sb-frame">
         <div class="sb-image">
           <img [src]="bay.src" [alt]="bay.title" />
-          <div class="sb-headline">
-            <h2 class="sb-title">{{ bay.title }}</h2>
-            <div class="sb-tag">{{ bay.tag }}</div>
-          </div>
         </div>
 
         <aside class="sb-panel">
