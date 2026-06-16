@@ -17,6 +17,7 @@ jobs:
 
       - name: Deploy pre-built dist to gh-pages
         run: |
+          sed -i 's|<base href="/">|<base href="/zhixu-landing/">|g' dist/apps/web/browser/index.html
           touch dist/apps/web/browser/.nojekyll
           cd dist/apps/web/browser
           git init
