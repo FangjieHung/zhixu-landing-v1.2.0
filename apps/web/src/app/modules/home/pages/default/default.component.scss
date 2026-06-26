@@ -2623,3 +2623,77 @@ section.frame.catalog {
     }
   }
 }
+
+/* ───── FAQ 常見問答（#faq / AEO） ─────
+   原生 <details> 手風琴：無需 JS、prerender 即為純文字，AI 與搜尋引擎可直接讀取。 */
+.faq {
+  background: var(--color-surface-light);
+  color: var(--color-text-on-light);
+  padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 64px);
+
+  .faq-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .faq-eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-title {
+    margin: 0 0 2.5rem;
+    font-family: "Noto Serif TC", serif;
+    font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .faq-item {
+    border-top: 1px solid rgba(43, 10, 13, 0.14);
+    padding: 1.25rem 0;
+
+    &:last-child {
+      border-bottom: 1px solid rgba(43, 10, 13, 0.14);
+    }
+  }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: "Noto Serif TC", serif;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    font-weight: 500;
+    line-height: 1.6;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  .faq-icon {
+    flex: 0 0 auto;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-text-tertiary);
+    transition: transform var(--dur-base, 400ms) var(--ease-editorial, ease);
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    margin: 1rem 0 0;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    line-height: 1.9;
+    color: var(--color-text-secondary);
+  }
+}

@@ -748,6 +748,22 @@
     </div>
   </section>
 
+  <section class="faq" id="faq">
+    <div class="faq-inner">
+      <span class="faq-eyebrow">FAQ · 常見問答</span>
+      <h2 class="faq-title">關於之序，您可能想了解</h2>
+      <div class="faq-list">
+        <details class="faq-item" *ngFor="let item of faqs; trackBy: trackByIndex">
+          <summary class="faq-q">
+            <span class="faq-q-text">{{ item.q }}</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-a">{{ item.a }}</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section class="contact" id="contact">
     <div class="pre">

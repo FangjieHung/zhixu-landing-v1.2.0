@@ -19,6 +19,7 @@
           "apps/web/src/favicon.ico",
           "apps/web/src/robots.txt",
           "apps/web/src/sitemap.xml",
+          "apps/web/src/llms.txt",
           "apps/web/src/_redirects",
           "apps/web/src/assets",
           {
