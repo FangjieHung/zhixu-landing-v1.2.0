@@ -955,16 +955,16 @@ p.body {
     opacity: 0.7;
   }
 
-  /* 標題格：手機版佔滿整行（col-span-full） */
+  /* 標題格：手機版佔滿整行*/
   .di-headline {
-    @apply flex flex-col justify-center items-start w-fit m-auto col-span-full md:col-span-1;
+    @apply flex flex-col justify-center items-start w-fit m-auto;
     padding: 0.5rem 0.25rem 0.75rem;
     will-change: opacity, transform;
   }
 
   .di-title {
     @apply font-serif font-bold tracking-wider text-black;
-    font-size: clamp(1.4rem, 5.6vw, 2rem);
+    font-size: clamp(2.5rem, 5.6vw, 2rem);
     line-height: 1.55;
     max-width: 22ch;
   }
@@ -976,7 +976,7 @@ p.body {
   /* 編輯式覆蓋層與旋轉圓環：預設隱藏，僅橫向（.is-horizontal）顯示 */
   .di-overlay,
   .di-ring {
-    display: none;
+    // display: none;
   }
 
   /* ── exit veil：pin 末段淡入，把米色畫面收進深紅預告下一節 ── */
@@ -1120,7 +1120,7 @@ p.body {
       display: block;
       position: absolute;
       inset: 0;
-      z-index: 4;
+      z-index: -1;
       pointer-events: none;
     }
 
@@ -1143,40 +1143,40 @@ p.body {
     }
 
     .di-counter {
-      position: absolute;
-      right: 5vw;
-      bottom: 8vh;
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-      font-family: "Playfair Display", serif;
-      color: var(--token-gold-30);
+      @apply right-5 -bottom-5 opacity-20;
     }
-    .di-counter-cur {
-      font-size: clamp(1.6rem, 2.4vw, 2.4rem);
-      line-height: 1;
-    }
-    .di-counter-sep,
-    .di-counter-total {
-      font-size: 0.95rem;
-      opacity: 0.55;
-    }
+  }
+}
 
-    /* phrase 模式：頁碼改放文案 —— 前導詞(serif 大) ． 說明(serif 小) */
-    .di-counter.is-phrase {
-      font-family: "Noto Serif TC", serif;
+/* ── 平板區間（769–1024px）：vw 寬 + vh 高各自獨立換算，直向螢幕下會被拉成過窄的長條圖。
+   改成「定高 + aspect-ratio」讓寬度跟著高度成比例算出，不再受螢幕方向影響。 ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .district-intro.is-horizontal {
+    .di-img {
+      aspect-ratio: 4 / 5;
+      width: auto;
+      height: 52vh;
     }
-    .di-counter.is-phrase .di-counter-cur {
-      font-size: clamp(1.4rem, 2vw, 2rem);
-      letter-spacing: 0.08em;
+    figure.di-img:nth-of-type(3n + 1) {
+      aspect-ratio: 4 / 5;
+      width: auto;
+      height: 60svh;
     }
-    .di-counter.is-phrase .di-counter-sep {
-      opacity: 0.5;
+    figure.di-img:nth-of-type(3n + 2) {
+      aspect-ratio: 3 / 4;
+      width: auto;
+      height: 44vh;
+      transform: translateY(-2vh);
     }
-    .di-counter.is-phrase .di-counter-total {
-      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
-      letter-spacing: 0.1em;
-      opacity: 0.8;
+    figure.di-img:nth-of-type(3n + 3) {
+      aspect-ratio: 2 / 3;
+      width: auto;
+      height: 54vh;
+    }
+    figure.di-img.col-span-2 {
+      aspect-ratio: 4 / 3;
+      width: auto;
+      height: 64vh;
     }
   }
 }
@@ -1255,7 +1255,7 @@ app-location-map {
 
     .di-img {
       aspect-ratio: auto;
-      width: min(76vw, 360px);
+      width: min(86vw, 360px);
       height: min(56svh, 430px);
       min-height: 320px;
     }
@@ -1265,18 +1265,18 @@ app-location-map {
     }
 
     figure.di-img:nth-of-type(3n + 2) {
-      width: min(68vw, 320px);
+      width: min(72vw, 320px);
       height: min(48svh, 380px);
       transform: translateY(-2svh);
     }
 
     figure.di-img:nth-of-type(3n + 3) {
-      width: min(70vw, 340px);
+      width: min(78vw, 340px);
       height: min(54svh, 410px);
     }
 
     .di-cell:not(.di-headline):not(.di-img) {
-      width: min(76vw, 360px);
+      width: min(86vw, 360px);
     }
 
     .di-cell > .di-img {
@@ -1299,6 +1299,38 @@ app-location-map {
       line-height: 1.5;
     }
   }
+
+  /* ── 覆蓋層（進度條＋文案計數器）：手機版也要顯示，沿用桌機邏輯但縮小尺寸與位置 ── */
+  .di-overlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .di-progress {
+    position: absolute;
+    left: 6vw;
+    bottom: 4.5svh;
+    width: clamp(90px, 28vw, 180px);
+    height: 2px;
+    background: rgba(43, 10, 13, 0.18);
+    overflow: hidden;
+  }
+  .di-progress-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--color-text-tertiary);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+}
+.di-counter {
+  @apply absolute flex font-serif items-center gap-2 left-8 right-auto bottom-10 opacity-60;
+  font-size: clamp(2.4rem, 10vw, 4.4rem);
+  color: var(--token-gold-80);
 }
 
 /* Trust */
@@ -2237,6 +2269,7 @@ section.frame.catalog {
 }
 
 .catalog-nav {
+  @apply justify-end md:justify-start;
   margin-top: auto;
   display: flex;
   gap: 0.75rem;
@@ -2574,22 +2607,6 @@ section.frame.catalog {
         #3a1110;
       position: relative;
     }
-  }
-  .footer-bar {
-    margin-top: 6rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-divider-on-tertiary);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 1rem;
-    @apply font-sans;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--fg-2-dim);
   }
 }
 @media (max-width: 900px) {

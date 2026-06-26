@@ -5,15 +5,35 @@
     <img src="assets/image/logo/type-main.svg" alt="之序" />
   </a>
   <nav class="ghost" aria-label="主要導覽">
-    <ng-container *ngFor="let item of navItems">
+    <ng-container *ngIf="false">
+      <!--  *ngFor="let item of navItems"
       <a
         *ngIf="!isMobileView() || !mobileHidden(item.id)"
         [href]="'#' + item.id"
         (click)="$event.preventDefault(); scrollToId(item.id)"
         [class.nav-focused]="active === item.id"
-        >{{ navLabel(item) }}</a
+        >{{ item.label }}</a
       >
+      -->
     </ng-container>
+    <a href="tel:+886422977777">
+      <span class="sm:hidden">專線</span>
+      <span class="hidden sm:inline">04-2297-7777</span>
+    </a>
+    <a
+      href="https://www.facebook.com/fhi.unveiling/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="sm:hidden">臉書</span>
+      <span class="hidden sm:inline">Facebook</span>
+    </a>
+    <a
+      href="https://maps.app.goo.gl/rEoJMzbfVJVQYr7A9"
+      target="_blank"
+      rel="noopener noreferrer"
+      >地圖導航</a
+    >
   </nav>
 </header>
 
@@ -108,9 +128,17 @@
   <section class="district-intro" id="district-intro">
     <div class="di-canvas">
       <div class="di-track">
+        <div class="di-cell di-headline">
+          <h2 class="di-title">漫步中央公園</h2>
+          <div class="di-body">
+            <p>框景一段悠閒的日光散策。</p>
+            <p>20 萬坪綿延的綠意，溫柔包容著<br />最值得珍藏的平凡日常</p>
+          </div>
+        </div>
+
         <figure class="di-cell di-img di-img--01">
           <img
-            src="assets/image/infrastructure/002-central-park.jpg"
+            src="assets/image/infrastructure/002-central-park.webp"
             alt="中央公園空拍景觀"
             loading="lazy"
           />
@@ -124,15 +152,6 @@
             </span>
           </figcaption>
         </figure>
-        <!-- 第一格：標題 -->
-        <div class="di-cell di-headline">
-          <h2 class="di-title">漫步中央公園</h2>
-          <div class="di-body">
-            <p>框景一段悠閒的日光散策。</p>
-            <p>20 萬坪綿延的綠意，溫柔包容著<br />最值得珍藏的平凡日常</p>
-          </div>
-        </div>
-
         <div class="di-ring left-[41%]" aria-hidden="true">
           <svg viewBox="0 0 120 120">
             <defs>
@@ -151,7 +170,7 @@
 
         <figure class="di-cell di-img di-img--02">
           <img
-            src="assets/image/infrastructure/xinping-park.jpg"
+            src="assets/image/infrastructure/xinping-park.webp"
             alt="新平公園"
             loading="lazy"
           />
@@ -167,7 +186,7 @@
         <div class="di-cell">
           <figure class="di-img di-img--03">
             <img
-              src="assets/image/infrastructure/detention-basin.jpg"
+              src="assets/image/infrastructure/detention-basin.webp"
               alt="水湳蓄水池 粉紅楓林木合成示意圖"
               loading="lazy"
             />
@@ -233,7 +252,7 @@
 
         <figure class="di-cell di-img di-img--06">
           <img
-            src="assets/image/infrastructure/005-mrt-green-line.jpg"
+            src="assets/image/infrastructure/005-mrt-green-line.webp"
             alt="捷運綠線月台實景"
             loading="lazy"
           />
@@ -251,13 +270,12 @@
       <div class="di-overlay" aria-hidden="true">
         <div class="di-progress"><span class="di-progress-fill"></span></div>
         <div
-          *ngIf="false"
           class="di-counter is-phrase"
-          data-stops='[{"to":3,"lead":"咫尺","note":"20萬坪綠海"},{"to":6,"lead":"延伸","note":"城市速度"}]'
+          data-stops='[{"to":3,"lead":"Endless","note":"Green"},{"to":6,"lead":"Urban","note":"Pulse"}]'
         >
-          <span class="di-counter-cur">咫尺</span>
+          <span class="di-counter-cur">Endless</span>
           <span class="di-counter-sep">． </span>
-          <span class="di-counter-total">20 萬坪綠海</span>
+          <span class="di-counter-total">Green</span>
         </div>
       </div>
     </div>
@@ -279,7 +297,7 @@
 
         <figure class="di-cell di-img di-img--01">
           <img
-            src="assets/image/infrastructure/004-green-art-museum.jpg"
+            src="assets/image/infrastructure/004-green-art-museum.webp"
             alt="臺中綠美圖建築外觀"
             loading="lazy"
           />
@@ -310,7 +328,7 @@
         </div>
         <figure class="di-cell di-img di-img--02">
           <img
-            src="assets/image/infrastructure/006-taichung-arena.jpg"
+            src="assets/image/infrastructure/006-taichung-arena.webp"
             alt="台中巨蛋"
             loading="lazy"
           />
@@ -327,7 +345,7 @@
         <div class="di-cell">
           <figure class="di-img di-img--03">
             <img
-              src="assets/image/infrastructure/003-exhibition-center.png"
+              src="assets/image/infrastructure/003-exhibition-center.webp"
               alt="台中國際會展中心"
               loading="lazy"
             />
@@ -347,7 +365,7 @@
         </div>
         <figure class="di-cell di-img di-img--04">
           <img
-            src="assets/image/infrastructure/008-cmu-art-museum.jpg"
+            src="assets/image/infrastructure/008-cmu-art-museum.webp"
             alt="中國醫藥大學美術館"
             loading="lazy"
           />
@@ -362,15 +380,15 @@
           </figcaption>
         </figure>
       </div>
-      <div *ngIf="false" class="di-overlay" aria-hidden="true">
+      <div class="di-overlay" aria-hidden="true">
         <div class="di-progress"><span class="di-progress-fill"></span></div>
         <div
           class="di-counter is-phrase"
-          data-stops='[{"to":2,"lead":"散步","note":"藝文聚落"},{"to":4,"lead":"觸手","note":"國際展演"}]'
+          data-stops='[{"to":2,"lead":"Artistic","note":"Culture"},{"to":4,"lead":"Global","note":"Stage"}]'
         >
-          <span class="di-counter-cur">散步</span>
+          <span class="di-counter-cur">Artistic</span>
           <span class="di-counter-sep">． </span>
-          <span class="di-counter-total">藝文聚落</span>
+          <span class="di-counter-total">Culture</span>
         </div>
       </div>
     </div>
@@ -439,8 +457,9 @@
                 muted
                 playsinline
                 preload="none"
-                [src]="clip.src"
+                [src]="clipSrc(clip)"
                 [poster]="clip.poster"
+                (ended)="gardenSwiper.swiperRef.slideNext()"
               ></video>
               <div class="caption-fade">
                 {{ clip.caption
@@ -510,8 +529,9 @@
                 muted
                 playsinline
                 preload="none"
-                [src]="clip.src"
+                [src]="clipSrc(clip)"
                 [poster]="clip.poster"
+                (ended)="lobbySwiper.swiperRef.slideNext()"
               ></video>
               <div class="caption-fade">
                 {{ clip.caption
@@ -533,38 +553,35 @@
       [attr.data-theme]="bay.theme"
       [style.z-index]="i + 1"
     >
-    <swiper
-      class="springs-bays__swiper"
-      [config]="springsBaysSwiperConfig"
-    >
-      <ng-template
-        swiperSlide
-        *ngFor="let bay of springsBays; trackBy: trackByIndex"
-      >
-      <div class="sb-frame">
-        <div class="sb-image">
-          <img [src]="bay.src" [alt]="bay.title" />
-        </div>
+      <swiper class="springs-bays__swiper" [config]="springsBaysSwiperConfig">
+        <ng-template
+          swiperSlide
+          *ngFor="let bay of springsBays; trackBy: trackByIndex"
+        >
+          <div class="sb-frame">
+            <div class="sb-image">
+              <img [src]="bay.src" [alt]="bay.title" />
+            </div>
 
-        <aside class="sb-panel">
-          <div class="sb-panel-inner">
-            <p class="sb-lede">
-              <span
-                class="sb-lede__line"
-                *ngFor="let line of bay.lede; trackBy: trackByIndex"
-                >{{ line }}</span
-              >
-            </p>
+            <aside class="sb-panel">
+              <div class="sb-panel-inner">
+                <p class="sb-lede">
+                  <span
+                    class="sb-lede__line"
+                    *ngFor="let line of bay.lede; trackBy: trackByIndex"
+                    >{{ line }}</span
+                  >
+                </p>
 
-            <ul class="sb-stats">
-              <li *ngFor="let s of bay.stats; trackBy: trackByIndex">
-                <span class="sb-stat">{{ s }}</span>
-              </li>
-            </ul>
+                <ul class="sb-stats">
+                  <li *ngFor="let s of bay.stats; trackBy: trackByIndex">
+                    <span class="sb-stat">{{ s }}</span>
+                  </li>
+                </ul>
+              </div>
+            </aside>
           </div>
-        </aside>
-      </div>
-      </ng-template>
+        </ng-template>
       </swiper>
     </article>
   </section>
@@ -851,7 +868,7 @@
         <a class="blk" href="https://line.me/R/ti/p/@020xhcbv" target="_blank">
           <div class="flex gap-1 items-end w-full mt-2">
             <img
-              src="assets/image/contact/line-fuhua-inno.png"
+              src="assets/image/contact/line-fuhua-inno.webp"
               alt="富華心聚落官方 LINE"
               class="w-40 h-40 object-contain"
             />
@@ -872,10 +889,5 @@
         </a>
       </address>
     </div>
-
-    <footer class="footer-bar">
-      <p>2026 · 之序 · 富華創新</p>
-      <p>ALL RIGHTS RESERVED</p>
-    </footer>
   </section>
 </main>

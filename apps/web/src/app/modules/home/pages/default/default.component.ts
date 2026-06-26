@@ -23,7 +23,10 @@ interface Walk {
 
 /** 設施影片片段：catalog 區塊的 swiper 投影片 + 右上分頁標籤共用資料源 */
 interface FacilityClip {
+  /** 行動裝置／窄螢幕用的較小檔案 */
   src: string;
+  /** 桌面寬螢幕用的高畫質版本 */
+  srcHd: string;
   poster: string;
   caption: string;
 }
@@ -96,10 +99,10 @@ export class DefaultComponent
    * 四張同尺寸（1672×941）全幅圖層，疊在一起構成有景深的主視覺。
    */
   readonly heroLayers = {
-    background: `${this.assetBase}/photo/hero-landscpae_background.png`,
-    display01: `${this.assetBase}/photo/hero-landscpae_display-01.png`,
-    display02: `${this.assetBase}/photo/hero-landscpae_display-02.png`,
-    buildings: `${this.assetBase}/photo/hero-landscpae_buildings.png`,
+    background: `${this.assetBase}/photo/hero-landscpae_background.webp`,
+    display01: `${this.assetBase}/photo/hero-landscpae_display-01.webp`,
+    display02: `${this.assetBase}/photo/hero-landscpae_display-02.webp`,
+    buildings: `${this.assetBase}/photo/hero-landscpae_buildings.webp`,
   };
 
   /**
@@ -119,7 +122,7 @@ export class DefaultComponent
   id: 'bay-residence',
   title: '在容易忽略的地方，體貼著所有的細微感知。',
   tag: '細節成就完美',
-  src: `${this.assetBase}/photo/vaf-living.jpg`,
+  src: `${this.assetBase}/photo/vaf-living.webp`,
   lede: [
     '從踏入門的那一刻起，每個選材都在說話。',
     '德國太格木地板、日本三協氣密窗、VAF 智慧淨氣、Yale 無感門鎖——',
@@ -138,7 +141,7 @@ export class DefaultComponent
       id: 'bay-sanctuary',
       title: '浴室',
       tag: '日常淨心儀式',
-      src: `${this.assetBase}/photo/toto-main.jpg`,
+      src: `${this.assetBase}/photo/toto-main.webp`,
       lede: [
         '無需試探、不必等待，用恰到好處的淋浴溫度喚醒感官，',
         '這一刻自然鬆開、緩緩融化。',
@@ -157,7 +160,7 @@ export class DefaultComponent
       id: 'bay-kitchen',
       title: '廚房',
       tag: '烹飪成為藝術',
-      src: `${this.assetBase}/photo/stosa-main.jpg`,
+      src: `${this.assetBase}/photo/stosa-main.webp`,
       lede: [
         '當洗碗機溫柔承接了杯盤狼藉後的鬆弛，暖盤機悄悄溫熱著器皿，',
         '這些體貼入微的細節，讓料理回歸最本質的模樣：',
@@ -172,28 +175,6 @@ export class DefaultComponent
       ],
       theme: 'umber',
     },
-    /*
-    {
-      id: 'bay-amenities',
-      title: 'Amenities',
-      tag: 'LIFE ELEVATED BEYOND THE UNIT',
-      src: `${this.assetBase}/photo/skylounge-main.jpg`,
-      lede: [
-        '走出家門，生活仍在延伸。',
-        '從幾何光影門廳到頂樓 Sky Lounge，從無邊際泳池到私人影院，',
-        '每一處公共空間都以飯店規格設計——讓日常成為度假，讓棟內即是目的地。',
-      ],
-      stats: [
-        'Sky Lounge 頂樓天空酒廊 · 金色弧形吧台環繞城市天際線',
-        '戶外無邊際泳池 · 櫻花樹列陣四季皆景',
-        'Theater 私人影音室 · 弧形穹頂沉浸式視聽',
-        '食藝空間 · 大理石中島專業廚房可宴客',
-        '森序庭園 · 蜿蜒步道穿越喬木城市私有森林',
-      ],
-      theme: 'forest',
-    },
-    */
-
   ];
 
   /**
@@ -222,34 +203,40 @@ export class DefaultComponent
   // ───── Catalog 設施展示（#design / #design-b）─────
   /** 影片以 swiper 輪播呈現，右上分頁標籤與目前投影片同步 */
   readonly gardenClips: FacilityClip[] = [
-    { src: 'assets/video/facilities/garden-01.webm', poster: 'assets/video/facilities/garden-01.webp', caption: '戶外林蔭' },
-    { src: 'assets/video/facilities/garden-02.webm', poster: 'assets/video/facilities/garden-02.webp', caption: '花園弧形步道' },
-    { src: 'assets/video/facilities/pool.webm', poster: 'assets/video/facilities/pool.webp', caption: '游泳池' },
+    { src: 'assets/video/facilities/sky-garden.webm', srcHd: 'assets/video/facilities/sky-garden-hd.webm', poster: 'assets/video/facilities/sky-garden.webp', caption: '2000 坪四季庭園' },
+    { src: 'assets/video/facilities/entrance.webm', srcHd: 'assets/video/facilities/entrance-hd.webm', poster: 'assets/video/facilities/entrance.webp', caption: '中庭入口' },
+    { src: 'assets/video/facilities/garden-pavilion.webm', srcHd: 'assets/video/facilities/garden-pavilion-hd.webm', poster: 'assets/video/facilities/garden-pavilion.webp', caption: '花園涼亭' },
+    { src: 'assets/video/facilities/pool.webm', srcHd: 'assets/video/facilities/pool-hd.webm', poster: 'assets/video/facilities/pool.webp', caption: '游泳池' },
+    { src: 'assets/video/facilities/yoga-studio.webm', srcHd: 'assets/video/facilities/yoga-studio-hd.webm', poster: 'assets/video/facilities/yoga-studio.webp', caption: '瑜珈教室' },
+    { src: 'assets/video/facilities/night-facade.webm', srcHd: 'assets/video/facilities/night-facade-hd.webm', poster: 'assets/video/facilities/night-facade.webp', caption: '建築夜景' },
   ];
 
   readonly lobbyClips: FacilityClip[] = [
-    { src: 'assets/video/facilities/main-gate.webm', poster: 'assets/video/facilities/main-gate.webp', caption: '門廳' },
-    { src: 'assets/video/facilities/restaurant.webm', poster: 'assets/video/facilities/restaurant.webp', caption: '食憩' },
-    { src: 'assets/video/facilities/theater.webm', poster: 'assets/video/facilities/theater.webp', caption: '多功能視聽室' },
-    { src: 'assets/video/facilities/elevator.webm', poster: 'assets/video/facilities/elevator.webp', caption: '電梯廳' },
-    { src: 'assets/video/facilities/bar.webm', poster: 'assets/video/facilities/bar.webp', caption: '星空酒吧' },
+    { src: 'assets/video/facilities/clubhouse.webm', srcHd: 'assets/video/facilities/clubhouse-hd.webm', poster: 'assets/video/facilities/clubhouse.webp', caption: '會館外觀' },
+    { src: 'assets/video/facilities/main-gate.webm', srcHd: 'assets/video/facilities/main-gate-hd.webm', poster: 'assets/video/facilities/main-gate.webp', caption: '迎賓大廳' },
+    { src: 'assets/video/facilities/restaurant.webm', srcHd: 'assets/video/facilities/restaurant-hd.webm', poster: 'assets/video/facilities/restaurant.webp', caption: '食憩' },
+    { src: 'assets/video/facilities/garden-bar.webm', srcHd: 'assets/video/facilities/garden-bar-hd.webm', poster: 'assets/video/facilities/garden-bar.webp', caption: '庭園酒吧' },
+    { src: 'assets/video/facilities/theater.webm', srcHd: 'assets/video/facilities/theater-hd.webm', poster: 'assets/video/facilities/theater.webp', caption: '多功能視聽室' },
+    { src: 'assets/video/facilities/bar.webm', srcHd: 'assets/video/facilities/bar-hd.webm', poster: 'assets/video/facilities/bar.webp', caption: '星空酒吧' },
   ];
 
-  /** catalog 區塊兩個 swiper 共用設定：露出下一張側邊、自動輪播（每張停留 5 秒，手動切換後仍會繼續） */
+  /** ≥960px（桌面寬容器）改用 HD 版影片來源，避免 mobile 版被拉伸糢糊 */
+  private readonly isDesktopViewport =
+    typeof window !== 'undefined' &&
+    !!window.matchMedia &&
+    window.matchMedia('(min-width: 960px)').matches;
+
+  clipSrc(clip: FacilityClip): string {
+    return this.isDesktopViewport ? clip.srcHd : clip.src;
+  }
+
+  /** catalog 區塊兩個 swiper 共用設定：單張全幅顯示，影片播完才自動切到下一張（見 template 的 (ended)） */
   readonly catalogSwiperConfig: SwiperOptions = {
-    slidesPerView: 1.12,
-    spaceBetween: 14,
+    slidesPerView: 1,
+    loop: true,
     grabCursor: true,
     speed: 600,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
     watchSlidesProgress: true,
-    breakpoints: {
-      960: { slidesPerView: 1.45, spaceBetween: 20 },
-      1280: { slidesPerView: 1.65, spaceBetween: 24 },
-    },
   };
 
   readonly navItems: Array<{ id: string; label: string }> = [
@@ -260,12 +247,6 @@ export class DefaultComponent
     { id: 'spec', label: '精工格局' },
   ];
 
-  readonly mobileLabels: Record<string, string> = {
-    locationMap: '漫遊水湳',
-    design: '私藏空間',
-    spec: '精工格局',
-  };
-
   mobileHiddenIds = ['location-map', 'trust', 'design'];
 
   isMobileView(): boolean {
@@ -274,10 +255,6 @@ export class DefaultComponent
       window.matchMedia &&
       window.matchMedia('(max-width: 640px)').matches
     );
-  }
-
-  navLabel(item: { id: string; label: string }): string {
-    return this.isMobileView() ? this.mobileLabels[item.id] ?? item.label : item.label;
   }
 
   mobileHidden(id: string): boolean {
@@ -525,6 +502,8 @@ export class DefaultComponent
 
           // 進度（0→1）同步驅動進度條 scaleX 與頁碼／文案
           const diDriver = { p: 0 };
+          // phrase 模式：記住目前生效的 stop，只在文案真的切換的那一刻 fade，避免每個 scroll tick 都觸發
+          let activeDiStop: DiStop | null = null;
           const setDiProgress = () => {
             if (diFill) gsap.set(diFill, { scaleX: diDriver.p });
             if (!diImgCount) return;
@@ -535,8 +514,27 @@ export class DefaultComponent
             if (diStops.length) {
               const stop =
                 diStops.find((s) => i <= s.to) ?? diStops[diStops.length - 1];
-              if (diCurEl) diCurEl.textContent = stop.lead;
-              if (diTotalEl) diTotalEl.textContent = stop.note;
+              if (stop !== activeDiStop) {
+                activeDiStop = stop;
+                const fadeTargets = [diCurEl, diTotalEl].filter(
+                  (el): el is HTMLElement => !!el
+                );
+                gsap.to(fadeTargets, {
+                  opacity: 0,
+                  duration: 0.18,
+                  ease: 'power1.in',
+                  overwrite: true,
+                  onComplete: () => {
+                    if (diCurEl) diCurEl.textContent = stop.lead;
+                    if (diTotalEl) diTotalEl.textContent = stop.note;
+                    gsap.to(fadeTargets, {
+                      opacity: 1,
+                      duration: 0.24,
+                      ease: 'power1.out',
+                    });
+                  },
+                });
+              }
             } else if (diCurEl) {
               diCurEl.textContent = String(i).padStart(2, '0');
             }
@@ -853,7 +851,6 @@ export class DefaultComponent
         '.contact .form .submit',
         '.contact .info .blk',
         '.contact .info .map',
-        '.contact .footer-bar',
       ];
 
       revealSelectors.forEach((sel) => {

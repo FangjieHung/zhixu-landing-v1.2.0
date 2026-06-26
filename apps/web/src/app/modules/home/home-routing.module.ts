@@ -13,7 +13,7 @@ const routes: Routes = [
       title: `${env.siteName}｜中科 4 房｜水湳高樓層高級住宅`,
       description: '台中水湳重劃區的高端純自住建案，中科菁英與工程師隱富聚落。',
       url: `${env.siteServer}/`,
-      image: `${env.siteServer}/assets/image/og/chuhung-og.png`
+      image: `${env.siteServer}/assets/image/og/og.webp`
     }
   }
 ];
